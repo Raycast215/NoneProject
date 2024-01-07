@@ -10,8 +10,10 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Assets/Hovl Studio/HSFiles/Scripts/For demo scenes/HS_DemoShooting2D.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Common/UI/SafeArea.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Manager/AddressableManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Pool/Pooling.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Projectile/ProjectileController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.addressables@1.21.19/Editor/Build/BuildPipelineTasks/BuildLayoutGenerationTask.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://F:/QuarterDefense/Assets/Scripts/QuarterDefense/Common/GameManager.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://F:/QuarterDefense/Assets/Scripts/QuarterDefense/InGame/InGameManager.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -85,7 +87,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1704564877460</updated>
-      <workItem from="1704564880187" duration="4833000" />
+      <workItem from="1704564880187" duration="10051000" />
     </task>
     <servers />
   </component>
