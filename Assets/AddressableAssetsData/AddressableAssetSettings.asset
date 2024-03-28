@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 8a18eb38e5092044bb229d5976a154c9
   m_currentHash:
     serializedVersion: 2
-    Hash: 530303471ae2af242ec5a6060e3d62be
+    Hash: 3524205aed2ee8606d66feda8521c9f2
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_ContentStateBuildPathProfileVariableName: <default settings path>
   m_CustomContentStateBuildPath: 
   m_ContentStateBuildPath: 
-  m_BuildAddressablesWithPlayerBuild: 0
+  m_BuildAddressablesWithPlayerBuild: 1
   m_overridePlayerVersion: '[UnityEditor.PlayerSettings.bundleVersion]'
   m_GroupAssets:
   - {fileID: 11400000, guid: 3fffbbb1e45b43b49af0e22f7e21c9c3, type: 2}
@@ -88,6 +88,7 @@ MonoBehaviour:
     m_LabelNames:
     - default
     - Projectile
+    - SoundObject
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 18eb1831986083f47813127c18c49570, type: 2}

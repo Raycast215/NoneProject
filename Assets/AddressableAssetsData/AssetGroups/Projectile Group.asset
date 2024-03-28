@@ -83,12 +83,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - Projectile
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c0ddb623e2878c94190a0546149028c8
-    m_Address: Projectile_09
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Projectile
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9218cc77664e9974899dffd7fb026ade
     m_Address: Projectile_13
     m_ReadOnly: 0
@@ -178,6 +172,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Projectile
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b24739b489fc4d640bd8c716154bd96e
+    m_Address: Assets/File
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1fe1f9748da96204192d2eca02aaf46a
+    m_Address: SoundObject
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 48d764f37cf8b5441b9745f408b2cace
+    m_Address: Sound_Fire
+    m_ReadOnly: 0
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 039b2f641f9ce424197ccd84fa03303a, type: 2}
