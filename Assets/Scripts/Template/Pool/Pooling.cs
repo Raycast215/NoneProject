@@ -7,10 +7,6 @@ using UnityEngine;
 
 namespace Template.Pool
 {
-    // Scripted by Raycast
-    // 2023. 06. 12
-    // Object Pool Base 클래스입니다.
-    
     public class Pooling<T> : IDisposable where T : Component
     {
         private readonly T _prefab;

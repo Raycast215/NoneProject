@@ -1,27 +1,60 @@
 
+using System.Threading;
 using UnityEngine;
 
 
 namespace Template.Manager
 {
-    public abstract class SingletonBase<T> : MonoBehaviour where T : MonoBehaviour
+    public abstract class SingletonBase<T> : MonoBehaviour where T : Component
     {
-        public bool IsInitialized { get; protected set; }
+        private static T instance;
         
-        public static SingletonBase<T> Instance;
+        public static T Instance
+        {
+            get
+            {
+                if (instance is null)
+                {
+                    instance = FindObjectOfType<T>();
+                    
+                    if (instance is null)
+                    {
+                        var singletonObject = new GameObject(typeof(T).Name);
+                        
+                        instance = singletonObject.AddComponent<T>();
+                    }
+                }
+                
+                return instance;
+            }
+        }
+        
+        public bool IsInitialized { get; protected set; }
 
+        protected CancellationTokenSource Cts = new CancellationTokenSource();
+        
         private void Awake()
         {
-            if (Instance)
+            if (instance != null && instance != this)
             {
                 Destroy(gameObject);
-            }
-            else
-            {
-                Instance = this;
+                return;
             }
             
-            DontDestroyOnLoad(this);
+            instance = this as T;
+            
+            DontDestroyOnLoad(gameObject);
+        }
+
+        private void Start()
+        {
+            Initialized();
+        }
+
+        private void OnDestroy()
+        {
+            Cts.Cancel();
+            Cts.Dispose();
         }
 
         protected abstract void Initialized();
