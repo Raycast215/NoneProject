@@ -15,36 +15,37 @@ public class HS_ProjectileMover2D : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        if (flash != null)
-        {
-            //Instantiate flash effect on projectile position
-            var flashInstance = Instantiate(flash, transform.position, Quaternion.identity);
-            flashInstance.transform.forward = gameObject.transform.forward;
-            
-            //Destroy flash effect depending on particle Duration time
-            var flashPs = flashInstance.GetComponent<ParticleSystem>();
-            if (flashPs != null)
-            {
-                Destroy(flashInstance, flashPs.main.duration);
-            }
-            else
-            {
-                var flashPsParts = flashInstance.transform.GetChild(0).GetComponent<ParticleSystem>();
-                Destroy(flashInstance, flashPsParts.main.duration);
-            }
-        }
-        Destroy(gameObject,5);
+        // rb = GetComponent<Rigidbody2D>();
+        // if (flash != null)
+        // {
+        //     //Instantiate flash effect on projectile position
+        //     // var flashInstance = Instantiate(flash, transform.position, Quaternion.identity);
+        //     // flashInstance.transform.forward = gameObject.transform.forward;
+        //     
+        //     //Destroy flash effect depending on particle Duration time
+        //     // var flashPs = flashInstance.GetComponent<ParticleSystem>();
+        //     // if (flashPs != null)
+        //     // {
+        //     //     Destroy(flashInstance, flashPs.main.duration);
+        //     // }
+        //     // else
+        //     // {
+        //     //     var flashPsParts = flashInstance.transform.GetChild(0).GetComponent<ParticleSystem>();
+        //     //     Destroy(flashInstance, flashPsParts.main.duration);
+        //     // }
+        // }
+        
+        //Destroy(gameObject,5);
 	}
 
-    void FixedUpdate ()
-    {
-		if (speed != 0)
-        {
-            rb.velocity = transform.forward * speed;
-            //transform.position += transform.forward * (speed * Time.deltaTime);         
-        }
-	}
+ //    void FixedUpdate ()
+ //    {
+	// 	if (speed != 0)
+ //        {
+ //            rb.velocity = transform.forward * speed;
+ //            //transform.position += transform.forward * (speed * Time.deltaTime);         
+ //        }
+	// }
 
     //https ://docs.unity3d.com/ScriptReference/Rigidbody.OnCollisionEnter.html
     void OnCollisionEnter2D(Collision2D collision)
