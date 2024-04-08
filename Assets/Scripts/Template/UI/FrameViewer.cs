@@ -23,7 +23,7 @@ namespace Template.UI
 
         private void SetText(float frame)
         {
-            frameText.text = $"FPS : {frame:F0}";
+            frameText.text = $"{frame:F0}";
         }
     }
 }
