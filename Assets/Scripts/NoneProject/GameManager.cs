@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
+
+using NoneProject.Common;
+using NoneProject.Manager;
+using Template.Manager;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+namespace NoneProject
+{
+    public class GameManager : SingletonBase<GameManager>
     {
-        
+        protected override void Initialized()
+        {
+            IsInitialized = true;
+        }
     }
 }
