@@ -10,25 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: SoundData
+  m_Name: MapData
   m_EditorClassIdentifier: 
-  m_GroupName: SoundData
+  m_GroupName: MapData
   m_Data:
     m_SerializedData: []
-  m_GUID: aea35574526d6e04a8d2fdc50daeafa9
+  m_GUID: 9de202f1889ea8d48b59c632c6e3b427
   m_SerializeEntries:
-  - m_GUID: 1fe1f9748da96204192d2eca02aaf46a
-    m_Address: SoundObject
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 48d764f37cf8b5441b9745f408b2cace
-    m_Address: Sound_Fire
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 0ecfbf9b5963c91439676708b122e301
-    m_Address: Sound_Click
+  - m_GUID: 56393911a2aea0d498894afee1a2d7a7
+    m_Address: Map_Forest
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
