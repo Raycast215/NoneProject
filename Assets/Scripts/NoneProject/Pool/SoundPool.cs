@@ -1,6 +1,6 @@
 
-using System.Threading;
 using Cysharp.Threading.Tasks;
+using NoneProject.Manager;
 using Template.Pool;
 using UnityEngine;
 
@@ -10,21 +10,7 @@ namespace NoneProject.Pool
     public class SoundPool : PoolBase
     {
         [SerializeField] private AudioSource source;
-
-        private CancellationTokenSource _cts;
         
-        private void Awake()
-        {
-            _cts = new CancellationTokenSource();
-        }
-
-        private void OnDestroy()
-        {
-            _cts.Cancel();
-            _cts.Dispose();
-            _cts = null;
-        }
-
         /// 받아온 clip으로 Sound를 재생하는 함수입니다. 
         public async UniTaskVoid PlaySound(AudioClip clip)
         {
@@ -36,12 +22,12 @@ namespace NoneProject.Pool
             source.Play();
 
             // 재생이 끝날 때까지 대기.
-            await UniTask.WaitUntil(() => source.isPlaying is false, cancellationToken: _cts.Token);
+            await UniTask.WaitUntil(() => source.isPlaying is false, cancellationToken: Cts.Token);
 
             Release();
         }
 
-#region Override Implement
+#region Override Implementation
 
         protected override void Release()
         {
@@ -49,7 +35,7 @@ namespace NoneProject.Pool
             source.clip = null;
             
             // Pool 해제.
-            PoolController.Instance.SoundPool.Return(this);
+            PoolManager.Instance.SoundPool.Return(this);
         }
 
 #endregion
