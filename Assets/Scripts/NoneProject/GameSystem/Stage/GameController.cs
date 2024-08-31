@@ -1,6 +1,8 @@
 
 using System.Threading;
 using NoneProject.Common;
+using NoneProject.GameSystem.Stage.UI;
+using NoneProject.Manager;
 using UnityEngine;
 
 
@@ -35,11 +37,31 @@ namespace NoneProject.GameSystem.Stage
             Clear();
             
             InitStateData();
+            InitUi();
             InitHolder();
             InitPlayer();
-            InitMap();
+            //InitMap();
+            
+            //DataManager.Instance.Load();
             
             _isRun = true;
+        }
+        
+        private void InitStateData()
+        {
+            _testStageData = new Data.Stage
+            {
+                index = 0,
+                mapType = $"{MapType.Forest}",
+                spawnCounts = new int[] { 3, 3, 4 },
+                bossKey = null,
+                rewardGold = 10
+            };
+        }
+
+        private void InitUi()
+        {
+            //UIManager.Instance.Get<UiStage>(ui => ui.Init());
         }
         
         private void InitHolder()
@@ -59,22 +81,10 @@ namespace NoneProject.GameSystem.Stage
             _mapHolder.SetParent(transform);
             _mapHolder.transform.position = new Vector3(0.0f, Define.HolderOffset, 0.0f);
         }
-
-        private void InitStateData()
-        {
-            _testStageData = new Data.Stage
-            {
-                index = 0,
-                mapType = MapType.Forest,
-                spawnCounts = new int[] { 3, 3, 4 },
-                bossKey = null,
-                rewardGold = 10
-            };
-        }
         
         private async void InitMap()
         {
-            var map =  await ActorCreator.CreateMap(_testStageData.mapType, _mapHolder);
+            var map = await ActorCreator.CreateMap(_testStageData.mapType, _mapHolder);
             map.Set(_testStageData, _enemyHolder);
             map.NodeRunner.SetRunState(true);
         }

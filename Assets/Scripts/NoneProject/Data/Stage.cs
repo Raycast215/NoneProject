@@ -9,7 +9,7 @@ namespace NoneProject.Data
     public class Stage
     {
         public int index;
-        public MapType mapType;
+        public string mapType;
         public int[] spawnCounts;
         public string bossKey;
         public int rewardGold;

@@ -1,9 +1,11 @@
 
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Template.Manager;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 
 namespace NoneProject.Manager
@@ -22,17 +24,27 @@ namespace NoneProject.Manager
             {
                 var asset = _assetDic[assetName].GetComponent<T>();
                 onComplete?.Invoke(asset);
+                return;
             }
-            else
+            
+            Addressables.LoadAssetAsync<GameObject>(assetName).Completed += handler =>
             {
-                Addressables.LoadAssetAsync<GameObject>(assetName).Completed += handler =>
-                {
-                    var asset = handler.Result.GetComponent<T>();
-                    onComplete?.Invoke(asset);
-                    _assetDic.Add(assetName, handler.Result);
-                    assetNameList.Add(assetName);
-                };
-            }
+                var asset = handler.Result.GetComponent<T>();
+                onComplete?.Invoke(asset);
+                _assetDic.Add(assetName, handler.Result);
+                assetNameList.Add(assetName);
+            };
+        }
+
+        public async void Load<T>(string assetName, Action<T> onComplete)
+        {
+            var handle = Addressables.LoadAssetAsync<T>(assetName);
+
+            await UniTask.WaitUntil(() => handle.IsDone);
+            
+            onComplete?.Invoke(handle.Result);
+            
+            Addressables.Release(handle);
         }
 
 #region Override Implementation

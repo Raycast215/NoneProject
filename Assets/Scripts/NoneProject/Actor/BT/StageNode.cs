@@ -12,7 +12,7 @@ namespace NoneProject.Actor.BT
 {
     public class StageNode : ActionNode
     {
-        [SerializeField] private float spawnDelay = 2.0f;
+        [SerializeField] private float spawnDelay = 1.0f;
 
         private Stage _stageData; 
         private Transform _enemyHolder;
@@ -36,7 +36,7 @@ namespace NoneProject.Actor.BT
             
             if (_stageData.spawnCounts[_spawnIndex] > _spawnCount)
             {
-                StageUpdate();
+                StageUpdate().Forget();
                 return nodeState = NodeState.Running;
             }
             
@@ -45,7 +45,7 @@ namespace NoneProject.Actor.BT
             return nodeState = NodeState.Running;
         }
 
-        private async void StageUpdate()
+        private async UniTaskVoid StageUpdate()
         {
             if (_isNodeRun)
                 return;
@@ -60,9 +60,6 @@ namespace NoneProject.Actor.BT
             _spawnCount++;
             _totalCount++;
 
-            if (Cts.IsCancellationRequested)
-                return;
-            
             await UniTask.WaitForSeconds(spawnDelay, cancellationToken: Cts.Token);
             
             _isNodeRun = false;

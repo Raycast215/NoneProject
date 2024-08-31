@@ -19,7 +19,7 @@ namespace NoneProject.Actor
             // Test Stat
             Stat.targetPosX = 1.0f;
             Stat.moveSpeed = 10.0f;
-            Stat.attackDelay = 2.0f;
+            Stat.attackDelay = 1.0f;
         }
         
         public override void Move()
@@ -27,7 +27,7 @@ namespace NoneProject.Actor
             var posX = Stat.moveSpeed * Time.deltaTime;
             var posZ = Util.GetPosYDepth(transform.position.y);
             transform.Translate(Vector3.left * posX);
-            transform.position = new Vector3(transform.position.x, transform.position.y, posZ);
+            transform!.position.Set(transform.position.x, transform.position.y, posZ);
             Animations.PlayAnimation(ActorState.Run);
         }
 

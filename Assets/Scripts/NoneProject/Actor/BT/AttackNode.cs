@@ -8,7 +8,7 @@ namespace NoneProject.Actor.BT
 {
     public class AttackNode : ActionNode
     {
-        private bool _isPlating;
+        private bool _isPlaying;
 
         public override NodeState Evaluate()
         {
@@ -19,7 +19,7 @@ namespace NoneProject.Actor.BT
             // 공격 가능한 상태라면 공격 행동 실행.
             if (Actor.CheckStateOfAttack())
             {
-                Attack();
+                Attack().Forget();
                 return nodeState = NodeState.Running;
             }
 
@@ -28,22 +28,19 @@ namespace NoneProject.Actor.BT
             return nodeState = NodeState.Failure;
         }
 
-        private async void Attack()
+        private async UniTaskVoid Attack()
         {
-            if (_isPlating)
+            if (_isPlaying)
                 return;
             
-            _isPlating = true;
+            _isPlaying = true;
             Actor.Attack();
             Actor.Animations.PlayAnimation(ActorState.Attack_Normal, true);
 
-            if (Cts.IsCancellationRequested)
-                return;
-            
             // Actor의 공격 딜레이 만큼 대기.
             await UniTask.WaitForSeconds(Actor.Stat.attackDelay, cancellationToken: Cts.Token);
             
-            _isPlating = false;
+            _isPlaying = false;
         }
 
         private void OnDestroy()

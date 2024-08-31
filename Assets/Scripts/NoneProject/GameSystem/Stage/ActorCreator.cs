@@ -1,4 +1,5 @@
 
+using System;
 using Cysharp.Threading.Tasks;
 using NoneProject.Actor;
 using NoneProject.Common;
@@ -13,9 +14,6 @@ namespace NoneProject.GameSystem.Stage
     {
         public static async UniTask<PlayerController> CreatePlayer(string playerName, Transform parent)
         {
-            const float offset = 2.0f;
-            const float posX = -6.0f;
-            
             PlayerController prefab = null;
             AddressableManager.Instance.LoadAsset<PlayerController>(playerName, asset => prefab = asset);
 
@@ -23,8 +21,8 @@ namespace NoneProject.GameSystem.Stage
             
             var player = Object.Instantiate(prefab, parent);
             var playerTransform = player.transform;
-            playerTransform.localScale = new Vector3(-offset, offset, offset);
-            playerTransform.localPosition = new Vector3(posX, 0.0f, 0.0f);
+            playerTransform.localScale = Vector3.one;
+            playerTransform.localPosition = Vector3.zero;
             
             ActorListHolder.PlayerList.Add(player);
             
@@ -48,7 +46,7 @@ namespace NoneProject.GameSystem.Stage
             return enemy;
         }
 
-        public static async UniTask<MapController> CreateMap(MapType mapType, Transform parent)
+        public static async UniTask<MapController> CreateMap(string mapType, Transform parent)
         {
             const float offset = 1.5f;
             var mapName = $"Map_{mapType}";
