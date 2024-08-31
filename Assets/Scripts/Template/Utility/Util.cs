@@ -1,5 +1,3 @@
-
-
 using System.Linq;
 using NoneProject.Common;
 using UnityEngine;
@@ -14,14 +12,10 @@ namespace Template.Utility
             var ret = index;
 
             if (index < min)
-            {
                 ret = max;
-            }
 
             if (index > max)
-            {
                 ret = min;
-            }
 
             return ret;
         }
@@ -41,6 +35,25 @@ namespace Template.Utility
             var index = toList.IndexOf(toValue);
 
             return index + 4;
+        }
+        
+        /// GameObject를 생성하는 함수.
+        public static GameObject CreateObject(string gameObjectName, Transform parent)
+        {
+            var go = new GameObject(gameObjectName);
+            
+            go.transform.SetParent(parent);
+            return go;
+        }
+
+        /// GameObject를 생성하고 T 컴포넌트를 추가하는 함수.
+        public static T CreateObject<T>(string gameObjectName, Transform parent, T addComponent) where T : Component
+        {
+            var go = new GameObject(gameObjectName);
+            var ret = go.AddComponent<T>();
+            
+            go.transform.SetParent(parent);
+            return ret;
         }
     }
 }
