@@ -38,23 +38,26 @@ namespace Template.Utility
         }
         
         /// GameObject를 생성하는 함수.
-        public static GameObject CreateObject(string gameObjectName, Transform parent)
+        public static GameObject CreateObject(string gameObjectName, Transform parent, Vector3 position = new Vector3())
         {
             var go = new GameObject(gameObjectName);
             
             go.transform.SetParent(parent);
+            go.transform.position = position;
             return go;
         }
 
         /// GameObject를 생성하고 T 컴포넌트를 추가하는 함수.
-        public static T CreateObject<T>(string gameObjectName, Transform parent, T addComponent) where T : Component
+        public static T CreateObject<T>(string gameObjectName, Transform parent, T addComponent, Vector3 position = new Vector3()) where T : Component
         {
             var go = new GameObject(gameObjectName);
             var ret = go.AddComponent<T>();
             
             go.transform.SetParent(parent);
+            go.transform.position = position;
             return ret;
         }
+
         /// 조건에 따라 True = 1을, False = -1을 반환하는 함수.
         public static int GetToggleOne(bool isCondition)
         {
