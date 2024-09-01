@@ -55,5 +55,12 @@ namespace Template.Utility
             go.transform.SetParent(parent);
             return ret;
         }
+        /// 조건에 따라 True = 1을, False = -1을 반환하는 함수.
+        public static int GetToggleOne(bool isCondition)
+        {
+            return isCondition 
+                ? 1 
+                : -1;
+        }
     }
 }
