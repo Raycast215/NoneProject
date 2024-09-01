@@ -15,11 +15,12 @@ namespace NoneProject.UI.AutoPlay
         
         public event Action<bool> OnAutoPlayUpdated = delegate {  }; 
 
+        public bool IsAutoPlay { get; private set; }
+        
         [SerializeField] private AutoPlayViewer viewer;
 
         private Sequence _textTween;
-        private bool _isAutoPlay;
-      
+
         private void Awake()
         {
             viewer.GetButton.onClick.AddListener(() => SetAutoPlay());
@@ -36,18 +37,18 @@ namespace NoneProject.UI.AutoPlay
             _textTween = DOTween.Sequence();
             _textTween.Append(viewer.GetTmp.DOFade(0.0f, AlphaDurationTime).SetEase(AlphaEase));
             _textTween.Append(viewer.GetTmp.DOFade(1.0f, AlphaDurationTime).SetEase(AlphaEase));
-            _textTween.SetLoops(-1, LoopType.Restart);
+            _textTween.SetLoops(-1);
         }
         
         private void SetAutoPlay(bool isInit = true)
         {
             if (isInit)
-                _isAutoPlay = !_isAutoPlay;
+                IsAutoPlay = !IsAutoPlay;
             
-            viewer.SetActiveIcon(_isAutoPlay);
-            UpdateTextAlpha(_isAutoPlay);
+            viewer.SetActiveIcon(IsAutoPlay);
+            UpdateTextAlpha(IsAutoPlay);
             
-            OnAutoPlayUpdated?.Invoke(_isAutoPlay);
+            OnAutoPlayUpdated?.Invoke(IsAutoPlay);
         }
 
         private void UpdateTextAlpha(bool isActive)
