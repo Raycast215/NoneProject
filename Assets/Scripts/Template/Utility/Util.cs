@@ -62,5 +62,19 @@ namespace Template.Utility
                 ? 1 
                 : -1;
         }
+        
+        /// 랜덤으로 위치를 반환하는 함수.
+        public static Vector2 GetRandomDirVec(Vector2 curPos, float rangeX, float rangeY)
+        {
+            var seed = Random.Range(0, int.MaxValue);
+            
+            Random.InitState(seed);
+
+            var toX = Random.Range(-rangeX, rangeX) + curPos.x;
+            var toY = Random.Range(-rangeY, rangeY) + curPos.y;
+            var toPos = new Vector2(toX, toY);
+            
+            return toPos;
+        }
     }
 }
