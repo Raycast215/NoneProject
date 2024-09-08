@@ -17,11 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: aea35574526d6e04a8d2fdc50daeafa9
   m_SerializeEntries:
-  - m_GUID: 1fe1f9748da96204192d2eca02aaf46a
-    m_Address: SoundObject
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 48d764f37cf8b5441b9745f408b2cace
     m_Address: Sound_Fire
     m_ReadOnly: 0
@@ -29,6 +24,16 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0ecfbf9b5963c91439676708b122e301
     m_Address: Sound_Click
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b9f17f0087265d7449e23071a2b7dc2f
+    m_Address: First Steps
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 35f4bb8b7ea1471429429f27b61e9b20
+    m_Address: Playful LOOP
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
