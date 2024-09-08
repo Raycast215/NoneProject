@@ -1,12 +1,11 @@
-using System.Linq;
-using NoneProject.Common;
+using System.Text;
 using UnityEngine;
-using Screen = UnityEngine.Device.Screen;
 
 namespace Template.Utility
 {
     public static class Util
     {
+        /// 받아온 값이 min, max의 범위에 벗어나면 반대 범위 값을 반환하는 함수. 
         public static int ClampIndex(int index, int min, int max)
         {
             var ret = index;
@@ -20,23 +19,6 @@ namespace Template.Utility
             return ret;
         }
 
-        public static float GetScreenWidth()
-        {
-            var aspect = (float)Screen.width / Screen.height;
-            var worldHeight = Camera.main!.orthographicSize * 2.0f;
-            var worldWidth = worldHeight * aspect;
-
-            return worldWidth;
-        }
-
-        public static int GetPosYDepth(float toValue)
-        {
-            var toList = Define.PosYOffset.ToList();
-            var index = toList.IndexOf(toValue);
-
-            return index + 4;
-        }
-        
         /// GameObject를 생성하는 함수.
         public static GameObject CreateObject(string gameObjectName, Transform parent, Vector3 position = new Vector3())
         {
@@ -48,7 +30,7 @@ namespace Template.Utility
         }
 
         /// GameObject를 생성하고 T 컴포넌트를 추가하는 함수.
-        public static T CreateObject<T>(string gameObjectName, Transform parent, T addComponent, Vector3 position = new Vector3()) where T : Component
+        public static T CreateObject<T>(string gameObjectName, Transform parent, Vector3 position = new Vector3()) where T : Component
         {
             var go = new GameObject(gameObjectName);
             var ret = go.AddComponent<T>();
@@ -61,23 +43,48 @@ namespace Template.Utility
         /// 조건에 따라 True = 1을, False = -1을 반환하는 함수.
         public static int GetToggleOne(bool isCondition)
         {
-            return isCondition 
-                ? 1 
-                : -1;
+            return isCondition ? 1 : -1;
         }
         
         /// 랜덤으로 위치를 반환하는 함수.
         public static Vector2 GetRandomDirVec(Vector2 curPos, float rangeX, float rangeY)
         {
             var seed = Random.Range(0, int.MaxValue);
+            var toX = Random.Range(-rangeX, rangeX) + curPos.x;
             
             Random.InitState(seed);
-
-            var toX = Random.Range(-rangeX, rangeX) + curPos.x;
+            
             var toY = Random.Range(-rangeY, rangeY) + curPos.y;
             var toPos = new Vector2(toX, toY);
             
             return toPos;
+        }
+        
+        /// 여러 문자열을 합쳐야하는 경우 사용할 함수.
+        public static string AppendString(string separate = "", string endPrefix = "", params string[] values)
+        {
+            var builder = new StringBuilder();
+
+            for (var i = 0; i < values.Length; i++)
+            {
+                builder.Append(values[i]);
+
+                // 구분 문자없다면 넘어감.
+                if (string.IsNullOrEmpty(separate))
+                    continue;
+
+                // 마지막 순서라면 넘어감.
+                if (i >= values.Length - 1)
+                    continue;
+                
+                builder.Append(separate);
+            }
+
+            // 파일의 확장자명처럼 마지막에 구분 문자없이 합쳐야하는 경우.
+            if (string.IsNullOrEmpty(endPrefix) is false)
+                builder.Append(endPrefix);
+
+            return builder.ToString();
         }
     }
 }
