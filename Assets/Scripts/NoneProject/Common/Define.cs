@@ -44,14 +44,7 @@ namespace NoneProject.Common
         Enemy,
         Projectile,
     }
-    
-    public enum SoundType
-    {
-        None,    // 기본 재생
-        OneShot, // 기존 재생 취소 후 재생
-        Fade     // 기존 재생 페이드 아웃
-    }
-    
+
     public enum StageStateType
     {
         Idle,
