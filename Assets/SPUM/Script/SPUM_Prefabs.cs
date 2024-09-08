@@ -1,9 +1,7 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using NoneProject.Common;
 using UnityEngine;
 using UnityEngine.Events;
-
 
 public class SPUM_Prefabs : MonoBehaviour
 {

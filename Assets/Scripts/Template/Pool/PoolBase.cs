@@ -1,7 +1,5 @@
-
 using System.Threading;
 using UnityEngine;
-
 
 namespace Template.Pool
 {
@@ -16,8 +14,8 @@ namespace Template.Pool
         
         private void OnDestroy()
         {
-            Cts.Cancel();
-            Cts.Dispose();
+            Cts?.Cancel();
+            Cts?.Dispose();
             Cts = null;
         }
 

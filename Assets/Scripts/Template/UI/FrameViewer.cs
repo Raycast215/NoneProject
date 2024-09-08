@@ -1,7 +1,5 @@
-
 using TMPro;
 using UnityEngine;
-
 
 namespace Template.UI
 {
