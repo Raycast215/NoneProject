@@ -15,13 +15,6 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7801be49ad3c44438197ed08f09871a87c00/57/d7b58929/Input.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/db16a052c6a847e288adfa52e9195e652d400/e8/714b6b52/GUILayoutOption.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8a522b806eac9bb894e6e4c5fe87f353457535e769447e79c6b396beecb5d0/System.Threading.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Downloads/DF/Assets/Scripts/DF/InGame/Implementation/InGameEditor_AutoMove.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Downloads/DF/Assets/Scripts/DF/ObjectPoolManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Downloads/DF/Assets/Scripts/DF/SoundManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Downloads/DF/Assets/Scripts/Template/Singleton/AddressableManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Downloads/DF/Assets/Scripts/Template/Singleton/Base/SingletonMonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Downloads/DF/Assets/Scripts/Template/Utilities/Rotate.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Downloads/DF/Assets/Scripts/Template/Utilities/Util.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Downloads/ExcelToJsonConverter-master/ExcelToJsonConverter-master/ExcelToJsonConveterExample/Assets/Editor/BuildScript.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$USER_HOME$/Downloads/ExcelToJsonConverter-master/ExcelToJsonConverter-master/ExcelToJsonConveterExample/Assets/Editor/ExcelToJsonConverter/ExcelToJsonConverter.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Assets/Hovl Studio/HSFiles/Scripts/For demo scenes/HS_DemoShooting2D.cs" root0="FORCE_HIGHLIGHTING" />
@@ -169,6 +162,7 @@
       <workItem from="1725374287914" duration="3460000" />
       <workItem from="1725632725865" duration="27444000" />
       <workItem from="1725804890112" duration="3681000" />
+      <workItem from="1731909583832" duration="5272000" />
     </task>
     <servers />
   </component>
