@@ -19,10 +19,10 @@ namespace NoneProject.Manager
         public void Load()
         {
             var stagePath = "Data_Stage";
-            AddressableManager.Instance.Load<TextAsset>(stagePath, stage =>
-            {
-                stageList = JsonConvert.DeserializeObject<Stage[]>(stage.text);
-            });
+            // AddressableManager.Instance.Load<TextAsset>(stagePath, stage =>
+            // {
+            //     stageList = JsonConvert.DeserializeObject<Stage[]>(stage.text);
+            // });
             
             var jsonData = JsonConvert.SerializeObject("data", Formatting.Indented);
             
@@ -31,7 +31,7 @@ namespace NoneProject.Manager
         
         protected override void Initialized()
         {
-            IsInitialized = true;
+            isInitialized = true;
         }
         
         // record = $"\"{fieldName}\":{fieldValue}";

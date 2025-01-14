@@ -23,7 +23,7 @@ namespace NoneProject.Manager
         
         protected override void Initialized()
         {
-            IsInitialized = true;
+            isInitialized = true;
         }
     }
 }
