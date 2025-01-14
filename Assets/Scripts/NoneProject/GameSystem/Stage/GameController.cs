@@ -66,20 +66,20 @@ namespace NoneProject.GameSystem.Stage
         
         private void InitHolder()
         {
-            // Player Holder Setting.
-            _playerHolder = new GameObject(Define.PlayerHolder).transform;
-            _playerHolder.SetParent(transform);
-            _playerHolder.transform.position = new Vector3(0.0f, Define.HolderOffset, 0.0f);
-
-            // Enemy Holder Setting.
-            _enemyHolder = new GameObject(Define.EnemyHolder).transform;
-            _enemyHolder.SetParent(transform);
-            _enemyHolder.transform.position = new Vector3(0.0f, Define.HolderOffset, 0.0f);
-            
-            // Map Holder Setting.
-            _mapHolder = new GameObject(Define.MapHolder).transform;
-            _mapHolder.SetParent(transform);
-            _mapHolder.transform.position = new Vector3(0.0f, Define.HolderOffset, 0.0f);
+            // // Player Holder Setting.
+            // _playerHolder = new GameObject(Define.PlayerHolder).transform;
+            // _playerHolder.SetParent(transform);
+            // _playerHolder.transform.position = new Vector3(0.0f, Define.HolderOffset, 0.0f);
+            //
+            // // Enemy Holder Setting.
+            // _enemyHolder = new GameObject(Define.EnemyHolder).transform;
+            // _enemyHolder.SetParent(transform);
+            // _enemyHolder.transform.position = new Vector3(0.0f, Define.HolderOffset, 0.0f);
+            //
+            // // Map Holder Setting.
+            // _mapHolder = new GameObject(Define.MapHolder).transform;
+            // _mapHolder.SetParent(transform);
+            // _mapHolder.transform.position = new Vector3(0.0f, Define.HolderOffset, 0.0f);
         }
         
         private async void InitMap()
