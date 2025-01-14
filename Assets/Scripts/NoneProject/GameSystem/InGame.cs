@@ -1,14 +1,12 @@
 using Cinemachine;
 using Cysharp.Threading.Tasks;
 using NoneProject.Actor.Player;
-using NoneProject.Common;
 using NoneProject.GameSystem.Input;
 using NoneProject.Manager;
 using Template.Utility;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using AutoPlay = NoneProject.UI.AutoPlay.AutoPlay;
 
 namespace NoneProject.GameSystem
 {
@@ -23,9 +21,9 @@ namespace NoneProject.GameSystem
 
         private ActorManager _actorManager;
         private CinemachineVirtualCamera _cam;
-        private AutoPlay _autoPlayUI;
         private InGameTouch _inGameTouch;
-        private Transform _actorHolder;
+        private Transform _playerHolder;
+        private Transform _enemyHolder;
         private bool _isInitialized;
         private bool _isGameStart;
 
@@ -79,7 +77,10 @@ namespace NoneProject.GameSystem
 
         private void LoadHolder()
         {
-            _actorHolder = Util.CreateObject(Define.PlayerHolder, transform).transform;
+            var constData = GameManager.Instance.Const;
+            
+            _playerHolder = Util.CreateObject(constData.PlayerHolder, transform).transform;
+            _enemyHolder = Util.CreateObject(constData.EnemyHolder, transform).transform;
         }
         
         private void LoadInput()
@@ -92,7 +93,7 @@ namespace NoneProject.GameSystem
 
         private void LoadPlayer()
         {
-            ActorManager.Instance.LoadPlayer(_actorHolder, OnComplete);
+            ActorManager.Instance.LoadPlayer(_playerHolder, OnComplete);
             return;
 
             void OnComplete(PlayerController player)

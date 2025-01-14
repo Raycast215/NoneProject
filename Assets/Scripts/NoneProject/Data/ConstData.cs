@@ -9,6 +9,21 @@ namespace NoneProject.Data
     [CreateAssetMenu(fileName = "Const Data", menuName = "Scriptable Object/Const Data")]
     public class ConstData : ScriptableObject
     {
+
+#region String Const
+
+        [TitleGroup("String Const")] 
+        [SerializeField]
+        private string playerHolder = "Player Holder";
+        
+        [TitleGroup("String Const")] 
+        [SerializeField]
+        private string enemyHolder = "Enemy Holder";
+        
+        public string PlayerHolder => playerHolder;
+        public string EnemyHolder => enemyHolder;
+
+#endregion
         
 #region Behaviour Option
 

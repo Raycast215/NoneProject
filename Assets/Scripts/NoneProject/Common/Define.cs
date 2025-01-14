@@ -4,13 +4,7 @@ namespace NoneProject.Common
 {
     public static class Define
     {
-        public const string Sound = "Sound";
-        public const string Addressable = "Addressable";
-       
-        public const string SoundHolder = "Sound Holder";
         public const string ProjectileHolder = "Projectile Holder";
-        public const string PlayerHolder = "Player Holder";
-        public const string EnemyHolder = "Enemy Holder";
         public const string MapHolder = "Map Holder";
 
         public const float HolderOffset = -0.5f;
