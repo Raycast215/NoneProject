@@ -7,7 +7,6 @@ namespace NoneProject.UI.AutoPlay
     // Scripted by Raycast
     // 2024.09.01
     // AutoPlay의 로직을 실행하는 클래스입니다.
-    
     public class AutoPlay : MonoBehaviour
     {
         private const float AlphaDurationTime = 2.0f;
@@ -26,7 +25,7 @@ namespace NoneProject.UI.AutoPlay
             viewer.GetButton.onClick.AddListener(() => SetAutoPlay());
         }
 
-        public void Start()
+        public void Initialized()
         {
             InitializedTween();
             SetAutoPlay(false);
