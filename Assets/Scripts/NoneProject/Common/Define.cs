@@ -6,7 +6,7 @@ namespace NoneProject.Common
     {
         public const string Sound = "Sound";
         public const string Addressable = "Addressable";
-        
+       
         public const string SoundHolder = "Sound Holder";
         public const string ProjectileHolder = "Projectile Holder";
         public const string PlayerHolder = "Player Holder";
@@ -17,7 +17,28 @@ namespace NoneProject.Common
         
         public static float[] PosYOffset = new float[] { -1.5f, -0.75f, 0.0f, 0.75f, 1.5f };
     }
-    
+
+    public enum AddressableLabel
+    {
+        Common,
+        Player,
+        Enemy,
+        Projectile
+    }
+
+    public enum SoundTag
+    {
+        Bgm,
+        Sfx
+    }
+
+    public enum MovePattern
+    {
+        Hold,
+        Target,
+        Move
+    }
+
     public enum ActorState
     {
         Idle,
