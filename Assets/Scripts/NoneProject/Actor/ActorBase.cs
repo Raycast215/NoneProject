@@ -10,9 +10,13 @@ namespace NoneProject.Actor
         protected SPUM_Prefabs Model;
         protected Rigidbody2D Rigidbody2D;
 
-        public abstract void Initialized();
+        public virtual void Initialized()
+        {
+            LoadRigidBody2D();
+            LoadModel();
+        }
         
-        protected void LoadRigidBody2D()
+        private void LoadRigidBody2D()
         {
             if (TryGetComponent<Rigidbody2D>(out var rBody2D))
             {
@@ -21,6 +25,18 @@ namespace NoneProject.Actor
             else
             {
                 Debug.LogError("Rigidbody2D Component is null...");
+            }
+        }
+        
+        private void LoadModel()
+        {
+            if (TryGetComponent<SPUM_Prefabs>(out var model))
+            {
+                Model = model;
+            }
+            else
+            {
+                Debug.LogError("Model Component is null...");
             }
         }
     }
