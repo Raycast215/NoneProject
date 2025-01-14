@@ -61,6 +61,13 @@ namespace NoneProject.GameSystem.Input
                     _curTouchPos = Vector2.zero;
                     _movePos = Vector2.zero;
                     break;
+                
+                case TouchPhase.Canceled:
+                    _movePos = Vector2.zero;
+                    break;
+                
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
             
             OnTouched?.Invoke(_movePos);

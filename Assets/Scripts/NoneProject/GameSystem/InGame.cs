@@ -1,6 +1,9 @@
+using Cinemachine;
 using NoneProject.Actor.Player;
+using NoneProject.Common;
 using NoneProject.GameSystem.Input;
 using NoneProject.GameSystem.Stage;
+using NoneProject.UI.AutoPlay;
 using Template.Utility;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,48 +15,64 @@ namespace NoneProject.GameSystem
     // Scripted by Raycast
     // 2024.09.01
     // InGame에서 필요한 시스템을 관리하고 실행하는 클래스입니다.
-    
     public class InGame : MonoBehaviour
     {
-        private const string ActorHolder = "Actor Holder";
+        public PlayerController Player { get; private set; }
+        public bool IsAutoMove => isAutoMove;
 
-        private PlayerController _player;
+        [SerializeField] private Vector2 input;
+        [SerializeField] private bool isAutoMove;
+        
+        private CinemachineVirtualCamera _cam;
         private AutoPlay _autoPlayUI;
         private InGameTouch _inGameTouch;
         private Transform _actorHolder;
         private bool _isInitialized;
         private bool _isGameStart;
 
+        private void Awake()
+        {
+            _cam = FindObjectOfType<CinemachineVirtualCamera>();
+        }
+
         private void Start()
         {
             Initialized();
+            GameManager.Instance.SetInGame(this);
         }
 
         private void FixedUpdate()
         {
             if (_isInitialized is false)
                 return;
-            
-            if (_player is null)
+
+            if (Player is null)
                 return;
             
+            if (Player.IsLoaded is false)
+                return;
+
+            if (isAutoMove)
+            {
+                Player.Move(Vector2.zero);
+                return;
+            }
+            
             _inGameTouch.UpdateTouch();
-            _player.UpdateAutoMove(_autoPlayUI.IsAutoPlay);
         }
 
         private void Initialized()
         {
             LoadHolder();
             LoadInput();
-            LoadPlayer();
-            LoadAutoPlayUI();
+            Load();
             
             _isInitialized = true;
         }
 
         private void LoadHolder()
         {
-            _actorHolder = Util.CreateObject(ActorHolder, transform).transform;
+            _actorHolder = Util.CreateObject(Define.PlayerHolder, transform).transform;
         }
         
         private void LoadInput()
@@ -64,25 +83,38 @@ namespace NoneProject.GameSystem
             _inGameTouch = new InGameTouch(caster, eventSystem);
         }
 
-        private async void LoadPlayer()
+        private async void Load()
         {
-            _player = await ActorCreator.CreatePlayer("Player_Normal_Magic", _actorHolder);
-            _player.Initialized();
-            _inGameTouch.OnTouched += _player.UpdateInputMove;
+            Player = await ActorCreator.CreatePlayer(_actorHolder);
+            Player.Initialized();
+            
+            _cam.Follow = Player.transform;
+            
+            _inGameTouch.OnTouched += Player.Move;
+            _inGameTouch.OnTouched += vec => input = vec;
         }
 
-        private void LoadAutoPlayUI()
-        {
-            _autoPlayUI = FindObjectOfType<AutoPlay>();
-            _autoPlayUI.OnAutoPlayUpdated += SetInputMoveEvent;
-        }
-
-        private void SetInputMoveEvent(bool isAutoInput)
-        {
-            if (isAutoInput)
-                _inGameTouch.OnTouched -= _player.UpdateInputMove;
-            else
-                _inGameTouch.OnTouched += _player.UpdateInputMove;
-        }
+        // private void LoadAutoPlayUI()
+        // {
+        //     AutoPlayPoint = FindObjectOfType<AutoPlayPoint>();
+        //     
+        //     _autoPlayUI = FindObjectOfType<AutoPlay>();
+        //     _autoPlayUI.OnAutoPlayUpdated += SetInputMoveEvent;
+        //     _autoPlayUI.Initialized();
+        // }
+      
+        // private void SetInputMoveEvent(bool isAutoInput)
+        // {
+        //     if (isAutoInput)
+        //     {
+        //         _inGameTouch.OnTouched -= Player.UpdateInputMove;
+        //     }
+        //     else
+        //     {
+        //         _inGameTouch.OnTouched += Player.UpdateInputMove;
+        //         Player.Initialized();
+        //         GameManager.Instance.InGame.AutoPlayPoint.gameObject.SetActive(false);
+        //     }
+        // }
     }
 }

@@ -91,7 +91,7 @@ namespace NoneProject.GameSystem.Stage
         
         private async void InitPlayer()
         {
-            var player = await ActorCreator.CreatePlayer("Player_Normal_Magic", _playerHolder);
+           // var player = await ActorCreator.CreatePlayer("Player_Normal_Magic", _playerHolder);
             // player.NodeRunner.SetRunState(true);
         }
 

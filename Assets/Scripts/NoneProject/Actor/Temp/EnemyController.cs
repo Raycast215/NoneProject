@@ -1,4 +1,5 @@
 
+using System.Linq;
 using NoneProject.Common;
 using NoneProject.GameSystem.Stage;
 using Template.Utility;
@@ -13,7 +14,7 @@ namespace NoneProject.Actor
 
         public void Init(float toHeight)
         {
-            var posX = Util.GetScreenWidth();
+            var posX = GetScreenWidth();
             transform.localPosition = new Vector3(posX, toHeight, 0.0f);
 
             // Test Stat
@@ -25,7 +26,7 @@ namespace NoneProject.Actor
         public override void Move()
         {
             var posX = Stat.moveSpeed * Time.deltaTime;
-            var posZ = Util.GetPosYDepth(transform.position.y);
+            var posZ = GetPosYDepth(transform.position.y);
             transform.Translate(Vector3.left * posX);
             transform!.position.Set(transform.position.x, transform.position.y, posZ);
             Animations.PlayAnimation(ActorState.Run);
@@ -37,6 +38,23 @@ namespace NoneProject.Actor
                 Animations.PlayAnimation(ActorState.Idle);
         }
 
+        public static float GetScreenWidth()
+        {
+            var aspect = (float)Screen.width / Screen.height;
+            var worldHeight = Camera.main!.orthographicSize * 2.0f;
+            var worldWidth = worldHeight * aspect;
+
+            return worldWidth;
+        }
+
+        public static int GetPosYDepth(float toValue)
+        {
+            var toList = Define.PosYOffset.ToList();
+            var index = toList.IndexOf(toValue);
+
+            return index + 4;
+        }
+        
         public override void Attack()
         {
             

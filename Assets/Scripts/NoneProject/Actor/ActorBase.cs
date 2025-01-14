@@ -7,6 +7,8 @@ namespace NoneProject.Actor
     // Actor의 상위 클래스입니다.
     public abstract class ActorBase : MonoBehaviour
     {
+        public bool IsLoaded { get; protected set; }
+        
         protected SPUM_Prefabs Model;
         protected Rigidbody2D Rigidbody2D;
 
@@ -39,5 +41,7 @@ namespace NoneProject.Actor
                 Debug.LogError("Model Component is null...");
             }
         }
+
+        public abstract void Move(Vector2 dirVec);
     }
 }

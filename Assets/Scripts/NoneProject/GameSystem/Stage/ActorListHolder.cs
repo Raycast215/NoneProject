@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using NoneProject.Actor;
+using NoneProject.Actor.Player;
 using UnityEngine;
 
 
