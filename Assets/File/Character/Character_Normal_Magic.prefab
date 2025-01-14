@@ -2535,7 +2535,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &257728232657972171
 Transform:
   m_ObjectHideFlags: 0
@@ -3701,8 +3701,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1494929491571476282}
   - component: {fileID: 8128338378163691192}
-  - component: {fileID: 2929277895189275676}
   - component: {fileID: 3608306990600751609}
+  - component: {fileID: 6468341163539820103}
   m_Layer: 0
   m_Name: Character_Normal_Magic
   m_TagString: Untagged
@@ -3739,18 +3739,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6723de5c7c0eeb648ac6c717c08a663c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2929277895189275676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8097458512636610692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 663f7efc6693d19498cc8d823cdf20aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3608306990600751609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3773,6 +3761,33 @@ MonoBehaviour:
   UnitTypeChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!50 &6468341163539820103
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8097458512636610692}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &8354547802094071781
 GameObject:
   m_ObjectHideFlags: 0
