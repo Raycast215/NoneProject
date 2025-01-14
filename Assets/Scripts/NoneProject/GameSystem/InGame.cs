@@ -57,10 +57,10 @@ namespace NoneProject.GameSystem
             _inGameTouch.UpdateTouch();
         }
 
-        private void Initialized()
+        private async void Initialized()
         {
             // GameManager가 초기화 완료까지 대기.
-            UniTask.WaitUntil(() => GameManager.Instance.isInitialized).Forget();
+            await UniTask.WaitUntil(() => GameManager.Instance.isInitialized);
             
             // Actor Manager 캐싱.
             _actorManager = ActorManager.Instance;

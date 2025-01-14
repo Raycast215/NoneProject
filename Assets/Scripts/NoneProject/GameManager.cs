@@ -17,8 +17,6 @@ namespace NoneProject
             base.Initialized();
             
             LoadConstData();
-            
-            isInitialized = true;
         }
 
         public void SetInGame(InGame inGame)
@@ -28,7 +26,11 @@ namespace NoneProject
         
         private void LoadConstData()
         {
-            AddressableManager.Instance.LoadAssetsLabel<ConstData>(AddressableLabel.Common, asset =>  Const = asset).Forget();
+            AddressableManager.Instance.LoadAssetsLabel<ConstData>(AddressableLabel.Common, asset =>
+            {
+                Const = asset;
+                isInitialized = true;
+            }).Forget();
         }
     }
 }
