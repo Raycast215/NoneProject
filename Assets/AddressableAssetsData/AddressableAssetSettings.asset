@@ -17,7 +17,7 @@ MonoBehaviour:
     serializedVersion: 2
     Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
-  m_BuildRemoteCatalog: 0
+  m_BuildRemoteCatalog: 1
   m_BundleLocalCatalog: 0
   m_CatalogRequestsTimeout: 0
   m_DisableCatalogUpdateOnStart: 0
@@ -35,9 +35,9 @@ MonoBehaviour:
   m_CheckForContentUpdateRestrictionsOption: 0
   m_MonoScriptBundleCustomNaming: 
   m_RemoteCatalogBuildPath:
-    m_Id: 6bf1fd89d8d149c4e9e53771aae7181a
+    m_Id: 07dafe7b3fd8f2a48b8ab883704431a4
   m_RemoteCatalogLoadPath:
-    m_Id: c7f399aaa5b2b5a46a57c3339b91dd85
+    m_Id: 46dcb4a9a7bc12e4c93ed8f8a2a8df3b
   m_ContentStateBuildPathProfileVariableName: <default settings path>
   m_CustomContentStateBuildPath: 
   m_ContentStateBuildPath: 
@@ -52,6 +52,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 026c76f4588e0ca4c81cf446b61e94ce, type: 2}
   - {fileID: 11400000, guid: 44323c7545ead8948982b2214cbf15da, type: 2}
   - {fileID: 11400000, guid: d1c00059436bdd240bd0a38a44c6d9fd, type: 2}
+  - {fileID: 11400000, guid: 0b8f96e097e475745bd345e8e0d56979, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -70,9 +71,9 @@ MonoBehaviour:
       - m_Id: 46dcb4a9a7bc12e4c93ed8f8a2a8df3b
         m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
       - m_Id: 6bf1fd89d8d149c4e9e53771aae7181a
-        m_Value: ServerData/[BuildTarget]
+        m_Value: '[UnityEngine.AddressableAssets.Addressables.BuildPath]/[BuildTarget]'
       - m_Id: c7f399aaa5b2b5a46a57c3339b91dd85
-        m_Value: http://[PrivateIpAddress]:[HostingServicePort]
+        m_Value: '{UnityEngine.AddressableAssets.Addressables.RuntimePath}/[BuildTarget]'
     m_ProfileEntryNames:
     - m_Id: 117376c3965f15443afd2fe54b860e1b
       m_Name: BuildTarget
@@ -95,6 +96,8 @@ MonoBehaviour:
     - default
     - Projectile
     - SoundObject
+    - Common
+    - Player
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 18eb1831986083f47813127c18c49570, type: 2}

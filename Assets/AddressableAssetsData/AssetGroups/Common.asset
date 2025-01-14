@@ -10,26 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: ActorData
+  m_Name: Common
   m_EditorClassIdentifier: 
-  m_GroupName: ActorData
+  m_GroupName: Common
   m_Data:
     m_SerializedData: []
-  m_GUID: 4eb72c6e4307273409ecee9d441dbbfa
+  m_GUID: 350580ba41237454992f9c197f777e6e
   m_SerializeEntries:
-  - m_GUID: 237fa2840013dce40be86f48a70b90e1
-    m_Address: Player_Normal_Magic
+  - m_GUID: e638d0f26a906b74ca8fdacdffdb0618
+    m_Address: Assets/File/So/Const Data.asset
     m_ReadOnly: 0
     m_SerializedLabels:
-    - Player
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: dafbd8ae982eef64e940078dddbb623e
-    m_Address: Enemy_Normal_00
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    - Common
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 039b2f641f9ce424197ccd84fa03303a, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 18ef5743c0f545f498e961987f576118, type: 2}
+    - {fileID: 11400000, guid: 2cc7323d3e6b1c4489406ae2dd2afa75, type: 2}
+    - {fileID: 11400000, guid: 95c4ed6a5655bc24182e1f4e4d177e8f, type: 2}
