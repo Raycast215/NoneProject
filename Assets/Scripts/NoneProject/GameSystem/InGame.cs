@@ -1,9 +1,9 @@
 using Cinemachine;
+using Cysharp.Threading.Tasks;
 using NoneProject.Actor.Player;
 using NoneProject.Common;
 using NoneProject.GameSystem.Input;
-using NoneProject.GameSystem.Stage;
-using NoneProject.UI.AutoPlay;
+using NoneProject.Manager;
 using Template.Utility;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -17,12 +17,11 @@ namespace NoneProject.GameSystem
     // InGame에서 필요한 시스템을 관리하고 실행하는 클래스입니다.
     public class InGame : MonoBehaviour
     {
-        public PlayerController Player { get; private set; }
         public bool IsAutoMove => isAutoMove;
-
-        [SerializeField] private Vector2 input;
-        [SerializeField] private bool isAutoMove;
         
+        [SerializeField] private bool isAutoMove;
+
+        private ActorManager _actorManager;
         private CinemachineVirtualCamera _cam;
         private AutoPlay _autoPlayUI;
         private InGameTouch _inGameTouch;
@@ -38,7 +37,6 @@ namespace NoneProject.GameSystem
         private void Start()
         {
             Initialized();
-            GameManager.Instance.SetInGame(this);
         }
 
         private void FixedUpdate()
@@ -46,15 +44,15 @@ namespace NoneProject.GameSystem
             if (_isInitialized is false)
                 return;
 
-            if (Player is null)
+            if (_actorManager.Player is null)
                 return;
             
-            if (Player.IsLoaded is false)
+            if (_actorManager.Player.IsLoaded is false)
                 return;
 
             if (isAutoMove)
             {
-                Player.Move(Vector2.zero);
+                _actorManager.Player.Move(Vector2.zero);
                 return;
             }
             
@@ -63,9 +61,18 @@ namespace NoneProject.GameSystem
 
         private void Initialized()
         {
+            // GameManager가 초기화 완료까지 대기.
+            UniTask.WaitUntil(() => GameManager.Instance.isInitialized).Forget();
+            
+            // Actor Manager 캐싱.
+            _actorManager = ActorManager.Instance;
+            
+            // InGame을 등록. 
+            GameManager.Instance.SetInGame(this);
+            
             LoadHolder();
             LoadInput();
-            Load();
+            LoadPlayer();
             
             _isInitialized = true;
         }
@@ -83,38 +90,16 @@ namespace NoneProject.GameSystem
             _inGameTouch = new InGameTouch(caster, eventSystem);
         }
 
-        private async void Load()
+        private void LoadPlayer()
         {
-            Player = await ActorCreator.CreatePlayer(_actorHolder);
-            Player.Initialized();
-            
-            _cam.Follow = Player.transform;
-            
-            _inGameTouch.OnTouched += Player.Move;
-            _inGameTouch.OnTouched += vec => input = vec;
-        }
+            ActorManager.Instance.LoadPlayer(_actorHolder, OnComplete);
+            return;
 
-        // private void LoadAutoPlayUI()
-        // {
-        //     AutoPlayPoint = FindObjectOfType<AutoPlayPoint>();
-        //     
-        //     _autoPlayUI = FindObjectOfType<AutoPlay>();
-        //     _autoPlayUI.OnAutoPlayUpdated += SetInputMoveEvent;
-        //     _autoPlayUI.Initialized();
-        // }
-      
-        // private void SetInputMoveEvent(bool isAutoInput)
-        // {
-        //     if (isAutoInput)
-        //     {
-        //         _inGameTouch.OnTouched -= Player.UpdateInputMove;
-        //     }
-        //     else
-        //     {
-        //         _inGameTouch.OnTouched += Player.UpdateInputMove;
-        //         Player.Initialized();
-        //         GameManager.Instance.InGame.AutoPlayPoint.gameObject.SetActive(false);
-        //     }
-        // }
+            void OnComplete(PlayerController player)
+            {
+                _cam.Follow = player.transform;
+                _inGameTouch.OnTouched += player.Move;
+            }
+        }
     }
 }
