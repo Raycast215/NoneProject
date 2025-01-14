@@ -86,5 +86,11 @@ namespace Template.Utility
 
             return builder.ToString();
         }
+        
+        /// 두 거리를 받아 비교하여 일정 거리만큼 도달했는지 여부를 반환.
+        public static bool CheckDistance(Vector2 fromPos, Vector2 toPos, float distance)
+        {
+            return Vector2.Distance(fromPos, toPos) < distance;
+        }
     }
 }
