@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using NoneProject.Common;
 using UnityEngine.AddressableAssets;
 
 namespace Template.Manager
@@ -21,12 +22,12 @@ namespace Template.Manager
                 onComplete?.Invoke(ret);
                 return ret;
             }
-            
+           
             var handle = Addressables.LoadAssetAsync<T>(assetName);
-            
+
             handle.Completed += loadedAsset =>  _assetCacheDic.TryAdd(assetName, loadedAsset.Result);
             handle.Completed += loadedAsset =>  onComplete?.Invoke(loadedAsset.Result);
-          
+            
             await UniTask.WaitUntil(() => handle.Result != null, cancellationToken: _cts.Token);
             
             if (_cts == null || _cts.IsCancellationRequested)
@@ -36,10 +37,10 @@ namespace Template.Manager
         }
 
         /// Label로 Asset을 Load하고 List로 반환합니다.
-        public async UniTask<List<T>> LoadAssetsLabel<T>(string labelName, Action<T> onComplete = null) where T : UnityEngine.Object
+        public async UniTask<List<T>> LoadAssetsLabel<T>(AddressableLabel labelName, Action<T> onComplete = null) where T : UnityEngine.Object
         {
             var assetList = new List<T>();
-            var locationList = await Addressables.LoadResourceLocationsAsync(labelName);
+            var locationList = await Addressables.LoadResourceLocationsAsync($"{labelName}");
             
             foreach (var location in locationList)
             {
