@@ -1,8 +1,5 @@
-using System;
 using Cysharp.Threading.Tasks;
 using NoneProject.Actor;
-using NoneProject.Actor.Player;
-using NoneProject.Common;
 using Template.Manager;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -11,21 +8,6 @@ namespace NoneProject.GameSystem.Stage
 {
     public static class ActorCreator
     {
-        /// Player를 생성하는 함수.
-        public static async UniTask<PlayerController> CreatePlayer(Transform parent, Action<PlayerController> onComplete = null)
-        {
-            PlayerController player = null;
-            await AddressableManager.Instance.LoadAssetsLabel<GameObject>(AddressableLabel.Player, OnLoadComplete);
-            return player;
-
-            void OnLoadComplete(GameObject prefab)
-            {
-                player = Object.Instantiate(prefab, parent).GetComponent<PlayerController>();
-               // player.Initialized();
-                onComplete?.Invoke(player);
-            }
-        }
-
         public static async UniTask<EnemyController> CreateEnemy(string enemyName, Transform parent)
         {
             return null;

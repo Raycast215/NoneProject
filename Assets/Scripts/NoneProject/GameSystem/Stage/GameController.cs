@@ -84,9 +84,9 @@ namespace NoneProject.GameSystem.Stage
         
         private async void InitMap()
         {
-            var map = await ActorCreator.CreateMap(_testStageData.mapType, _mapHolder);
-            map.Set(_testStageData, _enemyHolder);
-            map.NodeRunner.SetRunState(true);
+            //var map = await ActorCreator.CreateMap(_testStageData.mapType, _mapHolder);
+            //map.Set(_testStageData, _enemyHolder);
+           // map.NodeRunner.SetRunState(true);
         }
         
         private async void InitPlayer()

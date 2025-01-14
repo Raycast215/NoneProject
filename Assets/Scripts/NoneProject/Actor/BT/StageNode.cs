@@ -52,10 +52,10 @@ namespace NoneProject.Actor.BT
             
             _isNodeRun = true;
             
-            var enemy = await ActorCreator.CreateEnemy("Enemy_Normal_00", _enemyHolder);
-            var randomIndex = Random.Range(0, Define.PosYOffset.Length);
-            enemy.Init(Define.PosYOffset[randomIndex]);
-            enemy.NodeRunner.SetRunState(true);
+            // var enemy = await ActorCreator.CreateEnemy("Enemy_Normal_00", _enemyHolder);
+            // var randomIndex = Random.Range(0, Define.PosYOffset.Length);
+            // enemy.Init(Define.PosYOffset[randomIndex]);
+            // enemy.NodeRunner.SetRunState(true);
             
             _spawnCount++;
             _totalCount++;
