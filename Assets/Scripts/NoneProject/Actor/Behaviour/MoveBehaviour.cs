@@ -35,6 +35,6 @@ namespace NoneProject.Actor.Behaviour
         
 #endregion
 
-        public abstract void Move(Vector2 moveVec = new Vector2());
+        public abstract void Move(float moveSpeed, Vector2 moveVec = new Vector2());
     }
 }
