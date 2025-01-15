@@ -46,12 +46,6 @@ namespace NoneProject.GameSystem
             
             if (_actorManager.Player.IsLoaded is false)
                 return;
-
-            if (isAutoMove)
-            {
-                _actorManager.Player.Move();
-                return;
-            }
             
             _inGameTouch.UpdateTouch();
         }

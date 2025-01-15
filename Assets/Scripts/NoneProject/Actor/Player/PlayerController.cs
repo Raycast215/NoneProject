@@ -11,6 +11,14 @@ namespace NoneProject.Actor.Player
         private PlayerMoveBehaviour _moveBehaviour;
         private ModelAnimationBehaviour _modelAnimationBehaviour;
         
+        private void FixedUpdate()
+        {
+            if (GameManager.Instance.InGame.IsAutoMove is false)
+                return;
+            
+            _moveBehaviour.Move();
+        }
+        
         private void Subscribed()
         {
             _moveBehaviour.OnAnimationStateChanged += state => _modelAnimationBehaviour.SetAnimationState(state);
