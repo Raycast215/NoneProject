@@ -1,3 +1,4 @@
+using NoneProject.Manager;
 using Sirenix.OdinInspector;
 using Template.Manager;
 using UnityEngine;
@@ -62,6 +63,21 @@ namespace NoneProject
                 return;
             
             SoundManager.Instance.PlaySfx(testSfxNameB);
+        }
+        
+        [TitleGroup("Enemy")]
+        [HorizontalGroup("Enemy/A")]
+        [SerializeField] 
+        private string enemyID;
+        
+        [HorizontalGroup("Enemy/A", width: 0.1f)]
+        [Button("Load")]
+        private void LoadEnemy()
+        {
+            if (Application.isPlaying is false)
+                return;
+            
+            EnemyManager.Instance.GetEnemy(enemyID);
         }
     }
 }
