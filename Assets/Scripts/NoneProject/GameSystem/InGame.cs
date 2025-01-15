@@ -23,7 +23,6 @@ namespace NoneProject.GameSystem
         private CinemachineVirtualCamera _cam;
         private InGameTouch _inGameTouch;
         private Transform _playerHolder;
-        private Transform _enemyHolder;
         private bool _isInitialized;
         private bool _isGameStart;
 
@@ -50,7 +49,7 @@ namespace NoneProject.GameSystem
 
             if (isAutoMove)
             {
-                _actorManager.Player.Move(Vector2.zero);
+                _actorManager.Player.Move();
                 return;
             }
             
@@ -80,7 +79,6 @@ namespace NoneProject.GameSystem
             var constData = GameManager.Instance.Const;
             
             _playerHolder = Util.CreateObject(constData.PlayerHolder, transform).transform;
-            _enemyHolder = Util.CreateObject(constData.EnemyHolder, transform).transform;
         }
         
         private void LoadInput()
@@ -99,7 +97,7 @@ namespace NoneProject.GameSystem
             void OnComplete(PlayerController player)
             {
                 _cam.Follow = player.transform;
-                _inGameTouch.OnTouched += player.Move;
+                _inGameTouch.OnTouched += moveVec => player.Move(moveVec: moveVec);
             }
         }
     }
