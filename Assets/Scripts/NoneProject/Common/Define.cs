@@ -30,7 +30,8 @@ namespace NoneProject.Common
     {
         Hold,
         Target,
-        Move
+        Move,
+        Random
     }
 
     public enum ActorState
