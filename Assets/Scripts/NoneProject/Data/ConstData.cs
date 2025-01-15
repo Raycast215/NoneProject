@@ -16,12 +16,8 @@ namespace NoneProject.Data
         [SerializeField]
         private string playerHolder = "Player Holder";
         
-        [TitleGroup("String Const")] 
-        [SerializeField]
-        private string enemyHolder = "Enemy Holder";
         
         public string PlayerHolder => playerHolder;
-        public string EnemyHolder => enemyHolder;
 
 #endregion
         
@@ -50,13 +46,27 @@ namespace NoneProject.Data
         [SerializeField] 
         private int sfxDefaultLimitCount = 10;
 
-        [TitleGroup("SFX Object Pool Option")] 
+        public int SfxCapacity => sfxCapacity;
+        public int SfxDefaultLimitCount => sfxDefaultLimitCount;
+
+        #endregion
+
+#region Object Pool Path
+
+        [TitleGroup("Object Pool Path")] 
+        [SerializeField]
+        private string commonObjectPath;
+
+        [TitleGroup("Object Pool Path")] 
         [SerializeField]
         private string soundObjectPath;
         
-        public int SfxCapacity => sfxCapacity;
-        public int SfxDefaultLimitCount => sfxDefaultLimitCount;
-        public string SoundObjectPath => soundObjectPath;
+        [TitleGroup("Object Pool Path")] 
+        [SerializeField]
+        private string enemyObjectPath;
+        
+        public string SoundObjectPath => $"{commonObjectPath}/{soundObjectPath}";
+        public string EnemyObjectPath => $"{commonObjectPath}/{enemyObjectPath}";
 
 #endregion
     }
