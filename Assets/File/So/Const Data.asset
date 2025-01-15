@@ -12,8 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee4b759a6642f940944a602646496f5, type: 3}
   m_Name: Const Data
   m_EditorClassIdentifier: 
+  playerHolder: Player Holder
+  enemyHolder: Enemy Holder
   checkDistance: 0.5
   autoMoveVecOffset: 2
   sfxCapacity: 5
   sfxDefaultLimitCount: 10
-  soundObjectPath: Sound/SoundObject
+  commonObjectPath: PoolObject
+  soundObjectPath: SoundObject
+  enemyObjectPath: EnemyObject
