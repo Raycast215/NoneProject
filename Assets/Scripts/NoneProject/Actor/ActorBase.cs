@@ -22,7 +22,7 @@ namespace NoneProject.Actor
         {
             if (TryGetComponent<Rigidbody2D>(out var rBody2D))
             {
-                Rigidbody2D = rBody2D;
+                Rigidbody2D ??= rBody2D;
             }
             else
             {
@@ -34,7 +34,7 @@ namespace NoneProject.Actor
         {
             if (TryGetComponent<SPUM_Prefabs>(out var model))
             {
-                Model = model;
+                Model ??= model;
             }
             else
             {
@@ -42,6 +42,6 @@ namespace NoneProject.Actor
             }
         }
 
-        public abstract void Move(Vector2 dirVec);
+        public abstract void Move(float moveSpeed = 1.0f, Vector2 moveVec = new Vector2());
     }
 }
