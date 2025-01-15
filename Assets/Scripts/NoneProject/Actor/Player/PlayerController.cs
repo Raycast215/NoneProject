@@ -13,8 +13,8 @@ namespace NoneProject.Actor.Player
         
         private void Subscribed()
         {
-            _moveBehaviour.Subscribed();
             _moveBehaviour.OnAnimationStateChanged += state => _modelAnimationBehaviour.SetAnimationState(state);
+            _moveBehaviour.Subscribe();
         }
         
 #region Override Methods
@@ -32,9 +32,9 @@ namespace NoneProject.Actor.Player
             IsLoaded = true;
         }
 
-        public override void Move(Vector2 dirVec)
+        public override void Move(float moveSpeed = 1.0f, Vector2 moveVec = new Vector2())
         {
-            _moveBehaviour.Move(dirVec);
+            _moveBehaviour.Move(moveVec: moveVec);
         }
         
 #endregion

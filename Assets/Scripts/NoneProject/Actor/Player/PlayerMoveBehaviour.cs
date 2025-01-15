@@ -1,6 +1,6 @@
 using System;
 using NoneProject.Actor.Behaviour;
-using NoneProject.Actor.Player.Move;
+using NoneProject.Actor.Move;
 using NoneProject.Common;
 using UnityEngine;
 
@@ -14,20 +14,22 @@ namespace NoneProject.Actor.Player
         public event Action<ActorState> OnAnimationStateChanged;
 
         private readonly AutoMove _autoMove;
-        private readonly Transform _transform;
+        private readonly DefaultMove _defaultMove;
         private Vector2 _autoTargetPosition;
 
         public PlayerMoveBehaviour(Rigidbody2D rigidbody2D)
         {
             Rigidbody = rigidbody2D;
-            _transform = Rigidbody.transform;
-            _autoMove = new AutoMove(_transform);
+            _autoMove = new AutoMove(Rigidbody);
+            _defaultMove = new DefaultMove(Rigidbody);
             SetPosition(Vector2.zero);
         }
 
-        public void Subscribed()
+        public void Subscribe()
         {
-            _autoMove.OnMoveVecUpdated += MoveDefault;
+            _autoMove.OnMoveVecUpdated += _ => OnAnimationStateChanged?.Invoke(ActorState.Run);
+            _autoMove.OnDirectionUpdated += SetDirection;
+            _defaultMove.Subscribe(() => OnAnimationStateChanged?.Invoke(ActorState.Run));
         }
         
         private void MoveDefault(Vector2 dirVec)
@@ -38,27 +40,24 @@ namespace NoneProject.Actor.Player
                 OnAnimationStateChanged?.Invoke(ActorState.Idle);
                 return;
             }
-
-            // 움직일 거리 계산.
-            var moveDir = (Vector3)dirVec * (MoveSpeed * Time.deltaTime);
-            // 실제 이동할 위치값.
-            var movePos = _transform.position + moveDir;
             
-            Rigidbody.MovePosition(movePos);
+            // 바라 보는 위치 변경.
             SetDirection(dirVec);
-            OnAnimationStateChanged?.Invoke(ActorState.Run);
+            // 이동 실행.
+            _defaultMove.Move(MoveSpeed, dirVec);
         }
 
 #region Override Methods
         
-        public override void Move(Vector2 moveVec = new Vector2())
+        public override void Move(float moveSpeed = 1.0f, Vector2 moveVec = new Vector2())
         {
             if (GameManager.Instance.InGame.IsAutoMove)
             {
-                _autoMove.Move();
+                _autoMove.Move(MoveSpeed);
                 return;
             }
 
+            _defaultMove.SetMoveSpeed(MoveSpeed);
             MoveDefault(moveVec);
         }
         
