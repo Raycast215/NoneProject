@@ -80,5 +80,20 @@ namespace NoneProject
             
             await EnemyManager.Instance.Get(enemyID);
         }
+        
+        [TitleGroup("Projectile")]
+        [HorizontalGroup("Projectile/A")]
+        [SerializeField] 
+        private string projectileID;
+        
+        [HorizontalGroup("Projectile/A", width: 0.1f)]
+        [Button("Load")]
+        private async void LoadProjectile()
+        {
+            if (Application.isPlaying is false)
+                return;
+            
+            await ProjectileManager.Instance.Get(projectileID);
+        }
     }
 }

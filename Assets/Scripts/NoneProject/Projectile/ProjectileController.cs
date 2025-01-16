@@ -7,8 +7,6 @@ namespace NoneProject.Projectile
     // Projectile을 관리하는 클래스입니다.
     public class ProjectileController : MonoBehaviour
     {
-        public string ID { get; private set; }
-        
         private void FixedUpdate()
         {
             if (gameObject.activeInHierarchy is false)
@@ -16,20 +14,20 @@ namespace NoneProject.Projectile
             
             // _moveBehaviour.Move();
         }
-        
-        public void SetID(string id)
+
+        public void SetPosition(Vector2 position)
         {
-            ID = id;
+            
+        }
+        
+        public void Initialized()
+        {
+            
         }
         
         private void Subscribed()
         {
           
-        }
-
-        public void Initialized()
-        {
-            
         }
     }
 }

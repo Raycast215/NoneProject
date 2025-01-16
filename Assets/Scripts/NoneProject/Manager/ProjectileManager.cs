@@ -34,6 +34,13 @@ namespace NoneProject.Manager
             // Pool 오브젝트 반환.
             var poolObject = _poolController.Pool.Get();
 
+            // Pool에 Controller 등록.
+            poolObject.SetController(controller);
+            // 오브젝트 초기화.
+            controller.Initialized();
+            // 오브젝트 ID 등록.
+            poolObject.SetID(poolObjectID);
+            
             return poolObject.Controller;
         }
         

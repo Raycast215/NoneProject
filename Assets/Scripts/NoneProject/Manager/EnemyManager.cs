@@ -37,13 +37,13 @@ namespace NoneProject.Manager
 
             // Pool에 Controller 등록.
             poolObject.SetController(controller);
-            // Enemy 초기화.
+            // 오브젝트 초기화.
             controller.Initialized();
-            // Enemy ID 등록.
+            // 오브젝트 ID 등록.
             poolObject.SetID(poolObjectID);
-            // Enemy 위치 지정.
+            // 오브젝트 위치 지정.
             controller.SetPosition(Vector2.zero, true);
-            // Enemy 이동 처리. 
+            // 오브젝트 이동 처리. 
             controller.Move();
 
             return poolObject.Controller;
