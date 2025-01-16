@@ -1,4 +1,5 @@
 using System.Threading;
+using NoneProject.TestModule;
 using UnityEngine;
 
 namespace Template.Pool
@@ -6,15 +7,23 @@ namespace Template.Pool
     public abstract class PoolBase<T> : MonoBehaviour where T : Component
     {
         public T Controller { get; protected set; }
-        public string ID { get; protected set; }
+        public string ID { get; private set; }
         
         protected CancellationTokenSource Cts = new CancellationTokenSource();
+        private ObjectPoolReleaseModule _releaseModule;
         
-        private void OnDestroy()
+        private void Start()
         {
-            Cts?.Cancel();
-            Cts?.Dispose();
-            Cts = null;
+            _releaseModule = gameObject.AddComponent<ObjectPoolReleaseModule>();
+            _releaseModule.OnReleased += Release;
+        }
+        
+        public void SetController(T controller)
+        {
+            // Controller 저장.
+            Controller = controller;
+            // Controller를 Pool 오브젝트 하위로 이동.
+            SetControllerParent(transform);
         }
         
         public void SetControllerParent(Transform parent, bool isActive = true)
@@ -30,7 +39,13 @@ namespace Template.Pool
             ID = id;
         }
 
-        public abstract void SetController(T controller);
+        private void OnDestroy()
+        {
+            Cts?.Cancel();
+            Cts?.Dispose();
+            Cts = null;
+        }
+        
         protected abstract void Release();
     }
 }

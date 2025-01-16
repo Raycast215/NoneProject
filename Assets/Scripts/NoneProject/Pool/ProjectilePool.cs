@@ -1,5 +1,7 @@
+using NoneProject.Manager;
 using NoneProject.Projectile;
 using Template.Pool;
+using UnityEngine;
 
 namespace NoneProject.Pool
 {
@@ -10,14 +12,17 @@ namespace NoneProject.Pool
     {
 #region Override Methods
 
-        public override void SetController(ProjectileController controller)
-        {
-           
-        }
-
         protected override void Release()
         {
+            if (Controller is null)
+                return;
             
+            // 위치 초기화.
+            Controller.SetPosition(Vector2.zero);
+            // Pool 해제.
+            ProjectileManager.Instance.Release(this);
+            // Controller 초기화.
+            Controller = null;
         }
         
 #endregion

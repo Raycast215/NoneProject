@@ -35,11 +35,6 @@ namespace NoneProject.Pool
 
 #region Override Methods
 
-        public override void SetController(SoundController controller)
-        {
-            
-        }
-
         protected override void Release()
         {
             // Clip 초기화.
