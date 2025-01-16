@@ -1,5 +1,6 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace NoneProject.Data
 {
@@ -16,8 +17,17 @@ namespace NoneProject.Data
         [SerializeField]
         private string playerHolder = "Player Holder";
         
+        [TitleGroup("String Const")] 
+        [SerializeField]
+        private string tempHolder = "Temp Holder";
+        
+        [TitleGroup("String Const")] 
+        [SerializeField]
+        private string objectPoolHolder = "ObjectPool Holder";
         
         public string PlayerHolder => playerHolder;
+        public string TempHolder => tempHolder;
+        public string ObjectPoolHolder => objectPoolHolder;
 
 #endregion
         
@@ -65,8 +75,13 @@ namespace NoneProject.Data
         [SerializeField]
         private string enemyObjectPath;
         
+        [TitleGroup("Object Pool Path")] 
+        [SerializeField]
+        private string projectileObjectPath;
+        
         public string SoundObjectPath => $"{commonObjectPath}/{soundObjectPath}";
         public string EnemyObjectPath => $"{commonObjectPath}/{enemyObjectPath}";
+        public string ProjectileObjectPath => $"{commonObjectPath}/{projectileObjectPath}";
 
 #endregion
     }
