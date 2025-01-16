@@ -58,8 +58,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/GameSystem/InGame.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/GameSystem/Input/InGameTouch.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/GameSystem/Map/MapScroller.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/GameSystem/Stage/ActorCreator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/GameSystem/Stage/ActorListHolder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/GameSystem/Stage/GameController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/GameSystem/Stage/UI/UiStage.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Interface/IMovable.cs" root0="FORCE_HIGHLIGHTING" />
@@ -201,7 +199,9 @@
       <workItem from="1736687305680" duration="2125000" />
       <workItem from="1736773618802" duration="13015000" />
       <workItem from="1736855375177" duration="27788000" />
-      <workItem from="1736921287399" duration="24754000" />
+      <workItem from="1736921287399" duration="25780000" />
+      <workItem from="1736972951980" duration="754000" />
+      <workItem from="1737014860303" duration="1947000" />
     </task>
     <servers />
   </component>
