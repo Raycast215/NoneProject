@@ -6,6 +6,7 @@ namespace Template.Pool
     public abstract class PoolBase<T> : MonoBehaviour where T : Component
     {
         public T Controller { get; protected set; }
+        public string ID { get; protected set; }
         
         protected CancellationTokenSource Cts = new CancellationTokenSource();
         
@@ -22,6 +23,11 @@ namespace Template.Pool
             Controller.transform.SetParent(parent, false);
             // Controller 활성화 상태 변경.
             Controller.gameObject.SetActive(isActive);
+        }
+
+        public void SetID(string id)
+        {
+            ID = id;
         }
 
         public abstract void SetController(T controller);

@@ -10,8 +10,6 @@ namespace NoneProject.Actor.Enemy
     // Enemy를 관리하는 클래스입니다.
     public class EnemyController : ActorBase
     {
-        public string ID { get; private set; }
-        
         private EnemyMoveBehaviour _moveBehaviour;
         private ModelAnimationBehaviour _modelAnimationBehaviour;
 
@@ -23,11 +21,6 @@ namespace NoneProject.Actor.Enemy
             _moveBehaviour.Move();
         }
         
-        public void SetID(string id)
-        {
-            ID = id;
-        }
-
         private void Subscribed()
         {
             _moveBehaviour.OnAnimationStateChanged += state => _modelAnimationBehaviour.SetAnimationState(state);

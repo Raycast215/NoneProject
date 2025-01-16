@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using NoneProject.Manager;
 using Sirenix.OdinInspector;
 using Template.Manager;
@@ -72,12 +73,12 @@ namespace NoneProject
         
         [HorizontalGroup("Enemy/A", width: 0.1f)]
         [Button("Load")]
-        private void LoadEnemy()
+        private async void LoadEnemy()
         {
             if (Application.isPlaying is false)
                 return;
             
-            EnemyManager.Instance.Get(enemyID);
+            await EnemyManager.Instance.Get(enemyID);
         }
     }
 }

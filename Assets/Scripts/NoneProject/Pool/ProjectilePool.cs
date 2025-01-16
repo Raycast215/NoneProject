@@ -1,58 +1,23 @@
-
-using System;
-using System.Threading;
-using Cysharp.Threading.Tasks;
-using NoneProject.Actor;
-using NoneProject.Common;
-using NoneProject.Manager;
+using NoneProject.Projectile;
 using Template.Pool;
-using UnityEngine;
-
 
 namespace NoneProject.Pool
 {
-    public class ProjectilePool : PoolBase
+    // Scripted by Raycast
+    // 2025.01.17
+    // Projectile Pool의 오브젝트를 포함하는 클래스.
+    public class ProjectilePool : PoolBase<ProjectileController>
     {
-        // public async UniTaskVoid PlayProjectile(GameObject projectileObject)
-        public async UniTaskVoid PlayProjectile(Vector3 pos)
+#region Override Methods
+
+        public override void SetController(ProjectileController controller)
         {
-            gameObject.SetActive(true);
-            gameObject.transform.position = pos;
-            
-            // projectileObject.SetActive(true);
-            // projectileObject.transform.SetParent(transform);
-            // projectileObject.transform.position = Vector3.zero;
-            // projectileObject.transform.localScale = Vector3.one;
-
-            await UniTask.WaitForSeconds(5.0f, cancellationToken: Cts.Token);
-
-            Release();
+           
         }
 
-        private void FixedUpdate()
-        {
-            var pos = 10.0f * Time.deltaTime;
-            
-            transform.Translate(Vector3.right * pos);
-        }
-
-        private void OnTriggerEnter2D(Collider2D col)
-        {
-            if (col.CompareTag(ActorType.Enemy.ToString()))
-            {
-                Release();
-            }
-        }
-        
-        #region Override Implement
-        
         protected override void Release()
         {
-            Cts?.Cancel();
-            Cts?.Dispose();
-            Cts = new CancellationTokenSource();
             
-            PoolManager.Instance.ProjectilePool.Return(this);
         }
         
 #endregion

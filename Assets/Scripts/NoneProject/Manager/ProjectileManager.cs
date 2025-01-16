@@ -1,53 +1,71 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using NoneProject.Interface;
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using NoneProject.Pool;
+using NoneProject.Pool.Common;
+using NoneProject.Projectile;
 using Template.Manager;
-using UnityEngine;
-
 
 namespace NoneProject.Manager
 {
-    public class ProjectileManager : SingletonBase<ProjectileManager>
+    // Scripted by Raycast
+    // 2025.01.17
+    // Projectile을 관리하고 Pool을 실행하는 클래스입니다.
+    public class ProjectileManager : SingletonBase<ProjectileManager>, IObjectPoolManager<ProjectilePool, ProjectileController>
     {
-        private readonly Dictionary<string, GameObject> _projectileDic = new Dictionary<string, GameObject>();
-
-        public void PlayProjectile(string projectileName, Vector3 pos)
+        private readonly CancellationTokenSource _cts = new CancellationTokenSource();
+        private ObjectPoolController<ProjectilePool, ProjectileController> _poolController;
+        
+        public async UniTask<ProjectileController> Get(string poolObjectID)
         {
-            // projectile pool 가져옴.
-            var projectilePool = PoolManager.Instance.ProjectilePool.Get();
-
-            projectilePool.PlayProjectile(pos).Forget();
-
-            // 가져온 pool에 실행할 projectile를 담아 재생.
-            // LoadProjectile(projectileName, projectile => projectilePool.PlayProjectile(projectile));
+            // Manager 초기화 완료까지 대기.
+            await UniTask.WaitUntil(() => isInitialized, cancellationToken: _cts.Token);
+            
+            return await _poolController.Get(poolObjectID);
         }
         
-        private void LoadProjectile(string projectileName, Action<GameObject> onComplete)
+        public void Release(ProjectilePool poolObject)
         {
-            // 이미 key가 존재하는 경우 바로 실행.
-            if (_projectileDic.ContainsKey(projectileName))
-            {
-                onComplete?.Invoke(_projectileDic[projectileName]);
-                return;
-            }
-            
-            // key가 없는 경우 새로 Load하여 실행.
-            AddressableManager.Instance.LoadAsset<GameObject>(projectileName, OnComplete);
-            return;
-            
-            void OnComplete(GameObject projectile)
-            {
-                _projectileDic.Add(projectileName, projectile);
-                    
-                onComplete?.Invoke(projectile);
-            }
+            _poolController.Release(poolObject);
+        }
+
+        private ProjectileController SetController(string poolObjectID, ProjectileController controller)
+        {
+            // Pool 오브젝트 반환.
+            var poolObject = _poolController.Pool.Get();
+
+            return poolObject.Controller;
         }
         
-        protected override void Initialized()
+        private void Subscribe()
         {
+            _poolController.OnObjectControllerUpdated += SetController;
+        }
+
+#region Override Methods
+    
+        protected override async void Initialized()
+        {
+            var constData = GameManager.Instance.Const;
+            
+            // GameManager 초기화 완료까지 대기.
+            await UniTask.WaitUntil(() => GameManager.Instance.isInitialized, cancellationToken: _cts.Token);
+
+            _poolController = new ObjectPoolController<ProjectilePool, ProjectileController>(transform, constData.ProjectileObjectPath);
+
+            Subscribe();
+            
             isInitialized = true;
         }
+        
+        protected override void OnDestroy()
+        {
+            _cts?.Cancel();
+            _cts?.Dispose();
+         
+            base.OnDestroy();
+        }
+    
+#endregion
     }
 }
-
-

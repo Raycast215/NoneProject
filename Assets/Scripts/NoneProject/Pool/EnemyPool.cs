@@ -23,6 +23,7 @@ namespace NoneProject.Pool
 
         protected override void Release()
         {
+            // 위치 초기화.
             Controller.SetPosition(Vector2.zero);
             // Pool 해제.
             EnemyManager.Instance.Release(this);
