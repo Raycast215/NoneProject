@@ -193,7 +193,7 @@ namespace Template.Manager
         private void InitializedSfx()
         {
             var sfxObject = Resources.Load<SoundPool>(ConstData.SoundObjectPath);
-            _soundPool = new Pooling<SoundPool>(sfxObject, ConstData.SfxCapacity, transform);
+            _soundPool = new Pooling<SoundPool>(sfxObject, ConstData.Capacity, transform);
             _soundPool.Pool();
         }
 

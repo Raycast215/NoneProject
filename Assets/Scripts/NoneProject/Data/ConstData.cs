@@ -40,13 +40,13 @@ namespace NoneProject.Data
 
         [TitleGroup("SFX Object Pool Option")]
         [SerializeField] 
-        private int sfxCapacity = 5;
+        private int capacity = 5;
         
         [TitleGroup("SFX Object Pool Option")]
         [SerializeField] 
         private int sfxDefaultLimitCount = 10;
 
-        public int SfxCapacity => sfxCapacity;
+        public int Capacity => capacity;
         public int SfxDefaultLimitCount => sfxDefaultLimitCount;
 
         #endregion
