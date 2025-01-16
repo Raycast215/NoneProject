@@ -1,12 +1,13 @@
 using System;
 using Cysharp.Threading.Tasks;
+using NoneProject.Sound;
 using Template.Manager;
 using Template.Pool;
 using UnityEngine;
 
 namespace NoneProject.Pool
 {
-    public class SoundPool : PoolBase
+    public class SoundPool : PoolBase<SoundController>
     {
         public event Action OnReleased = delegate {  }; 
         
@@ -32,7 +33,12 @@ namespace NoneProject.Pool
             Release();
         }
 
-#region Override Implementation
+#region Override Methods
+
+        public override void SetController(SoundController controller)
+        {
+            
+        }
 
         protected override void Release()
         {
