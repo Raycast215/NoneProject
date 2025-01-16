@@ -37,7 +37,7 @@ namespace NoneProject.Actor.Player
                     
             Subscribed();
 
-            IsLoaded = true;
+            IsInitialized = true;
         }
 
         public override void Move(float moveSpeed = 1.0f, Vector2 moveVec = new Vector2())

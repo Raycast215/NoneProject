@@ -23,6 +23,9 @@ namespace NoneProject.Actor.Enemy
         
         private void Subscribed()
         {
+            if(IsInitialized)
+                return;
+
             _moveBehaviour.OnAnimationStateChanged += state => _modelAnimationBehaviour.SetAnimationState(state);
             _moveBehaviour.Subscribe();
         }
@@ -42,14 +45,14 @@ namespace NoneProject.Actor.Enemy
         {
             base.Initialized();
             
-            _modelAnimationBehaviour = new ModelAnimationBehaviour(Model);
-            _moveBehaviour = new EnemyMoveBehaviour(Rigidbody2D);
+            _modelAnimationBehaviour ??= new ModelAnimationBehaviour(Model);
+            _moveBehaviour ??= new EnemyMoveBehaviour(Rigidbody2D);
             _moveBehaviour.SetPattern(MovePattern.Random);
             _moveBehaviour.SetMoveSpeed(1.0f);
             
             Subscribed();
             
-            IsLoaded = true;
+            IsInitialized = true;
         }
 
         public override void Move(float moveSpeed = 1.0f, Vector2 moveVec = new Vector2())

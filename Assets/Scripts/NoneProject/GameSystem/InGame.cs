@@ -44,7 +44,7 @@ namespace NoneProject.GameSystem
             if (_actorManager.Player is null)
                 return;
             
-            if (_actorManager.Player.IsLoaded is false)
+            if (_actorManager.Player.IsInitialized is false)
                 return;
             
             _inGameTouch.UpdateTouch();
