@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using NoneProject.Actor.Enemy;
 using NoneProject.Actor.Player;
 using NoneProject.Common;
 using Template.Manager;
@@ -14,7 +12,6 @@ namespace NoneProject.Manager
     public class ActorManager : SingletonBase<ActorManager>
     {
         public PlayerController Player { get; private set; }
-        public List<EnemyController> Enemies { get; private set; }
 
         public async void LoadPlayer(Transform playerHolder, Action<PlayerController> onComplete = null)
         {
@@ -32,5 +29,16 @@ namespace NoneProject.Manager
                 onComplete?.Invoke(Player);
             }
         }
+
+#region Override Methods
+        
+        protected override void Initialized()
+        {
+            base.Initialized();
+            
+            isInitialized = true;
+        }
+        
+#endregion
     }
 }
