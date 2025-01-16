@@ -8,12 +8,12 @@ namespace NoneProject.Pool
 {
     // Scripted by Raycast
     // 2025.01.16
-    // Enemy Pool의 오브젝트가 되는 클래스.
-    public class EnemyPool : PoolBase
+    // Enemy Pool의 오브젝트를 포함하는 클래스.
+    public class EnemyPool : PoolBase<EnemyController>
     {
-        public EnemyController Controller { get; private set; }
+#region Override Methods
         
-        public void SetController(EnemyController controller)
+        public override void SetController(EnemyController controller)
         {
             // Enemy 오브젝트 저장.
             Controller = controller;
@@ -21,21 +21,11 @@ namespace NoneProject.Pool
             SetControllerParent(transform);
         }
 
-        public void SetControllerParent(Transform parent, bool isActive = true)
-        {
-            // Enemy 오브젝트를 받아온 부모 하위로 이동.
-            Controller.transform.SetParent(parent, false);
-            // Controller 활성화 상태 변경.
-            Controller.gameObject.SetActive(isActive);
-        }
-        
-#region Override Methods
-        
         protected override void Release()
         {
             Controller.SetPosition(Vector2.zero);
             // Pool 해제.
-            EnemyManager.Instance.ReleaseEnemy(this);
+            EnemyManager.Instance.Release(this);
             // Controller 초기화.
             Controller = null;
         }
@@ -51,7 +41,7 @@ namespace NoneProject.Pool
             if (Application.isPlaying is false)
                 return;
                     
-            EnemyManager.Instance.ReleaseEnemy(this);
+            EnemyManager.Instance.Release(this);
         }
 
 #endregion

@@ -10,10 +10,10 @@ namespace NoneProject.Actor.Enemy
     // Enemy를 관리하는 클래스입니다.
     public class EnemyController : ActorBase
     {
+        public string ID { get; private set; }
+        
         private EnemyMoveBehaviour _moveBehaviour;
         private ModelAnimationBehaviour _modelAnimationBehaviour;
-        
-        public string Name { get; private set; }
 
         private void FixedUpdate()
         {
@@ -22,11 +22,10 @@ namespace NoneProject.Actor.Enemy
             
             _moveBehaviour.Move();
         }
-
-        // To Do: 나중에 데이터로 불러오기
-        public void SetName(string enemyName)
+        
+        public void SetID(string id)
         {
-            Name = enemyName;
+            ID = id;
         }
 
         private void Subscribed()
@@ -44,6 +43,8 @@ namespace NoneProject.Actor.Enemy
             _moveBehaviour.SetPosition(pos);
         }
 
+#region Override Methods
+        
         public override void Initialized()
         {
             base.Initialized();
@@ -62,5 +63,7 @@ namespace NoneProject.Actor.Enemy
         {
             _moveBehaviour.Move();
         }
+        
+#endregion
     }
 }
