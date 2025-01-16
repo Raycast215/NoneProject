@@ -13,7 +13,6 @@ namespace NoneProject.GameSystem.Stage
         private Transform _playerHolder;
         private Transform _enemyHolder;
         private Transform _mapHolder;
-        private Data.Stage _testStageData;
         private readonly CancellationTokenSource _cts = new CancellationTokenSource();
         
         private bool _isRun;
@@ -23,47 +22,15 @@ namespace NoneProject.GameSystem.Stage
             Initialize();
         }
 
-        private void FixedUpdate()
-        {
-            if (_isRun is false)
-                return;
-            
-            ActorListHolder.EnemyList.ForEach(x => x.NodeRunner.OperateNode());
-            ActorListHolder.MapList.ForEach(x => x.NodeRunner.OperateNode());
-        }
-        
         private void Initialize()
         {
             Clear();
-            
-            InitStateData();
-            InitUi();
             InitHolder();
             InitPlayer();
-            //InitMap();
-            
-            //DataManager.Instance.Load();
-            
+     
             _isRun = true;
         }
-        
-        private void InitStateData()
-        {
-            _testStageData = new Data.Stage
-            {
-                index = 0,
-                mapType = $"{MapType.Forest}",
-                spawnCounts = new int[] { 3, 3, 4 },
-                bossKey = null,
-                rewardGold = 10
-            };
-        }
 
-        private void InitUi()
-        {
-            //UIManager.Instance.Get<UiStage>(ui => ui.Init());
-        }
-        
         private void InitHolder()
         {
             // // Player Holder Setting.
@@ -98,10 +65,6 @@ namespace NoneProject.GameSystem.Stage
         private void Clear()
         {
             _isRun = false;
-            
-            ActorListHolder.ClearList(ActorListHolder.PlayerList);
-            ActorListHolder.ClearList(ActorListHolder.EnemyList);
-            ActorListHolder.ClearList(ActorListHolder.MapList);
         }
 
         private void OnDestroy()
