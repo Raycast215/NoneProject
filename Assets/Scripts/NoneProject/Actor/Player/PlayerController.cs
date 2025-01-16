@@ -8,7 +8,7 @@ namespace NoneProject.Actor.Player
     // Player의 로직을 처리하는 클래스입니다.
     public class PlayerController : ActorBase
     {
-        private PlayerMoveBehaviour _moveBehaviour;
+        private PlayerMoveController _moveController;
         private ModelAnimationBehaviour _modelAnimationBehaviour;
         
         private void FixedUpdate()
@@ -16,13 +16,13 @@ namespace NoneProject.Actor.Player
             if (GameManager.Instance.InGame.IsAutoMove is false)
                 return;
             
-            _moveBehaviour.Move();
+            _moveController.Move();
         }
         
         private void Subscribed()
         {
-            _moveBehaviour.OnAnimationStateChanged += state => _modelAnimationBehaviour.SetAnimationState(state);
-            _moveBehaviour.Subscribe();
+            _moveController.OnAnimationStateChanged += state => _modelAnimationBehaviour.SetAnimationState(state);
+            _moveController.Subscribe();
         }
         
 #region Override Methods
@@ -32,8 +32,8 @@ namespace NoneProject.Actor.Player
             base.Initialized();
                     
             _modelAnimationBehaviour = new ModelAnimationBehaviour(Model);
-            _moveBehaviour = new PlayerMoveBehaviour(Rigidbody2D);
-            _moveBehaviour.SetMoveSpeed(1.0f);
+            _moveController = new PlayerMoveController(Rigidbody2D);
+            _moveController.SetMoveSpeed(1.0f);
                     
             Subscribed();
 
@@ -42,7 +42,7 @@ namespace NoneProject.Actor.Player
 
         public override void Move(float moveSpeed = 1.0f, Vector2 moveVec = new Vector2())
         {
-            _moveBehaviour.Move(moveVec: moveVec);
+            _moveController.Move(moveVec: moveVec);
         }
         
 #endregion

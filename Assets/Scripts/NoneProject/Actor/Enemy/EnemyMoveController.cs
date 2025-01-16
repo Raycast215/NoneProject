@@ -11,7 +11,7 @@ namespace NoneProject.Actor.Enemy
     // Scripted by Raycast
     // 2025.01.16
     // Enemy의 이동 로직을 처리하는 클래스입니다.
-    public class EnemyMoveBehaviour : MoveBehaviour
+    public class EnemyMoveController : MoveBehaviour
     {
         public event Action<ActorState> OnAnimationStateChanged;
 
@@ -20,7 +20,7 @@ namespace NoneProject.Actor.Enemy
         private MovePattern _movePattern;
         private readonly AutoMove _autoMove;
     
-        public EnemyMoveBehaviour(Rigidbody2D rigidbody2D)
+        public EnemyMoveController(Rigidbody2D rigidbody2D)
         {
             Rigidbody = rigidbody2D;
             _autoMove = new AutoMove(rigidbody2D);

@@ -9,7 +9,7 @@ namespace NoneProject.Actor.Player
     // Scripted by Raycast
     // 2025.01.15
     // Player의 이동 로직을 처리하는 클래스입니다.
-    public class PlayerMoveBehaviour : MoveBehaviour
+    public class PlayerMoveController : MoveBehaviour
     {
         public event Action<ActorState> OnAnimationStateChanged;
 
@@ -17,7 +17,7 @@ namespace NoneProject.Actor.Player
         private readonly DefaultMove _defaultMove;
         private Vector2 _autoTargetPosition;
 
-        public PlayerMoveBehaviour(Rigidbody2D rigidbody2D)
+        public PlayerMoveController(Rigidbody2D rigidbody2D)
         {
             Rigidbody = rigidbody2D;
             _autoMove = new AutoMove(Rigidbody);

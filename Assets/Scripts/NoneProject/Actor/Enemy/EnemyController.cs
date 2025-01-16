@@ -10,7 +10,7 @@ namespace NoneProject.Actor.Enemy
     // Enemy를 관리하는 클래스입니다.
     public class EnemyController : ActorBase
     {
-        private EnemyMoveBehaviour _moveBehaviour;
+        private EnemyMoveController _moveController;
         private ModelAnimationBehaviour _modelAnimationBehaviour;
 
         private void FixedUpdate()
@@ -18,7 +18,7 @@ namespace NoneProject.Actor.Enemy
             if (gameObject.activeInHierarchy is false)
                 return;
             
-            _moveBehaviour.Move();
+            _moveController.Move();
         }
         
         private void Subscribed()
@@ -26,8 +26,8 @@ namespace NoneProject.Actor.Enemy
             if(IsInitialized)
                 return;
 
-            _moveBehaviour.OnAnimationStateChanged += state => _modelAnimationBehaviour.SetAnimationState(state);
-            _moveBehaviour.Subscribe();
+            _moveController.OnAnimationStateChanged += state => _modelAnimationBehaviour.SetAnimationState(state);
+            _moveController.Subscribe();
         }
         
         public void SetPosition(Vector2 position, bool isRandom = false)
@@ -36,7 +36,7 @@ namespace NoneProject.Actor.Enemy
                 ? Util.GetRandomDirVec(transform.position, 2.0f, 2.0f) 
                 : position;
             
-            _moveBehaviour.SetPosition(pos);
+            _moveController.SetPosition(pos);
         }
 
 #region Override Methods
@@ -46,9 +46,9 @@ namespace NoneProject.Actor.Enemy
             base.Initialized();
             
             _modelAnimationBehaviour ??= new ModelAnimationBehaviour(Model);
-            _moveBehaviour ??= new EnemyMoveBehaviour(Rigidbody2D);
-            _moveBehaviour.SetPattern(MovePattern.Random);
-            _moveBehaviour.SetMoveSpeed(1.0f);
+            _moveController ??= new EnemyMoveController(Rigidbody2D);
+            _moveController.SetPattern(MovePattern.Random);
+            _moveController.SetMoveSpeed(1.0f);
             
             Subscribed();
             
@@ -57,7 +57,7 @@ namespace NoneProject.Actor.Enemy
 
         public override void Move(float moveSpeed = 1.0f, Vector2 moveVec = new Vector2())
         {
-            _moveBehaviour.Move();
+            _moveController.Move();
         }
         
 #endregion
