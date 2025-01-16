@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Const Data
   m_EditorClassIdentifier: 
   playerHolder: Player Holder
-  enemyHolder: Enemy Holder
+  tempHolder: Temp Holder
+  objectPoolHolder: ObjectPool Holder
   checkDistance: 0.5
   autoMoveVecOffset: 2
-  sfxCapacity: 5
+  capacity: 5
   sfxDefaultLimitCount: 10
   commonObjectPath: PoolObject
   soundObjectPath: SoundObject
   enemyObjectPath: EnemyObject
+  projectileObjectPath: ProjectileObject
