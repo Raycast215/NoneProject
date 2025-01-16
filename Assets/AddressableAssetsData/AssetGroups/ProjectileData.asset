@@ -18,9 +18,10 @@ MonoBehaviour:
   m_GUID: 6a85ee3ea7f897e489b15ba156fa294f
   m_SerializeEntries:
   - m_GUID: 048b3149db4d32c4f9b30384862b73cb
-    m_Address: ProjectileObject
+    m_Address: Projectile_IceBolt
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - Projectile
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 6e6dc751de034d44387435c5e3b48284
     m_Address: Projectile_15
