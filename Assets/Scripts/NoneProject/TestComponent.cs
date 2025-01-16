@@ -77,7 +77,7 @@ namespace NoneProject
             if (Application.isPlaying is false)
                 return;
             
-            EnemyManager.Instance.GetEnemy(enemyID);
+            EnemyManager.Instance.Get(enemyID);
         }
     }
 }
