@@ -1,4 +1,4 @@
-using NoneProject.Actor.Component.Animation;
+using NoneProject.Actor.Component.Model;
 using UnityEngine;
 
 namespace NoneProject.Actor.Player
@@ -9,7 +9,7 @@ namespace NoneProject.Actor.Player
     public class PlayerController : ActorBase
     {
         private PlayerMoveController _moveController;
-        private ActorAnimationController _actorAnimationController;
+        private ModelController _modelController;
         
         private void FixedUpdate()
         {
@@ -18,31 +18,34 @@ namespace NoneProject.Actor.Player
             
             _moveController.Move(MoveSpeed, Vector2.zero);
         }
-        
-        private void Subscribed()
+
+        public void Set()
         {
-            _moveController.OnAnimationStateChanged += state => _actorAnimationController.SetAnimationState(state);
-            _moveController.Subscribe();
+            MoveSpeed = 2.0f;
         }
         
 #region Override Methods
-        
-        public override void Initialized()
-        {
-            base.Initialized();
-                    
-            _actorAnimationController = new ActorAnimationController(Model);
-            _moveController = new PlayerMoveController(Rigidbody2D);
-            MoveSpeed = 2.0f;
-
-            Subscribed();
-
-            IsInitialized = true;
-        }
 
         public override void Move(Vector2 moveVec)
         {
             _moveController.Move(MoveSpeed, moveVec);
+        }
+        
+        protected override void Initialize()
+        {
+            _modelController = new ModelController(this);
+            _moveController = new PlayerMoveController(Rigidbody2D);
+            
+            Subscribe();
+            Set();
+
+            IsInitialized = true;
+        }
+        
+        protected override void Subscribe()
+        {
+            _moveController.OnAnimationStateChanged += state => _modelController.SetAnimationState(state);
+            _moveController.Subscribe();
         }
         
 #endregion

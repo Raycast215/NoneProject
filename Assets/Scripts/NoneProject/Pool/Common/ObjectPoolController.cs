@@ -96,10 +96,14 @@ namespace NoneProject.Pool.Common
             _objectPoolHolder = Util.CreateObject(constData.ObjectPoolHolder, _managerTransform).transform;
         }
 
-        private void LoadAssetComplete(string poolObjectID, GameObject prefab)
+        private async void LoadAssetComplete(string poolObjectID, GameObject prefab)
         {
+            var newObject = Object.Instantiate(prefab, _objectPoolHolder).GetComponent<TU>();
+            
+            await UniTask.WaitUntil(() => newObject, cancellationToken: _cts.Token);
+            
             // 오브젝트에서 사용할 에셋을 생성해서 오브젝트의 Controller를 수정.
-            _selectObject = OnObjectControllerUpdated?.Invoke(poolObjectID, Object.Instantiate(prefab, _objectPoolHolder).GetComponent<TU>());
+            _selectObject = OnObjectControllerUpdated?.Invoke(poolObjectID, newObject);
         }
     }
 }

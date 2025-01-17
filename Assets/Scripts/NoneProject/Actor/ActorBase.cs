@@ -5,44 +5,27 @@ namespace NoneProject.Actor
     // Scripted by Raycast
     // 2025.01.14
     // Actor의 상위 클래스입니다.
+    [RequireComponent(typeof(Rigidbody2D))]
     public abstract class ActorBase : MonoBehaviour
     {
         public bool IsInitialized { get; protected set; }
         
-        protected SPUM_Prefabs Model;
         protected Rigidbody2D Rigidbody2D;
         protected float MoveSpeed;
 
-        public virtual void Initialized()
+        private void Start()
         {
             LoadRigidBody2D();
-            LoadModel();
+            Initialize();
         }
         
         private void LoadRigidBody2D()
         {
-            if (TryGetComponent<Rigidbody2D>(out var rBody2D))
-            {
-                Rigidbody2D ??= rBody2D;
-            }
-            else
-            {
-                Debug.LogError("Rigidbody2D Component is null...");
-            }
+            Rigidbody2D = GetComponent<Rigidbody2D>();
         }
         
-        private void LoadModel()
-        {
-            if (TryGetComponent<SPUM_Prefabs>(out var model))
-            {
-                Model ??= model;
-            }
-            else
-            {
-                Debug.LogError("Model Component is null...");
-            }
-        }
-
         public abstract void Move(Vector2 moveVec);
+        protected abstract void Initialize();
+        protected abstract void Subscribe();
     }
 }

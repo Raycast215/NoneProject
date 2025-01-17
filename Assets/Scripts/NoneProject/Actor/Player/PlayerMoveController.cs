@@ -21,17 +21,8 @@ namespace NoneProject.Actor.Player
             Rigidbody = rigidbody2D;
             _autoMove = new AutoMove(Rigidbody);
             _defaultMove = new DefaultMove(Rigidbody);
-            
-            SetPosition(Vector2.zero);
         }
-
-        public void Subscribe()
-        {
-            _autoMove.OnMoveVecUpdated += _ => OnAnimationStateChanged?.Invoke(ActorState.Run);
-            _autoMove.OnDirectionUpdated += SetDirection;
-            _defaultMove.Subscribe(_ => OnAnimationStateChanged?.Invoke(ActorState.Run));
-        }
-
+        
 #region Override Methods
         
         public override void Move(float moveSpeed, Vector2 moveVec)
@@ -53,6 +44,13 @@ namespace NoneProject.Actor.Player
             SetDirection(moveVec);
             // 이동 실행.
             _defaultMove.Move(moveSpeed, moveVec);
+        }
+        
+        public override void Subscribe()
+        {
+            _autoMove.OnMoveVecUpdated += _ => OnAnimationStateChanged?.Invoke(ActorState.Run);
+            _autoMove.OnDirectionUpdated += SetDirection;
+            _defaultMove.Subscribe(_ => OnAnimationStateChanged?.Invoke(ActorState.Run));
         }
         
 #endregion

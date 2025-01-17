@@ -1,4 +1,4 @@
-using NoneProject.Actor.Component.Animation;
+using NoneProject.Actor.Component.Model;
 using NoneProject.Common;
 using Template.Utility;
 using UnityEngine;
@@ -11,7 +11,7 @@ namespace NoneProject.Actor.Enemy
     public class EnemyController : ActorBase
     {
         private EnemyMoveController _moveController;
-        private ActorAnimationController _actorAnimationController;
+        private ModelController _modelController;
 
         private void FixedUpdate()
         {
@@ -20,14 +20,11 @@ namespace NoneProject.Actor.Enemy
             
             _moveController.Move(MoveSpeed, Vector2.zero);
         }
-        
-        private void Subscribed()
-        {
-            if(IsInitialized)
-                return;
 
-            _moveController.OnAnimationStateChanged += state => _actorAnimationController.SetAnimationState(state);
-            _moveController.Subscribe();
+        public void Set()
+        {
+            MoveSpeed = 1.0f;
+            _moveController.SetPattern(MovePattern.Random);
         }
         
         public void SetPosition(Vector2 position, bool isRandom = false)
@@ -41,23 +38,26 @@ namespace NoneProject.Actor.Enemy
 
 #region Override Methods
         
-        public override void Initialized()
-        {
-            base.Initialized();
-            
-            _actorAnimationController ??= new ActorAnimationController(Model);
-            _moveController ??= new EnemyMoveController(Rigidbody2D);
-            _moveController.SetPattern(MovePattern.Random);
-            MoveSpeed = 1.0f;
-            
-            Subscribed();
-            
-            IsInitialized = true;
-        }
-
         public override void Move(Vector2 moveVec)
         {
             _moveController.Move(MoveSpeed, moveVec);
+        }
+
+        protected override void Initialize()
+        {
+            _modelController = new ModelController(this);
+            _moveController = new EnemyMoveController(Rigidbody2D);
+            
+            Subscribe();
+            Set();
+            
+            IsInitialized = true;
+        }
+        
+        protected override void Subscribe()
+        {
+            _moveController.OnAnimationStateChanged += state => _modelController.SetAnimationState(state);
+            _moveController.Subscribe();
         }
         
 #endregion

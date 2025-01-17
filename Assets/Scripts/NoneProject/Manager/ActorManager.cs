@@ -23,8 +23,6 @@ namespace NoneProject.Manager
             {
                 // 오브젝트 생성.
                 Player = Instantiate(prefab, playerHolder).GetComponent<PlayerController>();
-                // Player 초기화.
-                Player.Initialized();
                 // Player 생성 후 실행할 이벤트 실행.
                 onComplete?.Invoke(Player);
             }

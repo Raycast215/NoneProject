@@ -1,8 +1,6 @@
 using System;
-using System.Collections.Generic;
 using NoneProject.Actor.Component.Move;
 using NoneProject.Common;
-using NoneProject.Interface;
 using UnityEngine;
 
 namespace NoneProject.Actor.Enemy
@@ -13,32 +11,18 @@ namespace NoneProject.Actor.Enemy
     public class EnemyMoveController : MoveController
     {
         public event Action<ActorState> OnAnimationStateChanged;
-
-        private Dictionary<MovePattern, IMovable> _movePatternDic;
-
-        private MovePattern _movePattern;
+        
         private readonly AutoMove _autoMove;
     
         public EnemyMoveController(Rigidbody2D rigidbody2D)
         {
             Rigidbody = rigidbody2D;
-            _autoMove = new AutoMove(rigidbody2D);
-            
-            _movePatternDic = new Dictionary<MovePattern, IMovable>()
-            {
-                {MovePattern.Random, _autoMove}
-            };
+            _autoMove = new AutoMove(Rigidbody);
         }
 
         public void SetPattern(MovePattern movePattern)
         {
-            _movePattern = movePattern;
-        }
-
-        public void Subscribe()
-        {
-            _autoMove.OnMoveVecUpdated += _ => OnAnimationStateChanged?.Invoke(ActorState.Run);
-            _autoMove.OnDirectionUpdated += SetDirection;
+            
         }
 
 #region Override Methods
@@ -47,6 +31,12 @@ namespace NoneProject.Actor.Enemy
         {
             // 이동 실행.
             _autoMove.Move(moveSpeed);
+        }
+        
+        public override void Subscribe()
+        {
+            _autoMove.OnMoveVecUpdated += _ => OnAnimationStateChanged?.Invoke(ActorState.Run);
+            _autoMove.OnDirectionUpdated += SetDirection;
         }
         
 #endregion
