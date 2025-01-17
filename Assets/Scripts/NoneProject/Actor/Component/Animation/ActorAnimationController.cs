@@ -1,15 +1,15 @@
 using NoneProject.Common;
 
-namespace NoneProject.Actor.Behaviour
+namespace NoneProject.Actor.Component.Animation
 {
     // Scripted by Raycast
     // 2025.01.14
     // Model의 Animation을 처리하는 클래스입니다.
-    public class ModelAnimationBehaviour
+    public class ActorAnimationController
     {
         private readonly SPUM_Prefabs _model;
         
-        public ModelAnimationBehaviour(SPUM_Prefabs model)
+        public ActorAnimationController(SPUM_Prefabs model)
         {
             _model = model;
             SetAnimationState(ActorState.Idle);

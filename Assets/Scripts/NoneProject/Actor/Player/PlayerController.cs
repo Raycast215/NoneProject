@@ -1,4 +1,4 @@
-using NoneProject.Actor.Behaviour;
+using NoneProject.Actor.Component.Animation;
 using UnityEngine;
 
 namespace NoneProject.Actor.Player
@@ -9,7 +9,7 @@ namespace NoneProject.Actor.Player
     public class PlayerController : ActorBase
     {
         private PlayerMoveController _moveController;
-        private ModelAnimationBehaviour _modelAnimationBehaviour;
+        private ActorAnimationController _actorAnimationController;
         
         private void FixedUpdate()
         {
@@ -21,7 +21,7 @@ namespace NoneProject.Actor.Player
         
         private void Subscribed()
         {
-            _moveController.OnAnimationStateChanged += state => _modelAnimationBehaviour.SetAnimationState(state);
+            _moveController.OnAnimationStateChanged += state => _actorAnimationController.SetAnimationState(state);
             _moveController.Subscribe();
         }
         
@@ -31,7 +31,7 @@ namespace NoneProject.Actor.Player
         {
             base.Initialized();
                     
-            _modelAnimationBehaviour = new ModelAnimationBehaviour(Model);
+            _actorAnimationController = new ActorAnimationController(Model);
             _moveController = new PlayerMoveController(Rigidbody2D);
             MoveSpeed = 2.0f;
 

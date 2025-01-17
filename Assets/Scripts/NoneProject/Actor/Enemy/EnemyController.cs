@@ -1,4 +1,4 @@
-using NoneProject.Actor.Behaviour;
+using NoneProject.Actor.Component.Animation;
 using NoneProject.Common;
 using Template.Utility;
 using UnityEngine;
@@ -11,7 +11,7 @@ namespace NoneProject.Actor.Enemy
     public class EnemyController : ActorBase
     {
         private EnemyMoveController _moveController;
-        private ModelAnimationBehaviour _modelAnimationBehaviour;
+        private ActorAnimationController _actorAnimationController;
 
         private void FixedUpdate()
         {
@@ -26,7 +26,7 @@ namespace NoneProject.Actor.Enemy
             if(IsInitialized)
                 return;
 
-            _moveController.OnAnimationStateChanged += state => _modelAnimationBehaviour.SetAnimationState(state);
+            _moveController.OnAnimationStateChanged += state => _actorAnimationController.SetAnimationState(state);
             _moveController.Subscribe();
         }
         
@@ -45,7 +45,7 @@ namespace NoneProject.Actor.Enemy
         {
             base.Initialized();
             
-            _modelAnimationBehaviour ??= new ModelAnimationBehaviour(Model);
+            _actorAnimationController ??= new ActorAnimationController(Model);
             _moveController ??= new EnemyMoveController(Rigidbody2D);
             _moveController.SetPattern(MovePattern.Random);
             MoveSpeed = 1.0f;
