@@ -91,7 +91,7 @@ namespace NoneProject.GameSystem
             void OnComplete(PlayerController player)
             {
                 _cam.Follow = player.transform;
-                _inGameTouch.OnTouched += moveVec => player.Move(moveVec: moveVec);
+                _inGameTouch.OnTouched += player.Move;
             }
         }
     }

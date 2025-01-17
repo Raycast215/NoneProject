@@ -11,6 +11,7 @@ namespace NoneProject.Actor
         
         protected SPUM_Prefabs Model;
         protected Rigidbody2D Rigidbody2D;
+        protected float MoveSpeed;
 
         public virtual void Initialized()
         {
@@ -42,6 +43,6 @@ namespace NoneProject.Actor
             }
         }
 
-        public abstract void Move(float moveSpeed = 1.0f, Vector2 moveVec = new Vector2());
+        public abstract void Move(Vector2 moveVec);
     }
 }

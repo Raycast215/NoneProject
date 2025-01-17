@@ -1,9 +1,9 @@
 using NoneProject.Interface;
 using System.Threading;
 using Cysharp.Threading.Tasks;
+using NoneProject.Actor.Projectile;
 using NoneProject.Pool;
 using NoneProject.Pool.Common;
-using NoneProject.Projectile;
 using Template.Manager;
 
 namespace NoneProject.Manager

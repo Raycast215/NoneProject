@@ -4,7 +4,7 @@ namespace NoneProject.Sound
 {
     // Scripted by Raycast
     // 2025.01.17
-    // Sound Pool의 오브젝트를 포함하는 클래스.
+    // Sound를 관리하는 클래스입니다.
     public class SoundController : MonoBehaviour
     {
     

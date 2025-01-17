@@ -1,5 +1,5 @@
+using NoneProject.Actor.Projectile;
 using NoneProject.Manager;
-using NoneProject.Projectile;
 using Template.Pool;
 using UnityEngine;
 

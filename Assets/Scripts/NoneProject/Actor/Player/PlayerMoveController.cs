@@ -22,6 +22,7 @@ namespace NoneProject.Actor.Player
             Rigidbody = rigidbody2D;
             _autoMove = new AutoMove(Rigidbody);
             _defaultMove = new DefaultMove(Rigidbody);
+            
             SetPosition(Vector2.zero);
         }
 
@@ -29,12 +30,20 @@ namespace NoneProject.Actor.Player
         {
             _autoMove.OnMoveVecUpdated += _ => OnAnimationStateChanged?.Invoke(ActorState.Run);
             _autoMove.OnDirectionUpdated += SetDirection;
-            _defaultMove.Subscribe(() => OnAnimationStateChanged?.Invoke(ActorState.Run));
+            _defaultMove.Subscribe(_ => OnAnimationStateChanged?.Invoke(ActorState.Run));
         }
+
+#region Override Methods
         
-        private void MoveDefault(Vector2 dirVec)
+        public override void Move(float moveSpeed, Vector2 moveVec)
         {
-            if (dirVec == Vector2.zero)
+            if (GameManager.Instance.InGame.IsAutoMove)
+            {
+                _autoMove.Move(moveSpeed);
+                return;
+            }
+
+            if (moveVec == Vector2.zero)
             {
                 // 이동한 방향 값이 없는 경우 기본 애니메이션 재생.
                 OnAnimationStateChanged?.Invoke(ActorState.Idle);
@@ -42,23 +51,9 @@ namespace NoneProject.Actor.Player
             }
             
             // 바라 보는 위치 변경.
-            SetDirection(dirVec);
+            SetDirection(moveVec);
             // 이동 실행.
-            _defaultMove.Move(MoveSpeed, dirVec);
-        }
-
-#region Override Methods
-        
-        public override void Move(float moveSpeed = 1.0f, Vector2 moveVec = new Vector2())
-        {
-            if (GameManager.Instance.InGame.IsAutoMove)
-            {
-                _autoMove.Move(MoveSpeed);
-                return;
-            }
-
-            _defaultMove.SetMoveSpeed(MoveSpeed);
-            MoveDefault(moveVec);
+            _defaultMove.Move(moveSpeed, moveVec);
         }
         
 #endregion

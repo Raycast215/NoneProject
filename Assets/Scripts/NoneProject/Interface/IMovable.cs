@@ -7,6 +7,6 @@ namespace NoneProject.Interface
     // 이동함수 인터페이스.
     public interface IMovable
     {
-        public void Move(float moveSpeed = 1.0f, Vector2 moveVec = new Vector2());
+        public void Move(float moveSpeed, Vector2 moveVec);
     }
 }

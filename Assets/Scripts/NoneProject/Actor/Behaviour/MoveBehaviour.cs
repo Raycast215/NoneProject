@@ -10,13 +10,7 @@ namespace NoneProject.Actor.Behaviour
     public abstract class MoveBehaviour : IMovable
     {
         protected Rigidbody2D Rigidbody;
-        protected float MoveSpeed;
 
-        public void SetMoveSpeed(float moveSpeed)
-        {
-            MoveSpeed = moveSpeed;
-        }
-        
         public void SetPosition(Vector2 position)
         {
             Rigidbody.transform.localPosition = position;
@@ -35,6 +29,6 @@ namespace NoneProject.Actor.Behaviour
         
 #endregion
 
-        public abstract void Move(float moveSpeed = 1.0f, Vector2 moveVec = new Vector2());
+        public abstract void Move(float moveSpeed, Vector2 moveVec);
     }
 }

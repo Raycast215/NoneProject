@@ -16,7 +16,7 @@ namespace NoneProject.Actor.Player
             if (GameManager.Instance.InGame.IsAutoMove is false)
                 return;
             
-            _moveController.Move();
+            _moveController.Move(MoveSpeed, Vector2.zero);
         }
         
         private void Subscribed()
@@ -33,16 +33,16 @@ namespace NoneProject.Actor.Player
                     
             _modelAnimationBehaviour = new ModelAnimationBehaviour(Model);
             _moveController = new PlayerMoveController(Rigidbody2D);
-            _moveController.SetMoveSpeed(1.0f);
-                    
+            MoveSpeed = 2.0f;
+
             Subscribed();
 
             IsInitialized = true;
         }
 
-        public override void Move(float moveSpeed = 1.0f, Vector2 moveVec = new Vector2())
+        public override void Move(Vector2 moveVec)
         {
-            _moveController.Move(moveVec: moveVec);
+            _moveController.Move(MoveSpeed, moveVec);
         }
         
 #endregion

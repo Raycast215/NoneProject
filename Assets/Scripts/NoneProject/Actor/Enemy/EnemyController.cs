@@ -18,7 +18,7 @@ namespace NoneProject.Actor.Enemy
             if (gameObject.activeInHierarchy is false)
                 return;
             
-            _moveController.Move();
+            _moveController.Move(MoveSpeed, Vector2.zero);
         }
         
         private void Subscribed()
@@ -48,16 +48,16 @@ namespace NoneProject.Actor.Enemy
             _modelAnimationBehaviour ??= new ModelAnimationBehaviour(Model);
             _moveController ??= new EnemyMoveController(Rigidbody2D);
             _moveController.SetPattern(MovePattern.Random);
-            _moveController.SetMoveSpeed(1.0f);
+            MoveSpeed = 1.0f;
             
             Subscribed();
             
             IsInitialized = true;
         }
 
-        public override void Move(float moveSpeed = 1.0f, Vector2 moveVec = new Vector2())
+        public override void Move(Vector2 moveVec)
         {
-            _moveController.Move();
+            _moveController.Move(MoveSpeed, moveVec);
         }
         
 #endregion

@@ -44,10 +44,10 @@ namespace NoneProject.Actor.Enemy
 
 #region Override Methods
         
-        public override void Move(float moveSpeed = 1.0f, Vector2 moveVec = new Vector2())
+        public override void Move(float moveSpeed, Vector2 moveVec)
         {
             // 이동 실행.
-            _autoMove.Move(MoveSpeed);
+            _autoMove.Move(moveSpeed);
         }
         
 #endregion
