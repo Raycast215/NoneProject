@@ -24,7 +24,6 @@ namespace NoneProject.Actor.BT
             }
 
             // 공격 가능한 대상이 없는 경우 대기 상태 및 노드 실패 처리.
-            Actor.Animations.PlayAnimation(ActorState.Idle);
             return nodeState = NodeState.Failure;
         }
 
@@ -35,7 +34,6 @@ namespace NoneProject.Actor.BT
             
             _isPlaying = true;
             Actor.Attack();
-            Actor.Animations.PlayAnimation(ActorState.Attack_Normal, true);
 
             // Actor의 공격 딜레이 만큼 대기.
             await UniTask.WaitForSeconds(Actor.Stat.attackDelay, cancellationToken: Cts.Token);

@@ -14,7 +14,6 @@ namespace NoneProject.Actor.BT
                 return nodeState = NodeState.Failure;
             
             // Actor가 사망 상태인 경우 노드 진행중.
-            Actor.Animations.PlayAnimation(ActorState.Death);
             return nodeState = NodeState.Running;
         }
     }

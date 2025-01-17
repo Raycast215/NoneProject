@@ -1,5 +1,4 @@
 
-using NoneProject.Actor.Animation;
 using NoneProject.Actor.BT;
 using NoneProject.Actor.Data;
 using UnityEngine;
@@ -12,12 +11,10 @@ namespace NoneProject.Actor
         [SerializeField] protected SelectorNode selector;
         
         public ActorStat Stat { get; private set; }
-        public ActorAnimation Animations { get; private set; }
         public NodeRunner NodeRunner { get; private set; }
 
         protected virtual void Awake()
         {
-            Animations = new ActorAnimation();
             NodeRunner = new NodeRunner(selector, this);
 
             Stat = new ActorStat();
