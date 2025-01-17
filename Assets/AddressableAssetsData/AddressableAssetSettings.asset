@@ -99,6 +99,8 @@ MonoBehaviour:
     - Common
     - Player
     - Enemy
+    - Bgm
+    - Sfx
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 18eb1831986083f47813127c18c49570, type: 2}
