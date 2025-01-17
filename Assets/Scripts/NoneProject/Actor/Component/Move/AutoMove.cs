@@ -3,7 +3,7 @@ using NoneProject.Interface;
 using Template.Utility;
 using UnityEngine;
 
-namespace NoneProject.Actor.Move
+namespace NoneProject.Actor.Component.Move
 {
     // Scripted by Raycast
     // 2025.01.15

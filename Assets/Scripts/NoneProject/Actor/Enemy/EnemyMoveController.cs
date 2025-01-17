@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using NoneProject.Actor.Behaviour;
-using NoneProject.Actor.Move;
+using NoneProject.Actor.Component.Move;
 using NoneProject.Common;
 using NoneProject.Interface;
 using UnityEngine;

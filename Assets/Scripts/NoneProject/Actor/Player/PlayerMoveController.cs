@@ -1,6 +1,6 @@
 using System;
 using NoneProject.Actor.Behaviour;
-using NoneProject.Actor.Move;
+using NoneProject.Actor.Component.Move;
 using NoneProject.Common;
 using UnityEngine;
 
