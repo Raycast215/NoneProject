@@ -30,5 +30,6 @@ namespace NoneProject.Actor.Component.Move
 #endregion
 
         public abstract void Move(float moveSpeed, Vector2 moveVec);
+        public abstract void Subscribe();
     }
 }
