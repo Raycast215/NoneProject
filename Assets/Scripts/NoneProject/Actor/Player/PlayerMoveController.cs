@@ -1,5 +1,4 @@
 using System;
-using NoneProject.Actor.Behaviour;
 using NoneProject.Actor.Component.Move;
 using NoneProject.Common;
 using UnityEngine;
@@ -9,7 +8,7 @@ namespace NoneProject.Actor.Player
     // Scripted by Raycast
     // 2025.01.15
     // Player의 이동 로직을 처리하는 클래스입니다.
-    public class PlayerMoveController : MoveBehaviour
+    public class PlayerMoveController : MoveController
     {
         public event Action<ActorState> OnAnimationStateChanged;
 

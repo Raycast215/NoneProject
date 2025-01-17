@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using NoneProject.Actor.Behaviour;
 using NoneProject.Actor.Component.Move;
 using NoneProject.Common;
 using NoneProject.Interface;
@@ -11,7 +10,7 @@ namespace NoneProject.Actor.Enemy
     // Scripted by Raycast
     // 2025.01.16
     // Enemy의 이동 로직을 처리하는 클래스입니다.
-    public class EnemyMoveController : MoveBehaviour
+    public class EnemyMoveController : MoveController
     {
         public event Action<ActorState> OnAnimationStateChanged;
 

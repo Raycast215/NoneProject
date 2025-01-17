@@ -2,12 +2,12 @@ using NoneProject.Interface;
 using Template.Utility;
 using UnityEngine;
 
-namespace NoneProject.Actor.Behaviour
+namespace NoneProject.Actor.Component.Move
 {
     // Scripted by Raycast
     // 2025.01.14
     // 이동로직을 처리하는 상위 클래스입니다.
-    public abstract class MoveBehaviour : IMovable
+    public abstract class MoveController : IMovable
     {
         protected Rigidbody2D Rigidbody;
 
