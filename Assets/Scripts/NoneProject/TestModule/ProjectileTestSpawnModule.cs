@@ -69,7 +69,10 @@ namespace NoneProject.TestModule
                 return;
             }
             
-            await ProjectileManager.Instance.Get(projectileID);
+            var projectile = await ProjectileManager.Instance.Get(projectileID);
+            var startPos = ActorManager.Instance.Player.transform.position;
+            
+            projectile.SetPosition(startPos);
         }
     }
 }

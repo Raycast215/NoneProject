@@ -10,8 +10,11 @@ namespace NoneProject.Actor.Player
     // Player의 이동 로직을 처리하는 클래스입니다.
     public class PlayerMoveController : MoveController
     {
+        public event Action<Vector2> OnDirectionUpdated; 
         public event Action<ActorState> OnAnimationStateChanged;
 
+        public Vector2 Direction { get; private set; } = Vector2.left;
+        
         private readonly AutoMove _autoMove;
         private readonly DefaultMove _defaultMove;
         private Vector2 _autoTargetPosition;
@@ -41,9 +44,12 @@ namespace NoneProject.Actor.Player
             }
             
             // 바라 보는 위치 변경.
-            SetDirection(moveVec);
+            //SetDirection(moveVec);
             // 이동 실행.
             _defaultMove.Move(moveSpeed, moveVec);
+            // Player 방향 벡터 저장.
+            Direction = moveVec;
+            OnDirectionUpdated?.Invoke(Direction);
         }
         
         public override void Subscribe()
