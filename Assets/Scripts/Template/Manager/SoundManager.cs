@@ -180,7 +180,7 @@ namespace Template.Manager
         
         private void InitializedBgm()
         {
-            _bgmSource ??= Util.CreateObject<AudioSource>($"{SoundTag.Bgm}", transform, Vector3.zero);
+            _bgmSource ??= Util.CreateObject<AudioSource>($"{AddressableLabel.Bgm}", transform, Vector3.zero);
             _bgmSource.volume = 0.0f;
         }
         
