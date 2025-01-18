@@ -92,5 +92,18 @@ namespace Template.Utility
         {
             return Vector2.Distance(fromPos, toPos) < distance;
         }
+        
+        /// 받아온 각도를 방향 벡터로 반환.
+        public static Vector2 GetVectorFromAngle(float angle)
+        {
+            // 각도를 라디안으로 변환.
+            var radian = angle * Mathf.Deg2Rad;
+        
+            // 각도를 기준으로 방향 벡터 계산.
+            var x = Mathf.Cos(radian);
+            var y = Mathf.Sin(radian);
+        
+            return new Vector2(x, y);
+        }
     }
 }
