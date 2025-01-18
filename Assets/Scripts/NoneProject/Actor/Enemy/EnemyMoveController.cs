@@ -36,8 +36,8 @@ namespace NoneProject.Actor.Enemy
         
         public override void Subscribe()
         {
-            _moveRandomVector.OnMoveVecUpdated += _ => OnAnimationStateChanged?.Invoke(ActorState.Run);
-            _moveRandomVector.OnDirectionUpdated += SetDirection;
+            //_moveRandomVector.OnMoveVecUpdated += _ => OnAnimationStateChanged?.Invoke(ActorState.Run);
+            //_moveRandomVector.OnDirectionUpdated += SetDirection;
         }
         
 #endregion

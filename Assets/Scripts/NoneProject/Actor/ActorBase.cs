@@ -24,7 +24,6 @@ namespace NoneProject.Actor
             Rigidbody2D = GetComponent<Rigidbody2D>();
         }
         
-        public abstract void Move(Vector2 moveVec);
         protected abstract void Initialize();
         protected abstract void Subscribe();
     }

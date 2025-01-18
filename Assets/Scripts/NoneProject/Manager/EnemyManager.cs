@@ -41,8 +41,6 @@ namespace NoneProject.Manager
             poolObject.SetID(poolObjectID);
             // 오브젝트 위치 지정.
             controller.SetPosition(Vector2.zero, true);
-            // 오브젝트 이동 처리. 
-            controller.Move(Vector2.zero);
 
             return poolObject.Controller;
         }

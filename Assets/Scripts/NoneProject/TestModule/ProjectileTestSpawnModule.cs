@@ -72,7 +72,7 @@ namespace NoneProject.TestModule
             var projectile = await ProjectileManager.Instance.Get(projectileID);
             var startPos = ActorManager.Instance.Player.transform.position;
             
-            projectile.SetPosition(startPos);
+            //projectile.Set(startPos, Vector2.zero);
         }
     }
 }

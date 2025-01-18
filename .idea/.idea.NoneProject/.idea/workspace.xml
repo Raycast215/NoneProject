@@ -13,11 +13,14 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Assets/Hovl Studio/HSFiles/Scripts/For demo scenes/HS_DemoShooting2D.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/ActorBase.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/Component/Attack/AttackForward.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/Component/Attack/AttackBase.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/Component/Attack/AttackStraight.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/Component/Attack/AttackStraightFormAngle.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/Component/Model/ModelController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/Component/Move/MoveController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/Component/Move/Pattern/MoveForward.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/Component/Move/Pattern/MoveRandomVector.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/Component/Rotate/RotateAngle.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/Enemy/EnemyController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/Enemy/EnemyMoveController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/Player/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
@@ -40,6 +43,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/GameSystem/Map/MapScroller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/GameSystem/Stage/GameController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/GameSystem/Stage/UI/UiStage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Interface/IAttack.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Interface/IMovable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Interface/IObjectPoolManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Manager/ActorManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -55,6 +59,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/TestModule/ObjectPoolReleaseModule.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/TestModule/ProjectileTestSpawnModule.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/TestModule/SfxTestModule.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/TestModule/SkillTestModule.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/UI/AutoPlay/AutoPlay.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/UI/AutoPlay/AutoPlayPoint.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/UI/AutoPlay/AutoPlayViewer.cs" root0="FORCE_HIGHLIGHTING" />
@@ -199,7 +204,7 @@
       <workItem from="1736972951980" duration="754000" />
       <workItem from="1737014860303" duration="23292000" />
       <workItem from="1737114712810" duration="18483000" />
-      <workItem from="1737184054672" duration="1060000" />
+      <workItem from="1737184054672" duration="18612000" />
     </task>
     <servers />
   </component>

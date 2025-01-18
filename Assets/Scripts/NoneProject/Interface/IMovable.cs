@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace NoneProject.Interface
@@ -8,5 +9,6 @@ namespace NoneProject.Interface
     public interface IMovable
     {
         public void Move(float moveSpeed, Vector2 moveVec);
+        public void MoveFinish(Action<Vector2> onMoveFinished);
     }
 }

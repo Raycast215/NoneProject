@@ -1,3 +1,4 @@
+using System;
 using NoneProject.Interface;
 using Template.Utility;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace NoneProject.Actor.Component.Move
 
         public void SetPosition(Vector2 position)
         {
-            Rigidbody.transform.localPosition = position;
+            Rigidbody.transform.position = position;
         }
         
 #region Override Methods
@@ -30,6 +31,16 @@ namespace NoneProject.Actor.Component.Move
 #endregion
 
         public abstract void Move(float moveSpeed, Vector2 moveVec);
+        public void MoveFinish(Action<Vector2> onMoveFinished)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Subscribe(Action<Vector2> onMoveFinished)
+        {
+            throw new NotImplementedException();
+        }
+
         public abstract void Subscribe();
     }
 }

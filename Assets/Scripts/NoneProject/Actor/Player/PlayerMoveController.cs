@@ -55,9 +55,9 @@ namespace NoneProject.Actor.Player
         
         public override void Subscribe()
         {
-            _moveRandomVector.OnMoveVecUpdated += _ => OnAnimationStateChanged?.Invoke(ActorState.Run);
-            _moveRandomVector.OnDirectionUpdated += SetDirection;
-            _moveForward.Subscribe(_ => OnAnimationStateChanged?.Invoke(ActorState.Run));
+            //_moveRandomVector.OnMoveVecUpdated += _ => OnAnimationStateChanged?.Invoke(ActorState.Run);
+            //_moveRandomVector.OnDirectionUpdated += SetDirection;
+            //_moveForward.Subscribe(_ => OnAnimationStateChanged?.Invoke(ActorState.Run));
         }
         
 #endregion

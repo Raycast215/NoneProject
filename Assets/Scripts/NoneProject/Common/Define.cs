@@ -12,9 +12,10 @@ namespace NoneProject.Common
 
     public enum MovePattern
     {
+        None,
         Hold,
+        Forward,
         Target,
-        Move,
         Random
     }
 

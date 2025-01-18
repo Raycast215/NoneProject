@@ -17,8 +17,6 @@ namespace NoneProject.Pool
             if (Controller is null)
                 return;
             
-            // 위치 초기화.
-            Controller.SetPosition(Vector2.zero);
             // Pool 해제.
             ProjectileManager.Instance.Release(this);
             // Controller 초기화.

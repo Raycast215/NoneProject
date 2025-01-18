@@ -8,10 +8,9 @@ namespace NoneProject.Actor.Component.Move.Pattern
     // Scripted by Raycast
     // 2025.01.15
     // 랜덤으로 위치를 잡아 이동하는 패턴 클래스입니다.
-    public class MoveRandomVector : IMovable
+    public class MoveRandomVector : IMovable, IDisposable
     {
-        public event Action<Vector2> OnMoveVecUpdated;
-        public event Action<Vector2> OnDirectionUpdated;
+        public event Action<Vector2> OnMoveFinished;
 
         private readonly Rigidbody2D _rigidbody2D;
         private readonly float _checkDistance;
@@ -34,9 +33,6 @@ namespace NoneProject.Actor.Component.Move.Pattern
             // 이동할 방향 벡터를 구함.
             var normalVec = ((Vector3)_targetPosition - position).normalized;
             
-            // 이동 방향에 따른 이벤트 실행.
-            OnDirectionUpdated?.Invoke(normalVec);
-            
             if (_isAutoMove)
             {
                 // 목표 위치까지 거리 체크.
@@ -55,13 +51,23 @@ namespace NoneProject.Actor.Component.Move.Pattern
                 _rigidbody2D.MovePosition(movePos);
                 
                 // 이동 벡터를 업데이트하는 이벤트 실행. 
-                OnMoveVecUpdated?.Invoke(normalVec);
+                OnMoveFinished?.Invoke(normalVec);
                 return;
             }
             
             // 다음으로 이동할 위치를 구함.
             _targetPosition = Util.GetRandomDirVec(_rigidbody2D.transform.position, _moveVecRange, _moveVecRange);
             _isAutoMove = true;
+        }
+
+        public void MoveFinish(Action<Vector2> onMoveFinished)
+        {
+            OnMoveFinished += onMoveFinished;
+        }
+        
+        public void Dispose()
+        {
+            OnMoveFinished = null;
         }
     }
 }

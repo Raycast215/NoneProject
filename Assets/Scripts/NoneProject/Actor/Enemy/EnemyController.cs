@@ -36,12 +36,12 @@ namespace NoneProject.Actor.Enemy
             _moveController.SetPosition(pos);
         }
 
-#region Override Methods
-        
-        public override void Move(Vector2 moveVec)
+        public void Reset()
         {
-            _moveController.Move(MoveSpeed, moveVec);
+           
         }
+
+#region Override Methods
 
         protected override void Initialize()
         {

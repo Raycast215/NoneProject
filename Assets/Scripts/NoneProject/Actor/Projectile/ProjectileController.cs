@@ -8,37 +8,27 @@ namespace NoneProject.Actor.Projectile
     public class ProjectileController : ActorBase
     {
         private ProjectileMoveController _moveController;
-        private Vector2 _targetVec;
         
         private void FixedUpdate()
         {
             if (gameObject.activeInHierarchy is false)
                 return;
             
-            //_moveController.Move(mOVES _targetVec);
+            _moveController.Move(MoveSpeed, Vector2.zero);
         }
 
-        public void SetPosition(Vector2 pos)
+        public void Set(Vector2 startPos, Transform caster, Transform target = null)
         {
-            _moveController.SetPosition(pos);
-        }
-
-        public void SetAngle(Vector2 casterPos)
-        {
-            _moveController.SetAngle(casterPos);
+            _moveController.SetPosition(startPos);
+            _moveController.Set(caster.position, target);
         }
 
 #region Override Methods
-        
-        public override void Move(Vector2 moveVec)
-        {
-            
-        }
 
         protected override void Initialize()
         {
             _moveController = new ProjectileMoveController(Rigidbody2D);
-            MoveSpeed = 1.0f;
+            MoveSpeed = 3.0f;
             
             Subscribe();
             

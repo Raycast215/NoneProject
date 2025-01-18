@@ -3,6 +3,7 @@ using Cysharp.Threading.Tasks;
 using NoneProject.Actor.Player;
 using NoneProject.GameSystem.Input;
 using NoneProject.Manager;
+using Sirenix.OdinInspector;
 using Template.Utility;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -15,9 +16,17 @@ namespace NoneProject.GameSystem
     // InGame에서 필요한 시스템을 관리하고 실행하는 클래스입니다.
     public class InGame : MonoBehaviour
     {
-        public bool IsAutoMove => isAutoMove;
-        
-        [SerializeField] private bool isAutoMove;
+        public bool IsAutoMove
+        {
+            get => _isAutoMove;
+            private set
+             {
+                 _isAutoMove = value;
+                 ActorManager.Instance.Player.ChangeMove(_isAutoMove);
+             }
+        }
+
+        private bool _isAutoMove;
 
         private ActorManager _actorManager;
         private CinemachineVirtualCamera _cam;
@@ -47,9 +56,15 @@ namespace NoneProject.GameSystem
             if (_actorManager.Player.IsInitialized is false)
                 return;
             
-            _inGameTouch.UpdateTouch();
+           // _inGameTouch.UpdateTouch();
         }
 
+       // [Button("Change")]
+        public void SetAutoMove()
+        {
+            IsAutoMove = !IsAutoMove;
+        }
+        
         private async void Initialized()
         {
             // GameManager가 초기화 완료까지 대기.

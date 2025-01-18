@@ -1,5 +1,7 @@
-using NoneProject.Actor.Component.Attack;
 using NoneProject.Actor.Component.Model;
+using NoneProject.Actor.Component.Move.Pattern;
+using NoneProject.Common;
+using NoneProject.Interface;
 using UnityEngine;
 
 namespace NoneProject.Actor.Player
@@ -9,50 +11,66 @@ namespace NoneProject.Actor.Player
     // Player의 로직을 처리하는 클래스입니다.
     public class PlayerController : ActorBase
     {
+        public Transform Direction { get; private set; }
+        
         [SerializeField] private Transform directionPoint;
         
-        private PlayerMoveController _moveController;
+        //private PlayerMoveController _moveController;
         private ModelController _modelController;
-        private AttackForward _testAttack;
-        private float _testTime;
+
+        private IMovable _mover;
         
         private void FixedUpdate()
         {
             if (IsInitialized is false)
                 return;
 
-            _testTime += Time.deltaTime;
-
-            if (_testTime > 1.0f)
-            {
-                _testAttack.Attack("Projectile_IceBolt", transform.position, directionPoint.position);
-                _testTime = 0.0f;
-            }
-            
             if (GameManager.Instance.InGame.IsAutoMove is false)
                 return;
             
-            _moveController.Move(MoveSpeed, Vector2.zero);
+            _mover.Move(MoveSpeed, Vector2.zero);
         }
 
         public void Set()
         {
             MoveSpeed = 2.0f;
         }
+
+        public void ChangeMove(bool isAutoMove)
+        {
+            Debug.Log(isAutoMove);
+            
+            if (isAutoMove is false)
+            {
+                _modelController.SetAnimationState(ActorState.Idle);
+            }
+            
+            _mover = isAutoMove
+                ? new MoveRandomVector(Rigidbody2D)
+                : new MoveForward(Rigidbody2D);
+            
+            _mover.MoveFinish(_ => _modelController.SetAnimationState(ActorState.Run));
+        }
+        
+        public void Move(Vector2 moveVec)
+        {
+            if (moveVec == Vector2.zero)
+            {
+                _modelController.SetAnimationState(ActorState.Idle);
+            }
+            
+           // _mover.Move(MoveSpeed, moveVec);
+        }
         
 #region Override Methods
 
-        public override void Move(Vector2 moveVec)
-        {
-            _moveController.Move(MoveSpeed, moveVec);
-        }
-        
         protected override void Initialize()
         {
             _modelController = new ModelController(this);
-            _moveController = new PlayerMoveController(Rigidbody2D);
-            _testAttack = new AttackForward(transform);
+            //_moveController = new PlayerMoveController(Rigidbody2D);
+            Direction = directionPoint;
             
+            ChangeMove(false);
             Subscribe();
             Set();
 
@@ -61,9 +79,9 @@ namespace NoneProject.Actor.Player
         
         protected override void Subscribe()
         {
-            _moveController.OnDirectionUpdated += dir => directionPoint.localPosition = dir;
-            _moveController.OnAnimationStateChanged += state => _modelController.SetAnimationState(state);
-            _moveController.Subscribe();
+            //_moveController.OnDirectionUpdated += dir => directionPoint.localPosition = dir;
+            //_moveController.OnAnimationStateChanged += state => _modelController.SetAnimationState(state);
+           // _moveController.Subscribe();
         }
         
 #endregion

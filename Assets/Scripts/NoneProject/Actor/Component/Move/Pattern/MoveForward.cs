@@ -7,7 +7,7 @@ namespace NoneProject.Actor.Component.Move.Pattern
     // Scripted by Raycast
     // 2025.01.15
     // 기본 이동 패턴 클래스입니다.
-    public class MoveForward : IMovable
+    public class MoveForward : IMovable, IDisposable
     {
         public event Action<Vector2> OnMoveFinished;
 
@@ -18,12 +18,7 @@ namespace NoneProject.Actor.Component.Move.Pattern
             _rigidbody2D = rigidbody2D;
         }
 
-        public void Subscribe(Action<Vector2> onMoveFinished)
-        {
-            OnMoveFinished += onMoveFinished;
-        }
-
-        public void Move(float moveSpeed, Vector2 moveVec = new Vector2())
+        public void Move(float moveSpeed, Vector2 moveVec)
         {
             // 움직일 거리 계산.
             var moveDir = (Vector3)moveVec * (moveSpeed * Time.deltaTime);
@@ -34,6 +29,16 @@ namespace NoneProject.Actor.Component.Move.Pattern
             _rigidbody2D.MovePosition(movePos);
             // 이동 후 실행항 이벤트 실행.
             OnMoveFinished?.Invoke(movePos);
+        }
+
+        public void MoveFinish(Action<Vector2> onMoveFinished)
+        {
+            OnMoveFinished += onMoveFinished;
+        }
+
+        public void Dispose()
+        {
+            OnMoveFinished = null;
         }
     }
 }
