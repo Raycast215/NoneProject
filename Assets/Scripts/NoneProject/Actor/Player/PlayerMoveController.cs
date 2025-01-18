@@ -16,14 +16,14 @@ namespace NoneProject.Actor.Player
 
         public Vector2 Direction { get; private set; } = Vector2.left;
         
-        private readonly AutoMove _autoMove;
+        private readonly MoveRandomVector _moveRandomVector;
         private readonly MoveForward _moveForward;
         private Vector2 _autoTargetPosition;
 
         public PlayerMoveController(Rigidbody2D rigidbody2D)
         {
             Rigidbody = rigidbody2D;
-            _autoMove = new AutoMove(Rigidbody);
+            _moveRandomVector = new MoveRandomVector(Rigidbody);
             _moveForward = new MoveForward(Rigidbody);
         }
         
@@ -33,7 +33,7 @@ namespace NoneProject.Actor.Player
         {
             if (GameManager.Instance.InGame.IsAutoMove)
             {
-                _autoMove.Move(moveSpeed);
+                _moveRandomVector.Move(moveSpeed);
                 return;
             }
 
@@ -55,8 +55,8 @@ namespace NoneProject.Actor.Player
         
         public override void Subscribe()
         {
-            _autoMove.OnMoveVecUpdated += _ => OnAnimationStateChanged?.Invoke(ActorState.Run);
-            _autoMove.OnDirectionUpdated += SetDirection;
+            _moveRandomVector.OnMoveVecUpdated += _ => OnAnimationStateChanged?.Invoke(ActorState.Run);
+            _moveRandomVector.OnDirectionUpdated += SetDirection;
             _moveForward.Subscribe(_ => OnAnimationStateChanged?.Invoke(ActorState.Run));
         }
         

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="885f6324-c00c-43b9-be47-b61057597edd" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -8,29 +11,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/f8139faed19c46d4a20708fa38bbb81729400/3b/c11c9776/0200004Fpdb40High.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/f8139faed19c46d4a20708fa38bbb81729400/3b/c11c9776/0200004Fpdb40Low.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/10037feef7524b71adaeb726711ca9ca10c00/ec/f99a9645/IExcelDataReader.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/3a73310709ec47a9ba9b975402ca356127800/d6/31f296f8/Animator.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5879d8d225474494bcffdfe64965038e174000/14/1b67aada/MonoBehaviour.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5feb870646a4450b9ec32560a750dd5b35ee60/02/91f1eb8e/Regex.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7801be49ad3c44438197ed08f09871a87c00/57/d7b58929/Input.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/db16a052c6a847e288adfa52e9195e652d400/e8/714b6b52/GUILayoutOption.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8a522b806eac9bb894e6e4c5fe87f353457535e769447e79c6b396beecb5d0/System.Threading.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Downloads/ExcelToJsonConverter-master/ExcelToJsonConverter-master/ExcelToJsonConveterExample/Assets/Editor/BuildScript.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$USER_HOME$/Downloads/ExcelToJsonConverter-master/ExcelToJsonConverter-master/ExcelToJsonConveterExample/Assets/Editor/ExcelToJsonConverter/ExcelToJsonConverter.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../Unity/CastleBreaker/Assets/Scripts/CastleBreaker/GameManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../Unity/CastleBreaker/Assets/Scripts/CastleBreaker/Popup/DropMessage/ItemMessage.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../Unity/ProjectDF/Assets/Scripts/DF/Actor/HpController.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../Unity/ProjectDF/Assets/Scripts/DF/Actor/MoveController.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../../Unity/ProjectDF/Assets/Scripts/DF/Actor/Player/PlayerController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Assets/Hovl Studio/HSFiles/Scripts/For demo scenes/HS_DemoShooting2D.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/ActorBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/Component/Attack/AttackForward.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/Component/Model/ModelController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/Component/Move/AutoMove.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/Component/Move/MoveController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/Component/Move/Pattern/MoveForward.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/Component/Move/Pattern/MoveRandomVector.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/Enemy/EnemyController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/Enemy/EnemyMoveController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/Player/PlayerController.cs" root0="FORCE_HIGHLIGHTING" />
@@ -86,11 +73,6 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.addressables@1.21.19/Runtime/AddressablesImpl.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.addressables@1.21.19/Runtime/ResourceManager/AsyncOperations/AsyncOperationHandle.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.addressables@1.21.19/Runtime/ResourceManager/Util/MonoBehaviourCallbackHooks.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://F:/QuarterDefense/Assets/Scripts/QuarterDefense/Common/CSVReader.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://F:/QuarterDefense/Assets/Scripts/QuarterDefense/Common/GameManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://F:/QuarterDefense/Assets/Scripts/QuarterDefense/InGame/InGameManager.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://F:/QuarterDefense/Assets/Scripts/QuarterDefense/InGame/WaveSystem.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://F:/SXGT_STTL_SWITCH/Assets/Scripts/SixtarGate/AdventureMode/Commands/Commands.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -110,6 +92,10 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "XThreadsFramesViewSplitterKey": "0.3960396",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Language Defaults",
     "vue.rearranger.settings.migration": "true"
@@ -213,7 +199,7 @@
       <workItem from="1736972951980" duration="754000" />
       <workItem from="1737014860303" duration="23292000" />
       <workItem from="1737114712810" duration="18483000" />
-      <workItem from="1737184054672" duration="309000" />
+      <workItem from="1737184054672" duration="1060000" />
     </task>
     <servers />
   </component>

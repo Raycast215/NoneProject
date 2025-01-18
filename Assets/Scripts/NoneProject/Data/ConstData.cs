@@ -1,6 +1,5 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace NoneProject.Data
 {
@@ -36,13 +35,13 @@ namespace NoneProject.Data
         [TitleGroup("Behaviour Option")] 
         [SerializeField]
         private float checkDistance = 0.5f;
-
+        
         [TitleGroup("Behaviour Option")] 
         [SerializeField]
-        private float autoMoveVecOffset = 2.0f;
+        private float randomMoveVecRange = 2.0f;
         
         public float CheckDistance => checkDistance;
-        public float AutoMoveVecOffset => autoMoveVecOffset;
+        public float RandomMoveVecRange => randomMoveVecRange;
         
 #endregion
 
