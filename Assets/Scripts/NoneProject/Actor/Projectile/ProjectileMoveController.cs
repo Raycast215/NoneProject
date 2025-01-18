@@ -10,7 +10,6 @@ namespace NoneProject.Actor.Projectile
         public ProjectileMoveController(Rigidbody2D rigidbody2D)
         {
             Rigidbody = rigidbody2D;
-            //_defaultMove = new DefaultMove(Rigidbody);
         }
 
         public void SetAngle(Vector2 casterPos)

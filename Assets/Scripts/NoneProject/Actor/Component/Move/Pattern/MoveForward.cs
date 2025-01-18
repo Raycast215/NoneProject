@@ -5,28 +5,35 @@ using UnityEngine;
 namespace NoneProject.Actor.Component.Move.Pattern
 {
     // Scripted by Raycast
-    // 2025.01.17
-    // 지정된 방향으로 이동하는 클래스입니다.
-    public class MoveForward
+    // 2025.01.15
+    // 기본 이동 패턴 클래스입니다.
+    public class MoveForward : IMovable
     {
         public event Action<Vector2> OnMoveFinished;
-        
+
         private readonly Rigidbody2D _rigidbody2D;
-        private float _moveSpeed;
 
         public MoveForward(Rigidbody2D rigidbody2D)
         {
             _rigidbody2D = rigidbody2D;
         }
 
-        public void SetMoveSpeed(float moveSpeed)
+        public void Subscribe(Action<Vector2> onMoveFinished)
         {
-            _moveSpeed = moveSpeed;
+            OnMoveFinished += onMoveFinished;
         }
-        
-        public void Move(float moveSpeed)
+
+        public void Move(float moveSpeed, Vector2 moveVec = new Vector2())
         {
+            // 움직일 거리 계산.
+            var moveDir = (Vector3)moveVec * (moveSpeed * Time.deltaTime);
+            // 실제 이동할 위치값.
+            var movePos = _rigidbody2D.transform.position + moveDir;
             
+            // 이동 실행.
+            _rigidbody2D.MovePosition(movePos);
+            // 이동 후 실행항 이벤트 실행.
+            OnMoveFinished?.Invoke(movePos);
         }
     }
 }

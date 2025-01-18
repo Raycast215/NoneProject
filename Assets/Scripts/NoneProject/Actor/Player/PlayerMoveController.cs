@@ -1,5 +1,6 @@
 using System;
 using NoneProject.Actor.Component.Move;
+using NoneProject.Actor.Component.Move.Pattern;
 using NoneProject.Common;
 using UnityEngine;
 
@@ -16,14 +17,14 @@ namespace NoneProject.Actor.Player
         public Vector2 Direction { get; private set; } = Vector2.left;
         
         private readonly AutoMove _autoMove;
-        private readonly DefaultMove _defaultMove;
+        private readonly MoveForward _moveForward;
         private Vector2 _autoTargetPosition;
 
         public PlayerMoveController(Rigidbody2D rigidbody2D)
         {
             Rigidbody = rigidbody2D;
             _autoMove = new AutoMove(Rigidbody);
-            _defaultMove = new DefaultMove(Rigidbody);
+            _moveForward = new MoveForward(Rigidbody);
         }
         
 #region Override Methods
@@ -46,7 +47,7 @@ namespace NoneProject.Actor.Player
             // 바라 보는 위치 변경.
             //SetDirection(moveVec);
             // 이동 실행.
-            _defaultMove.Move(moveSpeed, moveVec);
+            _moveForward.Move(moveSpeed, moveVec);
             // Player 방향 벡터 저장.
             Direction = moveVec;
             OnDirectionUpdated?.Invoke(Direction);
@@ -56,7 +57,7 @@ namespace NoneProject.Actor.Player
         {
             _autoMove.OnMoveVecUpdated += _ => OnAnimationStateChanged?.Invoke(ActorState.Run);
             _autoMove.OnDirectionUpdated += SetDirection;
-            _defaultMove.Subscribe(_ => OnAnimationStateChanged?.Invoke(ActorState.Run));
+            _moveForward.Subscribe(_ => OnAnimationStateChanged?.Invoke(ActorState.Run));
         }
         
 #endregion
