@@ -2,6 +2,7 @@ using Cysharp.Threading.Tasks;
 using NoneProject.Common;
 using NoneProject.Data;
 using NoneProject.GameSystem;
+using NoneProject.Manager;
 using Template.Manager;
 
 namespace NoneProject
@@ -17,6 +18,7 @@ namespace NoneProject
             base.Initialized();
             
             LoadConstData();
+            DataManager.Instance.LoadData();
         }
 
         public void SetInGame(InGame inGame)
