@@ -1,17 +1,15 @@
-
 using System;
-
 
 namespace NoneProject.Actor.Data
 {
     [Serializable]
     public class ActorStat
     {
-        public float currentHp;
-        public float maxHp;
+        public string id;
         public float moveSpeed;
-        public float targetPosX;
+        public float hp;
+        public float damage;
         public float attackDelay;
-        public bool isDead;
+        public float knockBackRate;
     }
 }

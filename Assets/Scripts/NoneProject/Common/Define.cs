@@ -7,7 +7,8 @@ namespace NoneProject.Common
         Sfx,
         Player,
         Enemy,
-        Projectile
+        Projectile,
+        Stat
     }
 
     public enum MovePattern

@@ -9,8 +9,8 @@ namespace NoneProject.Actor.BT
         public override NodeState Evaluate()
         {
             // Actor가 사망 상태인 경우 다음 노드 실행.
-            if (Actor.Stat.isDead)
-                return nodeState = NodeState.Success;
+            // if (Actor.Stat.isDead)
+            //     return nodeState = NodeState.Success;
             
             // 대기 상태.
             Actor.Idle();

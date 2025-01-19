@@ -13,8 +13,8 @@ namespace NoneProject.Actor.BT
         public override NodeState Evaluate()
         {
             // Actor가 사망 상태인 경우 노드 실패 처리.
-            if (Actor.Stat.isDead)
-                return nodeState = NodeState.Failure;
+            // if (Actor.Stat.isDead)
+            //     return nodeState = NodeState.Failure;
 
             // 공격 가능한 상태라면 공격 행동 실행.
             if (Actor.CheckStateOfAttack())
@@ -36,7 +36,7 @@ namespace NoneProject.Actor.BT
             Actor.Attack();
 
             // Actor의 공격 딜레이 만큼 대기.
-            await UniTask.WaitForSeconds(Actor.Stat.attackDelay, cancellationToken: Cts.Token);
+            //await UniTask.WaitForSeconds(Actor.Stat.attackDelay, cancellationToken: Cts.Token);
             
             _isPlaying = false;
         }
