@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace NoneProject.Actor.Component.Rotate
 {
+    // Scripted by Raycast
+    // 2025.01.19
+    // 받아온 각도에 따라 회전시키는 클래스입니다.
     public class RotateAngle
     {
         private readonly Transform _transform;

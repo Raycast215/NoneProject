@@ -1,6 +1,7 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using NoneProject.Actor.Enemy;
+using NoneProject.Common;
 using NoneProject.Interface;
 using NoneProject.Pool;
 using NoneProject.Pool.Common;
@@ -40,7 +41,9 @@ namespace NoneProject.Manager
             // 오브젝트 ID 등록.
             poolObject.SetID(poolObjectID);
             // 오브젝트 위치 지정.
-            controller.SetPosition(Vector2.zero, true);
+            controller.SetPosition(Vector2.zero);
+            // Pattern 등록.
+            controller.SetPattern(MovePattern.Random);
 
             return poolObject.Controller;
         }

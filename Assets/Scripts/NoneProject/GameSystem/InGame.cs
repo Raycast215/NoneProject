@@ -26,8 +26,11 @@ namespace NoneProject.GameSystem
              }
         }
 
-        private bool _isAutoMove;
+        public Transform DirectionPoint => directionPoint.transform;
 
+        [SerializeField] private GameObject directionPoint;
+
+        private bool _isAutoMove;
         private ActorManager _actorManager;
         private CinemachineVirtualCamera _cam;
         private InGameTouch _inGameTouch;
@@ -56,10 +59,10 @@ namespace NoneProject.GameSystem
             if (_actorManager.Player.IsInitialized is false)
                 return;
             
-           // _inGameTouch.UpdateTouch();
+            _inGameTouch.UpdateTouch();
         }
 
-       // [Button("Change")]
+        [Button("Change")]
         public void SetAutoMove()
         {
             IsAutoMove = !IsAutoMove;
@@ -75,6 +78,8 @@ namespace NoneProject.GameSystem
             
             // InGame을 등록. 
             GameManager.Instance.SetInGame(this);
+            
+            directionPoint.transform.position = Vector3.left;
             
             LoadHolder();
             LoadInput();
@@ -107,7 +112,16 @@ namespace NoneProject.GameSystem
             {
                 _cam.Follow = player.transform;
                 _inGameTouch.OnTouched += player.Move;
+                _inGameTouch.OnTouched += moveVec => SetDirectionPoint(moveVec, player.transform.position);
             }
+        }
+
+        private void SetDirectionPoint(Vector2 moveVec, Vector2 playerPos)
+        {
+            if (moveVec == Vector2.zero)
+                return;
+
+            directionPoint.transform.position = playerPos + moveVec;
         }
     }
 }

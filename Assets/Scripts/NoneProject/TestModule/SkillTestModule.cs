@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using NoneProject;
 using NoneProject.Actor.Component.Attack;
 using NoneProject.Manager;
 using UnityEngine;
@@ -31,9 +30,13 @@ public class SkillTestModule : MonoBehaviour
     
     public void SkillC()
     {
+        var directionPoint = GameManager.Instance.InGame.DirectionPoint;
         var player = ActorManager.Instance.Player;
+        var playerTransform = player.transform;
+        var moveVec = (directionPoint.position - playerTransform.position).normalized;
         
-        _skillC ??= new AttackStraight(player.Direction);
+        _skillC ??= new AttackStraight(playerTransform);
+        _skillC.SetMoveVec(moveVec);
         _skillC.Attack("Projectile_IceBolt", count, delay);
     }
 }

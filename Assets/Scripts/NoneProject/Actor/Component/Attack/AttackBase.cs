@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using Cysharp.Threading.Tasks;
@@ -28,15 +29,12 @@ namespace NoneProject.Actor.Component.Attack
 
             _isLoaded = false;
             _isPlaying = true;
-
+            
             LoadProjectiles(projectileID, count);
             
             await UniTask.WaitUntil(() => _isLoaded, cancellationToken: Cts.Token);
 
-            SetProjectile(count, delay);
-            
-            ProjectileList.Clear();
-            _isPlaying = false;
+            SetProjectile(count, delay, Clear);
         }
         
         private async void LoadProjectiles(string projectileID, int count)
@@ -51,7 +49,13 @@ namespace NoneProject.Actor.Component.Attack
 
             _isLoaded = true;
         }
+
+        private void Clear()
+        {
+            ProjectileList.Clear();
+            _isPlaying = false;
+        }
         
-        protected abstract void SetProjectile(int count, float delay);
+        protected abstract void SetProjectile(int count, float delay, Action onFinished);
     }
 }
