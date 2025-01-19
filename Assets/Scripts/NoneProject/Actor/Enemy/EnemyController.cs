@@ -1,7 +1,8 @@
+using System.Collections.Generic;
 using NoneProject.Actor.Component.Model;
+using NoneProject.Actor.Component.Move;
 using NoneProject.Common;
-using Template.Utility;
-using UnityEngine;
+using NoneProject.Interface;
 
 namespace NoneProject.Actor.Enemy
 {
@@ -10,35 +11,40 @@ namespace NoneProject.Actor.Enemy
     // Enemy를 관리하는 클래스입니다.
     public class EnemyController : ActorBase
     {
-        private EnemyMoveController _moveController;
+        private readonly Dictionary<MovePattern, IMovable> _movePatternDic = new Dictionary<MovePattern, IMovable>();
         private ModelController _modelController;
-
+        private IMovable _mover;
+        
         private void FixedUpdate()
         {
-            if (gameObject.activeInHierarchy is false)
+            if (IsInitialized is false)
                 return;
             
-            _moveController.Move(MoveSpeed, Vector2.zero);
-        }
+            if (gameObject.activeInHierarchy is false)
+                return;
 
-        public void Set()
-        {
-            MoveSpeed = 1.0f;
-            _moveController.SetPattern(MovePattern.Random);
+            _mover?.Move(MoveSpeed);
         }
         
-        public void SetPosition(Vector2 position, bool isRandom = false)
+        public void SetPattern(MovePattern toPattern)
         {
-            var pos = isRandom 
-                ? Util.GetRandomDirVec(transform.position, 2.0f, 2.0f) 
-                : position;
-            
-            _moveController.SetPosition(pos);
-        }
+            // 이전에 사용한 패턴이 있는 경우.
+            if (_movePatternDic.TryGetValue(toPattern, out var pattern))
+            {
+                _mover = pattern;
+                return;
+            }
 
-        public void Reset()
-        {
-           
+            switch (toPattern)
+            {
+                case MovePattern.Random:
+                    _mover = new MoveRandomVector(Rigidbody2D);
+                    break;
+            }
+            
+            _movePatternDic.Add(toPattern, _mover);
+            _mover.CompleteMove(_ => _modelController.SetAnimationState(ActorState.Run));
+            _mover.CompleteMove(SetScaleDirection);
         }
 
 #region Override Methods
@@ -46,20 +52,10 @@ namespace NoneProject.Actor.Enemy
         protected override void Initialize()
         {
             _modelController = new ModelController(this);
-            _moveController = new EnemyMoveController(Rigidbody2D);
-            
-            Subscribe();
-            Set();
-            
+            MoveSpeed = 1.0f;
             IsInitialized = true;
         }
-        
-        protected override void Subscribe()
-        {
-            _moveController.OnAnimationStateChanged += state => _modelController.SetAnimationState(state);
-            _moveController.Subscribe();
-        }
-        
+
 #endregion
     }
 }

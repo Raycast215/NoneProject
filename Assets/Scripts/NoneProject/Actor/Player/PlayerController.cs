@@ -1,5 +1,6 @@
+using System.Collections.Generic;
 using NoneProject.Actor.Component.Model;
-using NoneProject.Actor.Component.Move.Pattern;
+using NoneProject.Actor.Component.Move;
 using NoneProject.Common;
 using NoneProject.Interface;
 using UnityEngine;
@@ -11,13 +12,9 @@ namespace NoneProject.Actor.Player
     // Player의 로직을 처리하는 클래스입니다.
     public class PlayerController : ActorBase
     {
-        public Transform Direction { get; private set; }
-        
-        [SerializeField] private Transform directionPoint;
-        
-        //private PlayerMoveController _moveController;
+        private readonly Dictionary<bool, IMovable> _movePatternDic = new Dictionary<bool, IMovable>();
         private ModelController _modelController;
-
+        private PlayerStat _stat;
         private IMovable _mover;
         
         private void FixedUpdate()
@@ -28,28 +25,30 @@ namespace NoneProject.Actor.Player
             if (GameManager.Instance.InGame.IsAutoMove is false)
                 return;
             
-            _mover.Move(MoveSpeed, Vector2.zero);
-        }
-
-        public void Set()
-        {
-            MoveSpeed = 2.0f;
+            _mover.Move(MoveSpeed);
         }
 
         public void ChangeMove(bool isAutoMove)
         {
-            Debug.Log(isAutoMove);
-            
             if (isAutoMove is false)
             {
                 _modelController.SetAnimationState(ActorState.Idle);
             }
+
+            // 이전에 사용한 패턴이 있는 경우.
+            if (_movePatternDic.TryGetValue(isAutoMove, out var pattern))
+            {
+                _mover = pattern;
+                return;
+            }
             
             _mover = isAutoMove
-                ? new MoveRandomVector(Rigidbody2D)
-                : new MoveForward(Rigidbody2D);
-            
-            _mover.MoveFinish(_ => _modelController.SetAnimationState(ActorState.Run));
+                ? new MoveRandomVector(Rigidbody2D) // 자동이동을 위한 기능.
+                : new MoveForward(Rigidbody2D);     // 터치로 이동을 위한 기능.
+                
+            _movePatternDic.Add(isAutoMove, _mover);
+            _mover.CompleteMove(_ => _modelController.SetAnimationState(ActorState.Run));
+            _mover.CompleteMove(SetScaleDirection);
         }
         
         public void Move(Vector2 moveVec)
@@ -57,9 +56,11 @@ namespace NoneProject.Actor.Player
             if (moveVec == Vector2.zero)
             {
                 _modelController.SetAnimationState(ActorState.Idle);
+                return;
             }
             
-           // _mover.Move(MoveSpeed, moveVec);
+            _mover.SetMoveVec(moveVec);
+            _mover.Move(MoveSpeed);
         }
         
 #region Override Methods
@@ -67,23 +68,12 @@ namespace NoneProject.Actor.Player
         protected override void Initialize()
         {
             _modelController = new ModelController(this);
-            //_moveController = new PlayerMoveController(Rigidbody2D);
-            Direction = directionPoint;
+            MoveSpeed = 2.0f;
+            IsInitialized = true;
             
             ChangeMove(false);
-            Subscribe();
-            Set();
+        }
 
-            IsInitialized = true;
-        }
-        
-        protected override void Subscribe()
-        {
-            //_moveController.OnDirectionUpdated += dir => directionPoint.localPosition = dir;
-            //_moveController.OnAnimationStateChanged += state => _modelController.SetAnimationState(state);
-           // _moveController.Subscribe();
-        }
-        
 #endregion
     }
 }
