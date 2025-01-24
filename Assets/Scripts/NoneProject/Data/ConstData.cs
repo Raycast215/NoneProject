@@ -10,6 +10,16 @@ namespace NoneProject.Data
     public class ConstData : ScriptableObject
     {
 
+#region Default Data
+
+            [TitleGroup("Default Data")] 
+            [SerializeField]
+            private string defaultPlayerID;
+
+            public string DefaultPlayerID => defaultPlayerID;
+            
+#endregion
+            
 #region String Const
 
         [TitleGroup("String Const")] 
