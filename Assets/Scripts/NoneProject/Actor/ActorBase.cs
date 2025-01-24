@@ -12,7 +12,6 @@ namespace NoneProject.Actor
         public bool IsInitialized { get; protected set; }
         
         protected Rigidbody2D Rigidbody2D;
-        protected float MoveSpeed;
 
         private void Start()
         {

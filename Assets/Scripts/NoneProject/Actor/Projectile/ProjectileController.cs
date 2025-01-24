@@ -25,7 +25,7 @@ namespace NoneProject.Actor.Projectile
             if (gameObject.activeInHierarchy is false)
                 return;
             
-            _mover?.Move(MoveSpeed);
+            //_mover?.Move(MoveSpeed);
         }
 
         public void Set(MovePattern movePattern, Vector2 startPos, Transform caster)
@@ -69,7 +69,7 @@ namespace NoneProject.Actor.Projectile
         protected override void Initialize()
         {
             _rotate = new RotateAngle(transform);
-            MoveSpeed = 3.0f;
+            //MoveSpeed = 3.0f;
             IsInitialized = true;
         }
 

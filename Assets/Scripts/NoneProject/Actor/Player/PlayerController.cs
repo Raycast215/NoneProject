@@ -3,6 +3,7 @@ using NoneProject.Actor.Component.Model;
 using NoneProject.Actor.Component.Move;
 using NoneProject.Common;
 using NoneProject.Interface;
+using NoneProject.Manager;
 using UnityEngine;
 
 namespace NoneProject.Actor.Player
@@ -12,22 +13,15 @@ namespace NoneProject.Actor.Player
     // Player의 로직을 처리하는 클래스입니다.
     public class PlayerController : ActorBase
     {
+        public Transform PlayerCenter => center;
+        
+        [SerializeField] private Transform center;
+        
         private readonly Dictionary<bool, IMovable> _movePatternDic = new Dictionary<bool, IMovable>();
         private ModelController _modelController;
         private PlayerStat _stat;
         private IMovable _mover;
         
-        private void FixedUpdate()
-        {
-            if (IsInitialized is false)
-                return;
-
-            if (GameManager.Instance.InGame.IsAutoMove is false)
-                return;
-            
-            _mover.Move(MoveSpeed);
-        }
-
         public void ChangeMove(bool isAutoMove)
         {
             if (isAutoMove is false)
@@ -60,15 +54,17 @@ namespace NoneProject.Actor.Player
             }
             
             _mover.SetMoveVec(moveVec);
-            _mover.Move(MoveSpeed);
+            _mover.Move(_stat.MoveSpeed);
         }
         
 #region Override Methods
 
         protected override void Initialize()
         {
+            var playerID = GameManager.Instance.Const.DefaultPlayerID;
+            
             _modelController = new ModelController(this);
-            MoveSpeed = 2.0f;
+            _stat = new PlayerStat(StatDataManager.Instance.GetPlayerStatData(playerID));
             IsInitialized = true;
             
             ChangeMove(false);
