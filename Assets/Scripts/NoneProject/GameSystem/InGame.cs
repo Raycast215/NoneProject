@@ -1,13 +1,11 @@
 using Cinemachine;
 using Cysharp.Threading.Tasks;
 using NoneProject.Actor.Player;
-using NoneProject.GameSystem.Input;
+using NoneProject.Input;
 using NoneProject.Manager;
 using Sirenix.OdinInspector;
 using Template.Utility;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 namespace NoneProject.GameSystem
 {
@@ -26,14 +24,11 @@ namespace NoneProject.GameSystem
              }
         }
 
-        public Transform DirectionPoint => directionPoint.transform;
-
-        [SerializeField] private GameObject directionPoint;
+        [SerializeField] private JoyStickController joyStick;
 
         private bool _isAutoMove;
         private ActorManager _actorManager;
         private CinemachineVirtualCamera _cam;
-        private InGameTouch _inGameTouch;
         private Transform _playerHolder;
         private bool _isInitialized;
         private bool _isGameStart;
@@ -59,7 +54,7 @@ namespace NoneProject.GameSystem
             if (_actorManager.Player.IsInitialized is false)
                 return;
             
-            _inGameTouch.UpdateTouch();
+            joyStick.UpdateController();
         }
 
         [Button("Change")]
@@ -78,11 +73,8 @@ namespace NoneProject.GameSystem
             
             // InGame을 등록. 
             GameManager.Instance.SetInGame(this);
-            
-            directionPoint.transform.position = Vector3.left;
-            
+
             LoadHolder();
-            LoadInput();
             LoadPlayer();
             
             _isInitialized = true;
@@ -94,14 +86,6 @@ namespace NoneProject.GameSystem
             
             _playerHolder = Util.CreateObject(constData.PlayerHolder, transform).transform;
         }
-        
-        private void LoadInput()
-        {
-            var caster = FindObjectOfType<GraphicRaycaster>();
-            var eventSystem = FindObjectOfType<EventSystem>();
-            
-            _inGameTouch = new InGameTouch(caster, eventSystem);
-        }
 
         private void LoadPlayer()
         {
@@ -111,17 +95,8 @@ namespace NoneProject.GameSystem
             void OnComplete(PlayerController player)
             {
                 _cam.Follow = player.transform;
-                _inGameTouch.OnTouched += player.Move;
-                _inGameTouch.OnTouched += moveVec => SetDirectionPoint(moveVec, player.transform.position);
+                joyStick.OnMoveVectorUpdated += player.Move;
             }
-        }
-
-        private void SetDirectionPoint(Vector2 moveVec, Vector2 playerPos)
-        {
-            if (moveVec == Vector2.zero)
-                return;
-
-            directionPoint.transform.position = playerPos + moveVec;
         }
     }
 }
