@@ -71,5 +71,32 @@ namespace NoneProject.TestModule
             
             await EnemyManager.Instance.Get(enemyID);
         }
+        
+        [Button("Apply All")]
+        private async void ApplyAll()
+        {
+            if (Application.isPlaying is false)
+            {
+                Debug.Log("[Test Module] Application isPlaying is false...");
+                return;
+            }
+            
+            if (string.IsNullOrEmpty(enemyID))
+            {
+                Log();
+                return;
+            }
+
+            if (nameList.Contains(enemyID) is false)
+            {
+                Log();
+                return;
+            }
+
+            for (var i = 0; i < 100; i++)
+            {
+                await EnemyManager.Instance.Get(enemyID);
+            }
+        }
     }
 }
