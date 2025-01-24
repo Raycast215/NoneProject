@@ -11,6 +11,19 @@ namespace NoneProject.Common
         Stat
     }
 
+    public enum ActorType
+    {
+        Player,
+        Enemy
+    }
+    
+    public enum NodeState
+    {
+        Running,
+        Success,
+        Failure
+    }
+
     public enum MovePattern
     {
         None,
