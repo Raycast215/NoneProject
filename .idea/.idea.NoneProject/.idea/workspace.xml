@@ -43,8 +43,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/GameSystem/Composition/Move2DBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/GameSystem/InGame.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/GameSystem/Map/MapScroller.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/GameSystem/Stage/GameController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/GameSystem/Stage/UI/UiStage.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Input/JoyStickController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Interface/IAttack.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Interface/IMovable.cs" root0="FORCE_HIGHLIGHTING" />
@@ -215,7 +213,7 @@
       <workItem from="1737213614555" duration="28093000" />
       <workItem from="1737619055134" duration="12968000" />
       <workItem from="1737664398590" duration="32364000" />
-      <workItem from="1737735917376" duration="1581000" />
+      <workItem from="1737735917376" duration="1983000" />
     </task>
     <servers />
   </component>
