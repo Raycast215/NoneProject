@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace NoneProject.Input
 {
+    // Scripted by Raycast
+    // 2025.01.24
+    // 이동을 위한 JoyStick을 관리하는 클래스입니다.
     public class JoyStickController : MonoBehaviour
     {
         public event Action<Vector2> OnMoveVectorUpdated; 
