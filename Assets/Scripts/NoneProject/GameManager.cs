@@ -4,6 +4,7 @@ using NoneProject.Data;
 using NoneProject.GameSystem;
 using NoneProject.Manager;
 using Template.Manager;
+using UnityEngine;
 
 namespace NoneProject
 {
@@ -16,9 +17,9 @@ namespace NoneProject
         protected override void Initialized()
         {
             base.Initialized();
-            
             LoadConstData();
-            DataManager.Instance.LoadData();
+            StatDataManager.Instance.LoadData();
+            Application.targetFrameRate = 120; 
         }
 
         public void SetInGame(InGame inGame)
@@ -28,11 +29,14 @@ namespace NoneProject
         
         private void LoadConstData()
         {
-            AddressableManager.Instance.LoadAssetsLabel<ConstData>(AddressableLabel.Common, asset =>
+            AddressableManager.Instance.LoadAssetsLabel<ConstData>(AddressableLabel.Common, OnComplete).Forget();
+            return;
+
+            void OnComplete(ConstData asset)
             {
                 Const = asset;
                 isInitialized = true;
-            }).Forget();
+            }
         }
     }
 }
