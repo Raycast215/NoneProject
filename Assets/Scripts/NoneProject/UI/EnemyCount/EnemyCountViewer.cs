@@ -22,6 +22,8 @@ namespace NoneProject.UI.EnemyCount
             
             EnemyManager.Instance.OnEnemyCountUpdated += ui.SetCount;
             EnemyManager.Instance.OnEnemyCountUpdated += _ => ui.MoveIcon();
+
+            ui.SetCount(0);
         }
     }
 }

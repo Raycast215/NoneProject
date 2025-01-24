@@ -11,6 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5879d8d225474494bcffdfe64965038e174000/a4/df218e67/MeshRenderer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Assets/Hovl Studio/HSFiles/Scripts/For demo scenes/HS_DemoShooting2D.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/ActorBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Actor/Component/Attack/AttackBase.cs" root0="FORCE_HIGHLIGHTING" />
@@ -37,10 +38,6 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Data/ConstData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Data/GameData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Data/Stage.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/GameSystem/Attack/AttackBase.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/GameSystem/Attack/Implementation/FrontDirectionShot.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/GameSystem/Composition/AssetRender.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/GameSystem/Composition/Move2DBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/GameSystem/InGame.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/GameSystem/Map/MapScroller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Input/JoyStickController.cs" root0="FORCE_HIGHLIGHTING" />
@@ -213,7 +210,7 @@
       <workItem from="1737213614555" duration="28093000" />
       <workItem from="1737619055134" duration="12968000" />
       <workItem from="1737664398590" duration="32364000" />
-      <workItem from="1737735917376" duration="1983000" />
+      <workItem from="1737735917376" duration="2627000" />
     </task>
     <servers />
   </component>

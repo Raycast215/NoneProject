@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: 350580ba41237454992f9c197f777e6e
   m_SerializeEntries:
   - m_GUID: e638d0f26a906b74ca8fdacdffdb0618
-    m_Address: Assets/File/So/Const Data.asset
+    m_Address: ConstData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Common

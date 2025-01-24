@@ -30,13 +30,13 @@ MonoBehaviour:
     - Sfx
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b9f17f0087265d7449e23071a2b7dc2f
-    m_Address: First Steps
+    m_Address: Bgm_00
     m_ReadOnly: 0
     m_SerializedLabels:
     - Bgm
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 35f4bb8b7ea1471429429f27b61e9b20
-    m_Address: Playful LOOP
+    m_Address: Bgm_01
     m_ReadOnly: 0
     m_SerializedLabels:
     - Bgm
