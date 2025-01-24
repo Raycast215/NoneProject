@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee4b759a6642f940944a602646496f5, type: 3}
   m_Name: Const Data
   m_EditorClassIdentifier: 
+  defaultPlayerID: Player_Normal_Magic
   playerHolder: Player Holder
   tempHolder: Temp Holder
   objectPoolHolder: ObjectPool Holder
   checkDistance: 0.5
-  autoMoveVecOffset: 2
+  randomMoveVecRange: 2
   capacity: 5
   sfxDefaultLimitCount: 10
   commonObjectPath: PoolObject
