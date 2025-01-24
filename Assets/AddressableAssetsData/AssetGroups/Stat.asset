@@ -17,8 +17,14 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: e97cd5f4594df3e478d0d5e22451a914
   m_SerializeEntries:
-  - m_GUID: a16f92cdcdc89574391bc1bf9acb4495
-    m_Address: Player Stat
+  - m_GUID: c6bd9b37e08bf6147adf22f725696dd8
+    m_Address: PlayerStat
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Stat
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9b006e35d0ee5e34f922b76a96523ac2
+    m_Address: EnemyStat
     m_ReadOnly: 0
     m_SerializedLabels:
     - Stat
