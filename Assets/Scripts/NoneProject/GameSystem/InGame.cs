@@ -1,10 +1,8 @@
 using Cinemachine;
 using Cysharp.Threading.Tasks;
-using NoneProject.Actor.Player;
 using NoneProject.Input;
 using NoneProject.Manager;
 using Sirenix.OdinInspector;
-using Template.Utility;
 using UnityEngine;
 
 namespace NoneProject.GameSystem
@@ -20,41 +18,33 @@ namespace NoneProject.GameSystem
             private set
              {
                  _isAutoMove = value;
-                 ActorManager.Instance.Player.ChangeMove(_isAutoMove);
+                 Manager.PlayerManager.Instance.Player.ChangeMove(_isAutoMove);
              }
         }
 
-        [SerializeField] private JoyStickController joyStick;
-
-        private bool _isAutoMove;
-        private ActorManager _actorManager;
+        public bool IsInitialized { get; private set; }
+        
         private CinemachineVirtualCamera _cam;
-        private Transform _playerHolder;
-        private bool _isInitialized;
-        private bool _isGameStart;
+        private JoyStickController _joyStick;
+        private bool _isAutoMove;
 
         private void Awake()
         {
             _cam = FindObjectOfType<CinemachineVirtualCamera>();
+            _joyStick = FindObjectOfType<JoyStickController>();
         }
 
         private void Start()
         {
-            Initialized();
+            Initialize();
         }
 
         private void FixedUpdate()
         {
-            if (_isInitialized is false)
+            if (IsInitialized is false)
                 return;
 
-            if (_actorManager.Player is null)
-                return;
-            
-            if (_actorManager.Player.IsInitialized is false)
-                return;
-            
-            joyStick.UpdateController();
+            _joyStick.UpdateController();
         }
 
         [Button("Change")]
@@ -63,40 +53,33 @@ namespace NoneProject.GameSystem
             IsAutoMove = !IsAutoMove;
         }
         
-        private async void Initialized()
+        private async void Initialize()
         {
-            // GameManager가 초기화 완료까지 대기.
+            // GameManager 초기화 완료까지 대기.
             await UniTask.WaitUntil(() => GameManager.Instance.isInitialized);
-            
-            // Actor Manager 캐싱.
-            _actorManager = ActorManager.Instance;
-            
+            // DataManager 초기화 완료까지 대기.
+            await UniTask.WaitUntil(() => StatDataManager.Instance.isInitialized);
+            // Player 초기화 완료까지 대기.
+            await UniTask.WaitUntil(() => Manager.PlayerManager.Instance.isInitialized);
+            // Enemy 초기화 완료까지 대기.
+            await UniTask.WaitUntil(() => EnemyManager.Instance.isInitialized);
+            // Projectile 초기화 완료까지 대기.
+            await UniTask.WaitUntil(() => ProjectileManager.Instance.isInitialized);
+
             // InGame을 등록. 
             GameManager.Instance.SetInGame(this);
 
-            LoadHolder();
-            LoadPlayer();
+            // 카메라가 Player를 따라가도록 설정.
+            _cam.Follow = Manager.PlayerManager.Instance.Player.transform;
             
-            _isInitialized = true;
+            Subscribe();
+            
+            IsInitialized = true;
         }
 
-        private void LoadHolder()
+        private void Subscribe()
         {
-            var constData = GameManager.Instance.Const;
-            
-            _playerHolder = Util.CreateObject(constData.PlayerHolder, transform).transform;
-        }
-
-        private void LoadPlayer()
-        {
-            ActorManager.Instance.LoadPlayer(_playerHolder, OnComplete);
-            return;
-
-            void OnComplete(PlayerController player)
-            {
-                _cam.Follow = player.transform;
-                joyStick.OnMoveVectorUpdated += player.Move;
-            }
+            _joyStick.OnMoveVectorUpdated += Manager.PlayerManager.Instance.Player.Move;
         }
     }
 }
