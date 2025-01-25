@@ -4427,6 +4427,9 @@ MonoBehaviour:
   ui:
     countText: {fileID: 5551251351644934757}
     icon: {fileID: 6341374765539923063}
+    defaultScale: 1
+    maxScale: 1.2
+    duration: 0.1
 --- !u!224 &6484577063630851038
 RectTransform:
   m_ObjectHideFlags: 0

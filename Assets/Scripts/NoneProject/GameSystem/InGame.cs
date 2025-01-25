@@ -2,6 +2,7 @@ using Cinemachine;
 using Cysharp.Threading.Tasks;
 using NoneProject.Input;
 using NoneProject.Manager;
+using NoneProject.Tile;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -26,6 +27,7 @@ namespace NoneProject.GameSystem
         
         private CinemachineVirtualCamera _cam;
         private JoyStickController _joyStick;
+        private TileCreator _tileCreator;
         private bool _isAutoMove;
 
         private void Awake()
@@ -71,6 +73,8 @@ namespace NoneProject.GameSystem
 
             // 카메라가 Player를 따라가도록 설정.
             _cam.Follow = Manager.PlayerManager.Instance.Player.transform;
+
+            _tileCreator = new TileCreator();
             
             Subscribe();
             

@@ -14,6 +14,7 @@ namespace NoneProject.Actor.Player
     public class PlayerController : ActorBase
     {
         public Transform PlayerCenter => center;
+        public Vector2 MoveVec { get; private set; }
         
         [SerializeField] private Transform center;
         
@@ -47,6 +48,8 @@ namespace NoneProject.Actor.Player
         
         public void Move(Vector2 moveVec)
         {
+            MoveVec = moveVec;
+            
             if (moveVec == Vector2.zero)
             {
                 _modelController.SetAnimationState(ActorState.Idle);

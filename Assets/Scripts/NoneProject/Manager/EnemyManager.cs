@@ -23,13 +23,13 @@ namespace NoneProject.Manager
         private readonly List<EnemyController> _activateList = new List<EnemyController>();
         private ObjectPoolController<EnemyPool, EnemyController> _poolController;
 
-        // private void FixedUpdate()
-        // {
-        //     for (var i = _activateList.Count - 1; i >= 0; i--)
-        //     {
-        //         _activateList[i].UpdateEnemy();
-        //     }
-        // }
+        private void FixedUpdate()
+        {
+            for (var i = _activateList.Count - 1; i >= 0; i--)
+            {
+                _activateList[i].UpdateEnemy();
+            }
+        }
 
         public async UniTask<EnemyController> Get(string poolObjectID)
         {

@@ -15,8 +15,18 @@ namespace NoneProject.Data
             [TitleGroup("Default Data")] 
             [SerializeField]
             private string defaultPlayerID;
-
+            
+            [TitleGroup("Default Data")] 
+            [SerializeField]
+            private string defaultTileID;
+            
+            [TitleGroup("Default Data")] 
+            [SerializeField]
+            private float tileOffset;
+            
             public string DefaultPlayerID => defaultPlayerID;
+            public string DefaultTileID => defaultTileID;
+            public float TileOffset => tileOffset;
             
 #endregion
             

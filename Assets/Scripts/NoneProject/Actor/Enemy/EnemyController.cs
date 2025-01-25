@@ -21,10 +21,10 @@ namespace NoneProject.Actor.Enemy
         private NodeRunner _nodeRunner;
         private EnemyStat _stat;
 
-        private void FixedUpdate()
-        {
-            UpdateEnemy();
-        }
+        // private void FixedUpdate()
+        // {
+        //     UpdateEnemy();
+        // }
 
         public void UpdateEnemy()
         {
