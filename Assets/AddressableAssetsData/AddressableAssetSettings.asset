@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: aea35574526d6e04a8d2fdc50daeafa9
   m_currentHash:
     serializedVersion: 2
-    Hash: 996757575094781a645b6f551d89d854
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_BundleLocalCatalog: 0
@@ -51,6 +51,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d9388eef5b7a66b42921723f40c7654a, type: 2}
   - {fileID: 11400000, guid: 0b8f96e097e475745bd345e8e0d56979, type: 2}
   - {fileID: 11400000, guid: 34207fb11d347704c91ae7be9a0fa6e7, type: 2}
+  - {fileID: 11400000, guid: 3328c440994809e4cb0bad9323afb8f4, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -100,6 +101,7 @@ MonoBehaviour:
     - Bgm
     - Sfx
     - Stat
+    - Tile
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 18eb1831986083f47813127c18c49570, type: 2}

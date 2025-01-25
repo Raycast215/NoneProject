@@ -21,7 +21,7 @@ MonoBehaviour:
       damage: 1
       knockBackRate: 1
       skills: []
-    detectRange: 2
+    detectRange: 999
     attackRange: 1
   - baseStat:
       id: Enemy_Normal_01
