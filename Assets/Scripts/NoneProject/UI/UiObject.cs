@@ -7,6 +7,12 @@ namespace NoneProject.Ui
     // UI로 사용되는 오브젝트에서 사용할 클래스.
     public abstract class UiObject : MonoBehaviour
     {
+        protected virtual void Start()
+        {
+            RegisterUi();
+        }
+        
         public abstract void Subscribe();
+        protected abstract void RegisterUi();
     }
 }
