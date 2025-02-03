@@ -14,7 +14,8 @@ namespace NoneProject.Common
     public enum ActorType
     {
         Player,
-        Enemy
+        Enemy,
+        Projectile
     }
     
     public enum NodeState
