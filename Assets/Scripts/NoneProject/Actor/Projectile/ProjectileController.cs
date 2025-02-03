@@ -75,17 +75,17 @@ namespace NoneProject.Actor.Projectile
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag($"Enemy") is false) 
+            if (other.CompareTag("Enemy") is false) 
                 return;
             
-            if (other.TryGetComponent(typeof(IHit), out var hit ))
+            if (other.TryGetComponent(out IHit hit))
             {
-                ((IHit)hit).Hit(_statController.Damage);
+                hit.Hit(_statController.Damage);
             }
             
-            if (other.TryGetComponent(typeof(IKnockBack), out var knockBack ))
+            if (other.TryGetComponent(out IKnockBack knockBack))
             {
-                ((IKnockBack)knockBack).KnockBack(_statController.KnockBackPower, _moveVec);
+                knockBack.KnockBack(_statController.KnockBackPower, _moveVec);
             }
             
             OnReleased?.Invoke();
