@@ -4,8 +4,8 @@ using System.Threading;
 using Cysharp.Threading.Tasks;
 using NoneProject;
 using NoneProject.Common;
-using NoneProject.Data;
 using NoneProject.Pool;
+using NoneProject.ScriptableData;
 using Template.Pool;
 using Template.Utility;
 using UnityEngine;
@@ -20,7 +20,7 @@ namespace Template.Manager
     {
         private event Action<AudioClip> OnBgmPlayed = delegate {  };
 
-        private ConstData ConstData => GameManager.Instance.Const;
+        private ConstScriptableData ConstScriptableData => GameManager.Instance.Const;
         
         private readonly Dictionary<string, AudioClip> _audioClipDic = new Dictionary<string, AudioClip>();
         private readonly Dictionary<string, int> _sfxCountDic = new Dictionary<string, int>();
@@ -77,7 +77,7 @@ namespace Template.Manager
                 _sfxCountDic.Add(clipName, 1);
 
             // 동일한 Clip이 일정 수 이상 재생중인 경우 리턴.
-            if (_sfxCountDic[clipName] > ConstData.SfxDefaultLimitCount)
+            if (_sfxCountDic[clipName] > ConstScriptableData.SfxDefaultLimitCount)
                 return;
             
             _sfxCountDic[clipName]++;
@@ -192,8 +192,8 @@ namespace Template.Manager
 
         private void InitializedSfx()
         {
-            var sfxObject = Resources.Load<SoundPool>(ConstData.SoundObjectPath);
-            _soundPool = new Pooling<SoundPool>(sfxObject, ConstData.Capacity, transform);
+            var sfxObject = Resources.Load<SoundPool>(ConstScriptableData.SoundObjectPath);
+            _soundPool = new Pooling<SoundPool>(sfxObject, ConstScriptableData.Capacity, transform);
             _soundPool.Pool();
         }
 
