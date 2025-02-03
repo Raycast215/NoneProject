@@ -11,16 +11,21 @@ namespace NoneProject.Tile
         private const int WidthCount = 2;
         private const string Gird = "Grid";
 
+        public bool IsInitialized { get; private set; }
+        
         private Tile _tile;
         private Grid _grid;
+        private readonly string _tileID;
         private readonly float _offset;
 
         public TileCreator(string tileID = "")
         {
-            LoadGrid();
-            LoadTile(tileID);
-
             _offset = GameManager.Instance.Const.TileOffset;
+            _tileID = string.IsNullOrEmpty(tileID) 
+                ? GameManager.Instance.Const.DefaultTileID 
+                : tileID;
+            
+            LoadGrid();
         }
 
         private async void LoadGrid()
@@ -31,16 +36,13 @@ namespace NoneProject.Tile
             void OnComplete(GameObject asset)
             {
                 _grid = Object.Instantiate(asset).GetComponent<Grid>();
+                LoadTile();
             }
         }
         
-        private async void LoadTile(string tileID)
+        private async void LoadTile()
         {
-            var id = string.IsNullOrEmpty(tileID) 
-                ? GameManager.Instance.Const.DefaultTileID 
-                : tileID;
-
-            await AddressableManager.Instance.LoadAsset<GameObject>(id, OnComplete);
+            await AddressableManager.Instance.LoadAsset<GameObject>(_tileID, OnComplete);
             return;
 
             void OnComplete(GameObject asset)
@@ -59,6 +61,8 @@ namespace NoneProject.Tile
                         tile.SetPosition(pos);
                     }
                 }
+
+                IsInitialized = true;
             }
         }
     }
