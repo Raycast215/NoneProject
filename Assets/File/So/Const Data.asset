@@ -26,3 +26,4 @@ MonoBehaviour:
   soundObjectPath: SoundObject
   enemyObjectPath: EnemyObject
   projectileObjectPath: ProjectileObject
+  enemyLayerIndex: 5

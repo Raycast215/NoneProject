@@ -29,14 +29,8 @@ MonoBehaviour:
     m_SerializedLabels:
     - Enemy
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 57b17595feb56d64fb8ac860d45f3808
+  - m_GUID: d36947398bfe0a348a7f588f3cf368e4
     m_Address: Enemy_Normal_01
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - Enemy
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: f59fa8991fa04a546b6039d6ed1a220f
-    m_Address: Enemy_Normal_02
     m_ReadOnly: 0
     m_SerializedLabels:
     - Enemy

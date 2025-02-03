@@ -717,7 +717,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 1
   m_SortAtRoot: 0
 --- !u!95 &518474056176712610
 Animator:
@@ -3533,7 +3533,7 @@ GameObject:
   - component: {fileID: 1233412401359756099}
   m_Layer: 0
   m_Name: Enemy_Normal_00
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -16,30 +16,20 @@ MonoBehaviour:
   - baseStat:
       id: Enemy_Normal_00
       maxHp: 1
-      moveSpeed: 1
+      moveSpeed: 2
       attackDelay: 1
       damage: 1
-      knockBackRate: 1
       skills: []
     detectRange: 999
     attackRange: 1
+    knockBackRate: 0.9
   - baseStat:
       id: Enemy_Normal_01
       maxHp: 5
       moveSpeed: 1
       attackDelay: 1
       damage: 1
-      knockBackRate: 1
       skills: []
-    detectRange: 2
+    detectRange: 999
     attackRange: 1
-  - baseStat:
-      id: Enemy_Normal_02
-      maxHp: 10
-      moveSpeed: 1
-      attackDelay: 1
-      damage: 1
-      knockBackRate: 1
-      skills: []
-    detectRange: 2
-    attackRange: 1
+    knockBackRate: 0.9
