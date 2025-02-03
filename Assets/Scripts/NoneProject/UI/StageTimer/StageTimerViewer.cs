@@ -15,7 +15,7 @@ namespace NoneProject.UI.StageTimer
 
         public override void Subscribe()
         {
-            GameManager.Instance.InGame.StageTimer.OnTimeUpdated += ui.SetTime;
+            GameManager.Instance.InGame.Timer.OnTimeUpdated += ui.SetTime;
         }
 
         protected override void RegisterUi()
