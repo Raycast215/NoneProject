@@ -20,7 +20,7 @@ namespace NoneProject.UI.StageTimer
 
         protected override void RegisterUi()
         {
-            UIManager.Instance.Add<StageTimerViewer>(nameof(StageTimerViewer), this);
+            UIManager.Instance.Add(nameof(StageTimerViewer), this);
         }
 
 #endregion

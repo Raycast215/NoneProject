@@ -8,7 +8,7 @@ namespace NoneProject.UI.EnemyCount
 {
     // Scripted by Raycast
     // 2025.01.25
-    // 활성화 된 Enemy 수를 UI에 표시하는 UI 클래스입니다.
+    // InGame에서 활성화 된 Enemy 수를 UI에 표시하는 UI를 담은 클래스입니다.
     [Serializable]
     public class EnemyCountUI
     {
@@ -31,7 +31,7 @@ namespace NoneProject.UI.EnemyCount
             countText.text = $"{count}";
         }
 
-        public void MoveIcon()
+        public void PlayAnimation()
         {
             if (_isInitialized)
             {
