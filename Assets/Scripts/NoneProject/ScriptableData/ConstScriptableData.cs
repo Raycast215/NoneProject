@@ -1,13 +1,13 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace NoneProject.Data
+namespace NoneProject.ScriptableData
 {
     // Scripted by Raycast
     // 2025.01.09
     // 공용으로 사용할 Const를 Scriptable Object로 모아두기 위한 클래스입니다.
-    [CreateAssetMenu(fileName = "Const Data", menuName = "Scriptable Object/Const Data")]
-    public class ConstData : ScriptableObject
+    [CreateAssetMenu(fileName = "ConstScriptableData", menuName = "Scriptable Object/Const Data")]
+    public class ConstScriptableData : ScriptableObject
     {
 
 #region Default Data
@@ -101,6 +101,16 @@ namespace NoneProject.Data
         public string SoundObjectPath => $"{commonObjectPath}/{soundObjectPath}";
         public string EnemyObjectPath => $"{commonObjectPath}/{enemyObjectPath}";
         public string ProjectileObjectPath => $"{commonObjectPath}/{projectileObjectPath}";
+
+#endregion
+
+#region Layer Index
+
+        [TitleGroup("Layer Index")] 
+        [SerializeField]
+        private int enemyLayerIndex;
+
+        public int EnemyLayerIndex => enemyLayerIndex;
 
 #endregion
     }
