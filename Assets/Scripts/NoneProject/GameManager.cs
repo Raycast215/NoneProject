@@ -1,8 +1,8 @@
 using Cysharp.Threading.Tasks;
 using NoneProject.Common;
-using NoneProject.Data;
 using NoneProject.GameSystem;
 using NoneProject.Manager;
+using NoneProject.ScriptableData;
 using Template.Manager;
 using UnityEngine;
 
@@ -12,13 +12,13 @@ namespace NoneProject
     {
         public InGame InGame { get; private set; }
         
-        public ConstData Const { get; private set; }
+        public ConstScriptableData Const { get; private set; }
 
         protected override void Initialized()
         {
             base.Initialized();
             LoadConstData();
-            StatDataManager.Instance.LoadData();
+            StageManager.Instance.LoadData();
             Application.targetFrameRate = 120; 
         }
 
@@ -29,10 +29,10 @@ namespace NoneProject
         
         private void LoadConstData()
         {
-            AddressableManager.Instance.LoadAssetsLabel<ConstData>(AddressableLabel.Common, OnComplete).Forget();
+            AddressableManager.Instance.LoadAssetsLabel<ConstScriptableData>(AddressableLabel.Common, OnComplete).Forget();
             return;
 
-            void OnComplete(ConstData asset)
+            void OnComplete(ConstScriptableData asset)
             {
                 Const = asset;
                 isInitialized = true;

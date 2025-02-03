@@ -1,4 +1,4 @@
-using NoneProject.Actor.Stat;
+using NoneProject.Actor.Data;
 using UnityEngine;
 
 namespace NoneProject.ScriptableData
@@ -9,6 +9,6 @@ namespace NoneProject.ScriptableData
     [CreateAssetMenu(fileName = "EnemyStatScriptableData", menuName = "Scriptable Object/Enemy Stat Data")]
     public class EnemyStatScriptableData : ScriptableObject
     {
-        public EnemyStat[] data;
+        public EnemyStatData[] data;
     }
 }
