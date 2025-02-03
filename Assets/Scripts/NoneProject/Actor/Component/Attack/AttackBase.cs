@@ -10,6 +10,8 @@ namespace NoneProject.Actor.Component.Attack
 {
     public abstract class AttackBase
     {
+        protected string ID { get; private set; }
+        
         protected CancellationTokenSource Cts = new CancellationTokenSource();
         protected readonly List<ProjectileController> ProjectileList = new List<ProjectileController>();
         protected Transform Caster;
@@ -29,6 +31,7 @@ namespace NoneProject.Actor.Component.Attack
 
             _isLoaded = false;
             _isPlaying = true;
+            ID = projectileID;
             
             LoadProjectiles(projectileID, count);
             

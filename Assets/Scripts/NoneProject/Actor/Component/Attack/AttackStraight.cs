@@ -5,13 +5,19 @@ using UnityEngine;
 
 namespace NoneProject.Actor.Component.Attack
 {
-    public class AttackStraight : AttackBase
+    public sealed class AttackStraight : AttackBase
     {
         private Vector2 _moveVec;
+        private Vector2 _startPos;
         
         public AttackStraight(Transform caster)
         {
             Caster = caster;
+        }
+
+        public void SetStartPos(Vector2 startPos)
+        {
+            _startPos = startPos;
         }
 
         public void SetMoveVec(Vector2 moveVec)
@@ -26,7 +32,7 @@ namespace NoneProject.Actor.Component.Attack
             foreach (var projectile in ProjectileList)
             {
                 projectile.gameObject.SetActive(true);
-                projectile.Set(MovePattern.Forward, (Vector2)Caster.position + _moveVec, Caster);
+                projectile.Set(ID, MovePattern.Forward, _startPos, _moveVec);
                 
                 if (delay > 0.0f)
                 {

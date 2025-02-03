@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace NoneProject.Actor.Component.Attack
 {
-    public class AttackStraightFormAngle : AttackBase
+    public sealed class AttackStraightFormAngle : AttackBase
     {
         private const float MaxAngle = 360.0f;
         
@@ -24,10 +24,11 @@ namespace NoneProject.Actor.Component.Attack
             for (var i = 0; i < ProjectileList.Count; i++)
             {
                 var projectile = ProjectileList[i];
-                var toStartPos = (Vector2)Caster.position + Util.GetVectorFromAngle(minAngle * i);
+                var moveVec = Util.GetVectorFromAngle(minAngle * i);
+                var toStartPos = (Vector2)Caster.position + moveVec;
                 
                 projectile.gameObject.SetActive(true);
-                projectile.Set(MovePattern.Forward, toStartPos, Caster);
+                projectile.Set(ID, MovePattern.Forward, toStartPos, moveVec);
                 
                 if (delay > 0.0f)
                 {
