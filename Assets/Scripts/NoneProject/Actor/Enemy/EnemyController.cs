@@ -136,6 +136,9 @@ namespace NoneProject.Actor.Enemy
         
         public void Hit(float damage)
         {
+            if (_statController is null)
+                return;
+            
             _statController.SetCurrentHp(-damage);
 
             if (_statController.CurrentHp <= 0.0f)
@@ -147,6 +150,9 @@ namespace NoneProject.Actor.Enemy
         
         public void KnockBack(float power, Vector2 casterDirection)
         {
+            if (_statController is null)
+                return;
+            
             var randomValue = Random.Range(0.0f, 1.0f);
             var isKnockBack = randomValue <= _statController.KnockBackRate;
             
@@ -168,7 +174,7 @@ namespace NoneProject.Actor.Enemy
             _nodeRunner = new NodeRunner(InitializeNode());
             _sortingGroup = transform.GetComponentInChildren<SortingGroup>();
             _layerIndex = GameManager.Instance.Const.EnemyLayerIndex;
-            
+
             IsInitialized = true;
         }
 
