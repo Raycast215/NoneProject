@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: aee4b759a6642f940944a602646496f5, type: 3}
-  m_Name: Const Data
+  m_Name: ConstScriptableData
   m_EditorClassIdentifier: 
   defaultPlayerID: Player_Normal_Magic
   defaultTileID: Tile_Ground_00

@@ -10,27 +10,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Stat
+  m_Name: ScripableData
   m_EditorClassIdentifier: 
-  m_GroupName: Stat
+  m_GroupName: ScripableData
   m_Data:
     m_SerializedData: []
-  m_GUID: e97cd5f4594df3e478d0d5e22451a914
+  m_GUID: 4ff137cfbe9a3554eb8c959859a34d81
   m_SerializeEntries:
+  - m_GUID: a2e2901e7faecf841b4bce5b6f2a893f
+    m_Address: StageScriptableData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Scriptable
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e638d0f26a906b74ca8fdacdffdb0618
+    m_Address: ConstScriptableData
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Common
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c6bd9b37e08bf6147adf22f725696dd8
-    m_Address: PlayerStatData
+    m_Address: PlayerStatScriptableData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Stat
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9b006e35d0ee5e34f922b76a96523ac2
-    m_Address: EnemyStatData
+    m_Address: EnemyStatScriptableData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Stat
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7f7ef4e11911cac458dd9f86a0c1dc85
-    m_Address: ProjectileStatData
+    m_Address: ProjectileStatScriptableData
     m_ReadOnly: 0
     m_SerializedLabels:
     - Stat
@@ -39,5 +51,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 039b2f641f9ce424197ccd84fa03303a, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 1dc97460bb81591408b10ff7df86ee66, type: 2}
-    - {fileID: 11400000, guid: b8de8858cec451b40b53adc5d6e7da1a, type: 2}
+    - {fileID: 11400000, guid: df678e1ff7a87084bb00232afee447fa, type: 2}
+    - {fileID: 11400000, guid: 4afa1f295cf44304b9dbbfa2517c9841, type: 2}
