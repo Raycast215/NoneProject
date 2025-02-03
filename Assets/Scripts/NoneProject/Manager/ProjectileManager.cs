@@ -15,6 +15,7 @@ namespace NoneProject.Manager
     {
         private readonly CancellationTokenSource _cts = new CancellationTokenSource();
         private ObjectPoolController<ProjectilePool, ProjectileController> _poolController;
+        private ProjectileStatManager _statManager;
         
         public async UniTask<ProjectileController> Get(string poolObjectID)
         {
@@ -34,6 +35,10 @@ namespace NoneProject.Manager
             // Pool 오브젝트 반환.
             var poolObject = _poolController.Pool.Get();
 
+            controller.ClearEvent();
+            controller.OnStatUpdated += _statManager.GetData;
+            controller.OnReleased += () => Release(poolObject);
+            
             // Pool에 Controller 등록.
             poolObject.SetController(controller);
             // 오브젝트 ID 등록.
@@ -58,6 +63,11 @@ namespace NoneProject.Manager
 
             _poolController = new ObjectPoolController<ProjectilePool, ProjectileController>(transform, constData.ProjectileObjectPath);
 
+            _statManager = new ProjectileStatManager();
+            
+            // Stat Data 로드 완료까지 대기.
+            await UniTask.WaitUntil(() => _statManager.IsLoaded, cancellationToken: _cts.Token);
+            
             Subscribe();
             
             isInitialized = true;

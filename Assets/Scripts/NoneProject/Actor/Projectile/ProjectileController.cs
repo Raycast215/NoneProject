@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using NoneProject.Actor.Component.Move;
 using NoneProject.Actor.Component.Rotate;
+using NoneProject.Actor.Data;
 using NoneProject.Common;
 using NoneProject.Interface;
 using UnityEngine;
@@ -12,10 +14,14 @@ namespace NoneProject.Actor.Projectile
     // Projectile을 관리하는 클래스입니다.
     public class ProjectileController : ActorBase
     {
+        public event Func<string, ProjectileStatData> OnStatUpdated;
+        public event Action OnReleased;
+        
         private readonly Dictionary<MovePattern, IMovable> _movePatternDic = new Dictionary<MovePattern, IMovable>();
+        private ProjectileStatController _statController;
         private RotateAngle _rotate;
-        private Transform _caster;
         private IMovable _mover;
+        private Vector2 _moveVec;
         
         private void FixedUpdate()
         {
@@ -25,18 +31,27 @@ namespace NoneProject.Actor.Projectile
             if (gameObject.activeInHierarchy is false)
                 return;
             
-            //_mover?.Move(MoveSpeed);
+            _mover?.Move(_statController.MoveSpeed);
         }
 
-        public void Set(MovePattern movePattern, Vector2 startPos, Transform caster)
+        public void ClearEvent()
         {
-            _caster = caster;
+            OnStatUpdated = null;
+            OnReleased = null;
+        }
+        
+        public void Set(string projectileID, MovePattern movePattern, Vector2 startPos, Vector2 moveVec, Transform caster = null)
+        {
+            var stat = OnStatUpdated?.Invoke(projectileID);
+
+            _moveVec = moveVec;
+            _statController = new ProjectileStatController(stat);
 
             SetMovePattern(movePattern);
             SetPosition(startPos);
             
-            _rotate.SetAngle(_caster.position);
-            _mover.SetMoveVec(GetMoveVector());
+            _rotate.SetDirection(_moveVec);
+            _mover.SetMoveVec(_moveVec);
         }
         
         private void SetMovePattern(MovePattern toPattern)
@@ -57,19 +72,31 @@ namespace NoneProject.Actor.Projectile
             
             _movePatternDic.Add(toPattern, _mover);
         }
-        
-        private Vector2 GetMoveVector()
+
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            // 목표 대상이 없는 경우 시전자 기준으로 방향 벡터 반환
-            return (transform.position - _caster.position).normalized;
+            if (other.CompareTag($"Enemy") is false) 
+                return;
+            
+            if (other.TryGetComponent(typeof(IHit), out var hit ))
+            {
+                ((IHit)hit).Hit(_statController.Damage);
+            }
+            
+            if (other.TryGetComponent(typeof(IKnockBack), out var knockBack ))
+            {
+                ((IKnockBack)knockBack).KnockBack(_statController.KnockBackPower, _moveVec);
+            }
+            
+            OnReleased?.Invoke();
         }
 
-#region Override Methods
+        #region Override Methods
 
         protected override void Initialize()
         {
             _rotate = new RotateAngle(transform);
-            //MoveSpeed = 3.0f;
+            
             IsInitialized = true;
         }
 

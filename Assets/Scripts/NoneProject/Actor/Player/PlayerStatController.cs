@@ -1,5 +1,6 @@
 using System;
 using NoneProject.Actor.Data;
+using NoneProject.Actor.Stat;
 
 namespace NoneProject.Actor.Player
 {
@@ -7,13 +8,13 @@ namespace NoneProject.Actor.Player
     // 2025.01.24
     // Player가 사용할 Stat을 관리하는 클래스입니다.
     [Serializable]
-    public sealed class PlayerStat : StatBase
+    public class PlayerStatController : StatBase
     {
-        public PlayerStat(ActorStatData stat)
+        public PlayerStatController(PlayerStatData statData)
         {
-            BaseStat = stat;
-
-            Initialize();
+            DataBaseStatData = statData.dataBaseStatData;
+            
+            base.Initialize();
         }
     }
 }

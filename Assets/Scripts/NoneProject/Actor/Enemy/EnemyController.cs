@@ -1,31 +1,34 @@
+using System;
 using System.Collections.Generic;
 using NoneProject.Actor.BT;
 using NoneProject.Actor.Component.Model;
 using NoneProject.Actor.Component.Move;
+using NoneProject.Actor.Data;
 using NoneProject.Common;
 using NoneProject.Interface;
-using NoneProject.Manager;
 using UnityEngine;
+using UnityEngine.Rendering;
+using Random = UnityEngine.Random;
 
 namespace NoneProject.Actor.Enemy
 {
     // Scripted by Raycast
     // 2025.01.16
     // Enemy를 관리하는 클래스입니다.
-    public class EnemyController : ActorBase
+    public class EnemyController : ActorBase, IHit, IKnockBack
     {
+        public event Func<string, EnemyStatData> OnStatUpdated;
+        public event Action OnDied;
+        
         private readonly Dictionary<MovePattern, IMovable> _movePatternDic = new Dictionary<MovePattern, IMovable>();
         private ModelController _modelController;
         private IMovable _mover;
         private ActorBase _target;
         private NodeRunner _nodeRunner;
-        private EnemyStat _stat;
-
-        // private void FixedUpdate()
-        // {
-        //     UpdateEnemy();
-        // }
-
+        private EnemyStatController _statController;
+        private SortingGroup _sortingGroup;
+        private int _layerIndex;
+        
         public void UpdateEnemy()
         {
             if (IsInitialized is false)
@@ -34,17 +37,24 @@ namespace NoneProject.Actor.Enemy
             if (gameObject.activeInHierarchy is false)
                 return;
             
-            if (_stat is null)
+            if (_statController is null)
                 return;
             
             _nodeRunner?.OperateNode();
         }
 
+        public void ClearEvent()
+        {
+            OnStatUpdated = null;
+            OnDied = null;
+        }
+        
         public void SetData(string enemyID)
         {
-            var statData = StatDataManager.Instance.GetEnemyStatData(enemyID);
+            var statData = OnStatUpdated?.Invoke(enemyID);
             
-            _stat = new EnemyStat(statData);
+            _statController = new EnemyStatController(statData);
+            _sortingGroup.sortingOrder = _layerIndex;
         }
         
         public void SetPattern(MovePattern toPattern)
@@ -73,7 +83,7 @@ namespace NoneProject.Actor.Enemy
         {
             var playerPos = Manager.PlayerManager.Instance.Player.transform.position;
 
-            if (Vector3.Distance(transform.position, playerPos) > _stat.DetectRange)
+            if (Vector3.Distance(transform.position, playerPos) > _statController.DetectRange)
             {
                 _target = null;
                 _modelController.SetAnimationState(ActorState.Idle);
@@ -91,13 +101,13 @@ namespace NoneProject.Actor.Enemy
             var moveVec = (targetPos - curPos).normalized;
             var distance = Vector3.Distance(curPos, targetPos);
 
-            if (distance < _stat.AttackRange)
+            if (distance < _statController.AttackRange)
                 return NodeState.Success;
 
             SetScaleDirection(moveVec);
             _modelController.SetAnimationState(ActorState.Run);
             _mover?.SetMoveVec(moveVec);
-            _mover?.Move(_stat.MoveSpeed);
+            _mover?.Move(_statController.MoveSpeed);
             return NodeState.Running;
         }
 
@@ -123,6 +133,32 @@ namespace NoneProject.Actor.Enemy
             
             return new SequenceNode(nodeList);
         }
+        
+        public void Hit(float damage)
+        {
+            _statController.SetCurrentHp(-damage);
+
+            if (_statController.CurrentHp <= 0.0f)
+            {
+                Debug.Log("Dead");
+                OnDied?.Invoke();
+            }
+        }
+        
+        public void KnockBack(float power, Vector2 casterDirection)
+        {
+            var randomValue = Random.Range(0.0f, 1.0f);
+            var isKnockBack = randomValue <= _statController.KnockBackRate;
+            
+            Debug.Log($"value : {randomValue} / rate : { _statController.KnockBackRate} / {isKnockBack}");
+
+            if (isKnockBack is false) 
+                return;
+            
+            var dir = power * casterDirection;
+                
+            Rigidbody2D.transform.Translate(dir);
+        }
 
 #region Override Methods
 
@@ -130,6 +166,8 @@ namespace NoneProject.Actor.Enemy
         {
             _modelController = new ModelController(this);
             _nodeRunner = new NodeRunner(InitializeNode());
+            _sortingGroup = transform.GetComponentInChildren<SortingGroup>();
+            _layerIndex = GameManager.Instance.Const.EnemyLayerIndex;
             
             IsInitialized = true;
         }

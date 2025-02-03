@@ -1520,7 +1520,6 @@ GameObject:
   - component: {fileID: 716280514}
   - component: {fileID: 716280516}
   - component: {fileID: 716280515}
-  - component: {fileID: 716280517}
   - component: {fileID: 716280518}
   m_Layer: 0
   m_Name: Test Module
@@ -1574,20 +1573,6 @@ MonoBehaviour:
   isFade: 0
   volume: 0
   bgmClipName: 
---- !u!114 &716280517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 716280512}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9df333ffbcb135f478e8fe1aafadbe8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameList: []
-  enemyID: 
 --- !u!114 &716280518
 MonoBehaviour:
   m_ObjectHideFlags: 0

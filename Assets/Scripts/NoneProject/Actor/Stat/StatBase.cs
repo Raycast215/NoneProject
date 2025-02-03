@@ -1,6 +1,6 @@
 using NoneProject.Actor.Data;
 
-namespace NoneProject.Actor
+namespace NoneProject.Actor.Stat
 {
     // Scripted by Raycast
     // 2025.01.25
@@ -13,19 +13,22 @@ namespace NoneProject.Actor
         public float MoveSpeed { get; protected set; }
         public float AttackDelay { get; protected set; }
         public float Damage { get; protected set; }
-        public float KnockBackRate { get; protected set; }
 
-        protected ActorStatData BaseStat;
+        protected ActorStatDataBase DataBaseStatData;
 
+        public void SetCurrentHp(float delta)
+        {
+            CurrentHp += delta;
+        }
+        
         public virtual void Initialize()
         {
-            ID = BaseStat.id;
-            MoveSpeed = BaseStat.moveSpeed;
-            MaxHp = BaseStat.maxHp;
+            ID = DataBaseStatData.id;
+            MoveSpeed = DataBaseStatData.moveSpeed;
+            MaxHp = DataBaseStatData.maxHp;
             CurrentHp = MaxHp;
-            Damage = BaseStat.damage;
-            AttackDelay = BaseStat.attackDelay;
-            KnockBackRate = BaseStat.knockBackRate;
+            Damage = DataBaseStatData.damage;
+            AttackDelay = DataBaseStatData.attackDelay;
         }
     }
 }

@@ -2,8 +2,11 @@ using Cinemachine;
 using Cysharp.Threading.Tasks;
 using NoneProject.Input;
 using NoneProject.Manager;
+using NoneProject.Stage;
 using NoneProject.Tile;
-using Sirenix.OdinInspector;
+using NoneProject.UI.EnemyCount;
+using NoneProject.UI.StageTimer;
+using NoneProject.Utility;
 using UnityEngine;
 
 namespace NoneProject.GameSystem
@@ -24,12 +27,17 @@ namespace NoneProject.GameSystem
         }
 
         public bool IsInitialized { get; private set; }
-        
+        public Timer Timer { get; private set; }
+       
         private CinemachineVirtualCamera _cam;
         private JoyStickController _joyStick;
         private TileCreator _tileCreator;
+        private StageController _stageController;
+        
         private bool _isAutoMove;
-
+        // To Do : Data Load하기.
+        private int _stageIndex = 1;
+        
         private void Awake()
         {
             _cam = FindObjectOfType<CinemachineVirtualCamera>();
@@ -46,28 +54,29 @@ namespace NoneProject.GameSystem
             if (IsInitialized is false)
                 return;
 
-            _joyStick.UpdateController();
-        }
+            if (_joyStick is null)
+                return;
 
-        [Button("Change")]
-        public void SetAutoMove()
-        {
-            IsAutoMove = !IsAutoMove;
+            if (_stageController.CurrentStage is null)
+                return;
+            
+            _joyStick.UpdateController();
+            Timer?.StartTimer(_stageController.CurrentStage.second);
         }
         
         private async void Initialize()
         {
             // GameManager 초기화 완료까지 대기.
             await UniTask.WaitUntil(() => GameManager.Instance.isInitialized);
-            // DataManager 초기화 완료까지 대기.
-            await UniTask.WaitUntil(() => StatDataManager.Instance.isInitialized);
             // Player 초기화 완료까지 대기.
             await UniTask.WaitUntil(() => Manager.PlayerManager.Instance.isInitialized);
             // Enemy 초기화 완료까지 대기.
             await UniTask.WaitUntil(() => EnemyManager.Instance.isInitialized);
             // Projectile 초기화 완료까지 대기.
             await UniTask.WaitUntil(() => ProjectileManager.Instance.isInitialized);
-
+            // StageManager 초기화 완료까지 대기.
+            await UniTask.WaitUntil(() => StageManager.Instance.isInitialized);
+            
             // InGame을 등록. 
             GameManager.Instance.SetInGame(this);
 
@@ -75,6 +84,13 @@ namespace NoneProject.GameSystem
             _cam.Follow = Manager.PlayerManager.Instance.Player.transform;
 
             _tileCreator = new TileCreator();
+            
+            // Tile 생성까지 대기.
+            await UniTask.WaitUntil(() => _tileCreator.IsInitialized);
+            
+            Timer = new Timer(1.0f);
+            _stageController = new StageController();
+            _stageController.ChangeStageIndex(_stageIndex);
             
             Subscribe();
             
@@ -84,6 +100,17 @@ namespace NoneProject.GameSystem
         private void Subscribe()
         {
             _joyStick.OnMoveVectorUpdated += Manager.PlayerManager.Instance.Player.Move;
+            
+            _stageController.OnEnemySpawned += enemyID => EnemyManager.Instance.Get(enemyID, new Vector2(), true);
+            
+            Timer.OnTimerStarted += () => _stageController.StartStage().Forget();
+            Timer.OnTimerFinished += _stageController.Dispose;
+            Timer.OnTimerFinished += Timer.Dispose;
+            Timer.OnTimerFinished += () => _stageIndex++;
+            Timer.OnTimerFinished += () => _stageController.ChangeStageIndex(_stageIndex);
+
+            UIManager.Instance.Get<StageTimerViewer>(nameof(StageTimerViewer)).Subscribe();
+            UIManager.Instance.Get<EnemyCountViewer>(nameof(EnemyCountViewer)).Subscribe();
         }
     }
 }

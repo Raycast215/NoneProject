@@ -15,8 +15,8 @@ MonoBehaviour:
   datas:
   - id: Stage_01
     intervalTime: 1
-    second: 1000
-    maxSpawnCount: 1
+    second: 10
+    maxSpawnCount: 10
     datas:
     - enemyId: Enemy_Normal_00
       spawnCount: 1
