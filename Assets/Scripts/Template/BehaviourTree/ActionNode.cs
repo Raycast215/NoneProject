@@ -1,7 +1,7 @@
 using NoneProject.Common;
 using NoneProject.Interface;
 
-namespace NoneProject.Actor.BT
+namespace Template.BehaviourTree
 {
     // Scripted by Raycast
     // 2025.01.24

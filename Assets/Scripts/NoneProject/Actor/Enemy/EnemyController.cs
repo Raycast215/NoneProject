@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
-using NoneProject.Actor.BT;
 using NoneProject.Actor.Component.Model;
 using NoneProject.Actor.Component.Move;
 using NoneProject.Actor.Data;
 using NoneProject.Common;
 using NoneProject.Interface;
+using Template.BehaviourTree;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Random = UnityEngine.Random;
