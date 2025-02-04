@@ -13,6 +13,7 @@ namespace NoneProject.Actor.Stat
         public float MoveSpeed { get; protected set; }
         public float AttackDelay { get; protected set; }
         public float Damage { get; protected set; }
+        public bool isDead { get; protected set; }
 
         protected ActorStatDataBase DataBaseStatData;
 
@@ -29,6 +30,7 @@ namespace NoneProject.Actor.Stat
             CurrentHp = MaxHp;
             Damage = DataBaseStatData.damage;
             AttackDelay = DataBaseStatData.attackDelay;
+            isDead = false;
         }
     }
 }

@@ -78,9 +78,7 @@ namespace NoneProject.Manager
 
         public void Release(EnemyPool poolObject)
         {
-            _activateList.Remove(poolObject.Controller);
             _poolController.Release(poolObject);
-            OnEnemyCountUpdated?.Invoke(_activateList.Count);
         }
         
         private EnemyController SetController(string poolObjectID, EnemyController controller)
@@ -90,7 +88,9 @@ namespace NoneProject.Manager
 
             controller.ClearEvent();
             controller.OnStatUpdated += _statManager.GetData;
-            controller.OnDied += () => Release(poolObject);
+            controller.OnDied += () => _activateList.Remove(poolObject.Controller);
+            controller.OnDied += () => OnEnemyCountUpdated?.Invoke(_activateList.Count);
+            controller.OnReleased += () => Release(poolObject);
             
             // Pool에 Controller 등록.
             poolObject.SetController(controller);

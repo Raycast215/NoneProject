@@ -1,3 +1,4 @@
+using System.Threading;
 using Template.Utility;
 using UnityEngine;
 
@@ -10,7 +11,8 @@ namespace NoneProject.Actor
     public abstract class ActorBase : MonoBehaviour
     {
         public bool IsInitialized { get; protected set; }
-        
+
+        protected CancellationTokenSource Cts = new CancellationTokenSource();
         protected Rigidbody2D Rigidbody2D;
 
         private void Start()

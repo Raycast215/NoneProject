@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using NoneProject.Actor.Component.Model;
 using NoneProject.Actor.Component.Move;
 using NoneProject.Actor.Data;
@@ -19,6 +21,7 @@ namespace NoneProject.Actor.Enemy
     {
         public event Func<string, EnemyStatData> OnStatUpdated;
         public event Action OnDied;
+        public event Action OnReleased;
         
         private readonly Dictionary<MovePattern, IMovable> _movePatternDic = new Dictionary<MovePattern, IMovable>();
         private ModelController _modelController;
@@ -27,6 +30,7 @@ namespace NoneProject.Actor.Enemy
         private NodeRunner _nodeRunner;
         private EnemyStatController _statController;
         private SortingGroup _sortingGroup;
+        private Collider2D _collider;
         private int _layerIndex;
         
         public void UpdateEnemy()
@@ -47,6 +51,7 @@ namespace NoneProject.Actor.Enemy
         {
             OnStatUpdated = null;
             OnDied = null;
+            OnReleased = null;
         }
         
         public void SetData(string enemyID)
@@ -55,6 +60,8 @@ namespace NoneProject.Actor.Enemy
             
             _statController = new EnemyStatController(statData);
             _sortingGroup.sortingOrder = _layerIndex;
+            _collider.enabled = true;
+            Cts ??= new CancellationTokenSource();
         }
         
         public void SetPattern(MovePattern toPattern)
@@ -79,6 +86,26 @@ namespace NoneProject.Actor.Enemy
             _mover.CompleteMove(SetScaleDirection);
         }
 
+        private async void Dead()
+        {
+            _modelController.SetAnimationState(ActorState.Death);
+            _collider.enabled = false;
+            OnDied?.Invoke();
+            await UniTask.WaitForSeconds(2.0f, cancellationToken: Cts.Token);
+
+            _sortingGroup.sortingOrder = 0;
+            OnReleased?.Invoke();
+        }
+        
+        private NodeState CheckDeadState()
+        {
+            if (_statController.CurrentHp > 0.0f)
+                return NodeState.Failure;
+            
+            Dead();
+            return NodeState.Success;
+        }
+        
         private NodeState CheckDetectPlayer()
         {
             var playerPos = Manager.PlayerManager.Instance.Player.transform.position;
@@ -124,28 +151,30 @@ namespace NoneProject.Actor.Enemy
         
         private INode InitializeNode()
         {
-            var nodeList = new List<INode>()
+            return new SelectorNode(new List<INode>()
             {
-                new ActionNode(CheckDetectPlayer),
-                new ActionNode(MoveToTarget),
-                new ActionNode(Attack)
-            };
-            
-            return new SequenceNode(nodeList);
+                new SequenceNode(new List<INode>()
+                {
+                    new ActionNode(CheckDeadState)
+                }),
+                new SequenceNode(new List<INode>() 
+                { 
+                    new ActionNode(CheckDetectPlayer),
+                    new ActionNode(MoveToTarget),
+                    new ActionNode(Attack) 
+                })
+            });
         }
         
         public void Hit(float damage)
         {
             if (_statController is null)
                 return;
+
+            if (_statController.isDead)
+                return;
             
             _statController.SetCurrentHp(-damage);
-
-            if (_statController.CurrentHp <= 0.0f)
-            {
-                Debug.Log("Dead");
-                OnDied?.Invoke();
-            }
         }
         
         public void KnockBack(float power, Vector2 casterDirection)
@@ -174,7 +203,8 @@ namespace NoneProject.Actor.Enemy
             _nodeRunner = new NodeRunner(InitializeNode());
             _sortingGroup = transform.GetComponentInChildren<SortingGroup>();
             _layerIndex = GameManager.Instance.Const.EnemyLayerIndex;
-
+            _collider = GetComponent<Collider2D>();
+            
             IsInitialized = true;
         }
 

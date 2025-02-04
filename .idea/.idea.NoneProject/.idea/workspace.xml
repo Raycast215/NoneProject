@@ -68,6 +68,10 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/UI/StageTimer/StageTimerViewer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/UI/UiObject.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NoneProject/Utility/Timer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Template/BehaviourTree/ActionNode.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Template/BehaviourTree/NodeRunner.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Template/BehaviourTree/SelectorNode.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Template/BehaviourTree/SequenceNode.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Template/Manager/AddressableManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Template/Manager/SingletonBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Template/Manager/SoundManager.cs" root0="FORCE_HIGHLIGHTING" />
@@ -224,7 +228,7 @@
       <workItem from="1738081414113" duration="32000" />
       <workItem from="1738470463009" duration="20270000" />
       <workItem from="1738548606234" duration="14710000" />
-      <workItem from="1738623035377" duration="976000" />
+      <workItem from="1738623035377" duration="6816000" />
     </task>
     <servers />
   </component>

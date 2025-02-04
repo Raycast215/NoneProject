@@ -69,7 +69,7 @@ public class SkillTestModule : MonoBehaviour
             _skillC ??= new AttackStraight(playerTransform);
             _skillC.SetStartPos(player.PlayerCenter.position);
             _skillC.SetMoveVec(dir);
-            _skillC.Attack("Projectile_IceBolt", 1, 3.0f);
+            _skillC.Attack("Projectile_IceBolt", 3, 0.1f);
 
             await UniTask.WaitForSeconds(3.0f);
             

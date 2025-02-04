@@ -75,6 +75,9 @@ namespace NoneProject.Actor.Projectile
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if (_statController is null)
+                return;
+            
             if (other.CompareTag("Enemy") is false) 
                 return;
             
