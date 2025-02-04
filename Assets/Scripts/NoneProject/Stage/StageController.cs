@@ -4,6 +4,7 @@ using Cysharp.Threading.Tasks;
 using NoneProject.Manager;
 using NoneProject.Stage.Data;
 using Sirenix.Utilities;
+using Template.Manager;
 using Template.Utility;
 
 namespace NoneProject.Stage
@@ -23,6 +24,9 @@ namespace NoneProject.Stage
         public async UniTaskVoid StartStage()
         {
             _cts ??= new CancellationTokenSource();
+            
+            // BGM 재생.
+            SoundManager.Instance.PlayBgm(CurrentStage.bgmId, isFade: true);
             
             // 스폰할 수량 정의.
             var spawnCount = CurrentStage.maxSpawnCount;

@@ -10,6 +10,7 @@ namespace NoneProject.Stage.Data
         public float second;
         public int maxSpawnCount;
         public EnemySpawnData[] datas;
+        public string bgmId;
     }
 
     [Serializable]
